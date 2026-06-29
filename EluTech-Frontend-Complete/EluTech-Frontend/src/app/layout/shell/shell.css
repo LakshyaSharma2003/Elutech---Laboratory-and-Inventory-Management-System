@@ -1,0 +1,63 @@
+/* Full-viewport layout - sidebar never scrolls */
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  transition: background var(--transition);
+}
+
+/* Glass theme — content area is transparent so blobs show through */
+body[data-theme="glass"] .layout {
+  background: transparent;
+  gap: 12px;
+  padding: 10px 10px 10px 10px;
+  align-items: stretch;
+}
+
+/* Glass — sidebar floats as a pill bubble */
+body[data-theme="glass"] app-sidebar .sidebar {
+  border-radius: 20px;
+  height: calc(100vh - 20px);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Glass — content panel also floats */
+body[data-theme="glass"] .content {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Only the page area scrolls */
+.page {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
+  background: var(--bg);
+  transition: background var(--transition);
+  scrollbar-gutter: stable;
+  position: relative;
+}
+
+body[data-theme="glass"] .page {
+  background: transparent;
+}
+
+/* Scroll fade-under-header effect */
+body[data-theme="glass"] .page::before {
+  content: '';
+  position: sticky;
+  top: 0;
+  display: block;
+  height: 0;
+  background: transparent;
+  z-index: 2;
+  pointer-events: none;
+}

@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="top">
+    <div>
+      <h1>Notifications
+        <span class="badge-count" *ngIf="unreadCount > 0">{{unreadCount}} unread</span>
+      </h1>
+      <p class="subtitle">System notifications and alerts</p>
+    </div>
+    <button class="btn-secondary" *ngIf="unreadCount > 0" (click)="markAllRead()">
+      ✓ Mark All Read
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading notifications...</div>
+
+  <div *ngIf="!loading && notifications.length === 0" class="empty">
+    <div class="empty-icon">🔔</div>
+    <div>No notifications yet</div>
+    <div class="empty-sub">You'll see alerts here when actions happen in the system</div>
+  </div>
+
+  <div class="list" *ngIf="!loading && notifications.length > 0">
+    <div *ngFor="let n of notifications" class="notification-card" [class.unread]="!n.isRead">
+      <div class="notif-icon">{{ typeIcon(n.type) }}</div>
+      <div class="notif-body">
+        <div class="notif-title">{{n.title}}</div>
+        <div class="notif-message">{{n.message}}</div>
+        <div class="notif-time">{{n.sentAt | date:'dd MMM yyyy, hh:mm a'}}</div>
+      </div>
+      <div class="notif-actions">
+        <span class="status-dot" [class.unread-dot]="!n.isRead" [class.read-dot]="n.isRead"></span>
+        <button class="btn-read" (click)="markRead(n.id)" *ngIf="!n.isRead">Mark Read</button>
+        <span *ngIf="n.isRead" class="read-label">Read</span>
+      </div>
+    </div>
+  </div>
+</div>

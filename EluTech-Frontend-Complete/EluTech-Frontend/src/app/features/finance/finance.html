@@ -1,0 +1,132 @@
+<div class="container">
+  <h1>Finance Management</h1>
+
+  <div class="actions">
+    <button (click)="openPayment()">💳 Payment</button>
+    <button (click)="openExpense()">🧾 Expense</button>
+    <button (click)="openSalary()" [disabled]="loadingDropdowns || employees.length === 0" [title]="employees.length === 0 ? 'No employees available' : ''">{{ salaryBtnLabel }}</button>
+    <button (click)="openTax()">📋 Tax</button>
+    <button (click)="openInvoice()">📄 Generate Invoice</button>
+  </div>
+
+  <div class="cards">
+    <div class="card" *ngFor="let card of cards">
+      <h3>{{card.title}}</h3>
+      <h2>₹{{card.value | number}}</h2>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Invoices</h2>
+    <div class="search"><input [(ngModel)]="search" (ngModelChange)="filterInvoices()" placeholder="Search by invoice no. or customer..."></div>
+    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="!loading && filteredInvoices.length === 0" class="empty">No invoices yet.</div>
+    <table *ngIf="!loading && filteredInvoices.length > 0">
+      <thead>
+        <tr><th>Invoice #</th><th>Customer</th><th>Amount</th><th>Date</th><th>Status</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of filteredInvoices">
+          <td class="mono">{{i.invoiceNumber}}</td>
+          <td>{{i.customer}}</td>
+          <td>₹{{i.totalAmount | number}}</td>
+          <td>{{i.invoiceDate | date:'dd/MM/yyyy'}}</td>
+          <td><span class="badge" [ngClass]="i.isPaid ? 'Paid' : 'Pending'">{{i.isPaid ? 'Paid' : 'Pending'}}</span></td>
+          <td><button class="btn-download" (click)="downloadInvoice(i.id)">⬇ PDF</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div class="modal" *ngIf="showPayment">
+  <div class="modal-content">
+    <h2>Record Payment</h2>
+    <div class="form-field">
+      <label>Customer * <span class="hint">({{customers.length}} in DB)</span></label>
+      <select [(ngModel)]="payment.customerId">
+        <option [value]="0" disabled>-- Select Customer --</option>
+        <option *ngFor="let c of customers" [value]="c.id">#{{c.id}} — {{c.name}}</option>
+      </select>
+      <div *ngIf="customers.length === 0" class="no-data-hint">⚠ No customers. Add customers first.</div>
+    </div>
+    <div class="form-field"><label>Amount (₹) *</label><input type="number" [(ngModel)]="payment.amount"></div>
+    <div class="form-field"><label>Payment Method *</label><input [(ngModel)]="payment.paymentMethod" placeholder="e.g. UPI, NEFT, Cash, Cheque"></div>
+    <div class="form-field"><label>Reference Number</label><input [(ngModel)]="payment.referenceNumber"></div>
+    <div class="buttons">
+      <button [disabled]="saving || customers.length === 0" (click)="savePayment()">{{saving ? 'Saving...' : 'Save'}}</button>
+      <button (click)="showPayment=false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXPENSE -->
+<div class="modal" *ngIf="showExpense">
+  <div class="modal-content">
+    <h2>Add Expense</h2>
+    <div class="form-field"><label>Title *</label><input [(ngModel)]="expense.title" placeholder="Brief title for this expense"></div>
+    <div class="form-field"><label>Amount (₹) *</label><input type="number" [(ngModel)]="expense.amount"></div>
+    <div class="form-field"><label>Category</label><input [(ngModel)]="expense.category" placeholder="e.g. Operations, R&D, Admin"></div>
+    <div class="form-field"><label>Description</label><textarea [(ngModel)]="expense.description" rows="2"></textarea></div>
+    <div class="buttons">
+      <button [disabled]="saving" (click)="saveExpense()">{{saving ? 'Saving...' : 'Save'}}</button>
+      <button (click)="showExpense=false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- SALARY -->
+<div class="modal" *ngIf="showSalary">
+  <div class="modal-content">
+    <h2>Pay Salary</h2>
+    <div class="form-field">
+      <label>Employee * <span class="hint">({{employees.length}} active)</span></label>
+      <select [(ngModel)]="salary.employeeId">
+        <option [value]="0" disabled>-- Select Employee --</option>
+        <option *ngFor="let e of employees" [value]="e.id">#{{e.id}} — {{e.name}} ({{e.designation}})</option>
+      </select>
+    </div>
+    <div class="form-field"><label>Amount (₹) *</label><input type="number" [(ngModel)]="salary.amount"></div>
+    <div class="form-field"><label>Month *</label><input [(ngModel)]="salary.month" placeholder="Format: YYYY-MM e.g. 2026-06"></div>
+    <div class="buttons">
+      <button [disabled]="saving || employees.length === 0" (click)="saveSalary()">{{saving ? 'Saving...' : 'Save'}}</button>
+      <button (click)="showSalary=false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAX -->
+<div class="modal" *ngIf="showTax">
+  <div class="modal-content">
+    <h2>Record Tax</h2>
+    <div class="form-field"><label>Tax Name *</label><input [(ngModel)]="tax.taxName" placeholder="e.g. GST Q1 2026, Income Tax"></div>
+    <div class="form-field"><label>Amount (₹) *</label><input type="number" [(ngModel)]="tax.amount"></div>
+    <div class="buttons">
+      <button [disabled]="saving" (click)="saveTax()">{{saving ? 'Saving...' : 'Save'}}</button>
+      <button (click)="showTax=false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- INVOICE -->
+<div class="modal" *ngIf="showInvoice">
+  <div class="modal-content">
+    <h2>Generate Invoice</h2>
+    <div class="form-field">
+      <label>Customer * <span class="hint">({{customers.length}} in DB)</span></label>
+      <select [(ngModel)]="invoice.customerId">
+        <option [value]="0" disabled>-- Select Customer --</option>
+        <option *ngFor="let c of customers" [value]="c.id">#{{c.id}} — {{c.name}}</option>
+      </select>
+      <div *ngIf="customers.length === 0" class="no-data-hint">⚠ No customers. Add customers first.</div>
+    </div>
+    <div class="form-field"><label>Amount (₹) *</label><input type="number" [(ngModel)]="invoice.amount"></div>
+    <div class="form-field"><label>GST % *</label><input type="number" [(ngModel)]="invoice.gstPercentage" min="0" max="28"></div>
+    <div class="form-field"><label>Notes</label><textarea [(ngModel)]="invoice.notes" rows="2"></textarea></div>
+    <div class="buttons">
+      <button [disabled]="saving || customers.length === 0" (click)="generateInvoice()">{{saving ? 'Generating...' : 'Generate'}}</button>
+      <button (click)="showInvoice=false">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,193 @@
+<div class="container">
+  <div class="top">
+    <div>
+      <h1>Inventory</h1>
+      <p class="subtitle">Manage chemicals, machinery, consumables and purchases</p>
+    </div>
+    <div class="actions">
+      <button class="btn-primary" (click)="openModal('chemical')">+ Chemical</button>
+      <button class="btn-primary" (click)="openModal('machinery')">+ Machinery</button>
+      <button class="btn-primary" (click)="openModal('consumable')">+ Consumable</button>
+      <button class="btn-secondary" (click)="openModal('purchase')">📦 Purchase</button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab" [class.active]="activeTab === 'chemicals'" (click)="activeTab = 'chemicals'">
+      🧪 Chemicals ({{chemicals.length}})
+      <span class="tab-badge warn" *ngIf="lowStockCount > 0">{{lowStockCount}} low</span>
+    </button>
+    <button class="tab" [class.active]="activeTab === 'machinery'" (click)="activeTab = 'machinery'">
+      ⚙️ Machinery ({{machineries.length}})
+    </button>
+    <button class="tab" [class.active]="activeTab === 'consumables'" (click)="activeTab = 'consumables'">
+      📋 Consumables ({{consumables.length}})
+    </button>
+    <button class="tab" [class.active]="activeTab === 'purchases'" (click)="activeTab = 'purchases'">
+      🛒 Purchases ({{purchases.length}})
+    </button>
+  </div>
+
+  <!-- Chemicals Tab -->
+  <div *ngIf="activeTab === 'chemicals'">
+    <div class="alert-banner" *ngIf="lowStockCount > 0">
+      ⚠️ {{lowStockCount}} chemical(s) are below minimum stock level
+    </div>
+    <div *ngIf="loading.chemicals" class="loading">Loading...</div>
+    <div *ngIf="!loading.chemicals && chemicals.length === 0" class="empty">No chemicals yet. Add your first chemical.</div>
+    <table *ngIf="!loading.chemicals && chemicals.length > 0">
+      <thead><tr>
+        <th>Name</th><th>CAS Number</th><th>Qty</th><th>Min Stock</th><th>Unit</th><th>Expiry</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr *ngFor="let c of chemicals">
+          <td><b>{{c.name}}</b></td>
+          <td class="mono">{{c.casNumber}}</td>
+          <td [class.qty-low]="isLowStock(c)">{{c.quantity}}</td>
+          <td>{{c.minimumStock}}</td>
+          <td>{{c.unit}}</td>
+          <td>{{c.expiryDate | date:'dd MMM yyyy'}}</td>
+          <td>
+            <span class="badge low" *ngIf="isLowStock(c)">⚠ Low Stock</span>
+            <span class="badge ok"  *ngIf="!isLowStock(c)">✓ OK</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Machinery Tab -->
+  <div *ngIf="activeTab === 'machinery'">
+    <div *ngIf="loading.machinery" class="loading">Loading...</div>
+    <div *ngIf="!loading.machinery && machineries.length === 0" class="empty">No machinery added yet.</div>
+    <table *ngIf="!loading.machinery && machineries.length > 0">
+      <thead><tr>
+        <th>Machine Name</th><th>Manufacturer</th><th>Serial Number</th><th>Purchase Date</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr *ngFor="let m of machineries">
+          <td><b>{{m.machineName}}</b></td>
+          <td>{{m.manufacturer}}</td>
+          <td class="mono">{{m.serialNumber}}</td>
+          <td>{{m.purchaseDate | date:'dd MMM yyyy'}}</td>
+          <td><span class="badge ok">✓ Active</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Consumables Tab -->
+  <div *ngIf="activeTab === 'consumables'">
+    <div *ngIf="loading.consumables" class="loading">Loading...</div>
+    <div *ngIf="!loading.consumables && consumables.length === 0" class="empty">No consumables added yet.</div>
+    <table *ngIf="!loading.consumables && consumables.length > 0">
+      <thead><tr>
+        <th>Name</th><th>Quantity</th><th>Min Stock</th><th>Unit</th><th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr *ngFor="let c of consumables">
+          <td><b>{{c.name}}</b></td>
+          <td [class.qty-low]="c.quantity <= c.minimumStock">{{c.quantity}}</td>
+          <td>{{c.minimumStock}}</td>
+          <td>{{c.unit}}</td>
+          <td>
+            <span class="badge low" *ngIf="c.quantity <= c.minimumStock">⚠ Low Stock</span>
+            <span class="badge ok"  *ngIf="c.quantity > c.minimumStock">✓ OK</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Purchases Tab -->
+  <div *ngIf="activeTab === 'purchases'">
+    <div *ngIf="loading.purchases" class="loading">Loading...</div>
+    <div *ngIf="!loading.purchases && purchases.length === 0" class="empty">No purchases recorded yet.</div>
+    <table *ngIf="!loading.purchases && purchases.length > 0">
+      <thead><tr>
+        <th>Item</th><th>Vendor</th><th>Amount</th><th>Date</th>
+      </tr></thead>
+      <tbody>
+        <tr *ngFor="let p of purchases">
+          <td><b>{{p.itemName}}</b></td>
+          <td>{{p.vendor}}</td>
+          <td class="amount">₹{{p.amount | number}}</td>
+          <td>{{p.purchaseDate | date:'dd MMM yyyy, h:mm a'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Chemical Modal -->
+<div class="modal-overlay" *ngIf="activeModal === 'chemical'">
+  <div class="modal">
+    <h2>Add Chemical</h2>
+    <p class="modal-hint">Pre-filled with sample data</p>
+    <div class="form-grid">
+      <div class="form-field"><label>Chemical Name *</label><input [(ngModel)]="chemical.name"></div>
+      <div class="form-field"><label>CAS Number</label><input [(ngModel)]="chemical.casNumber" placeholder="CAS No. e.g. 1310-73-2"></div>
+      <div class="form-field"><label>Quantity *</label><input type="number" [(ngModel)]="chemical.quantity" min="0"></div>
+      <div class="form-field"><label>Unit *</label><input [(ngModel)]="chemical.unit" placeholder="Unit: L, kg, mL, g, pcs"></div>
+      <div class="form-field"><label>Minimum Stock *</label><input type="number" [(ngModel)]="chemical.minimumStock" min="0"></div>
+      <div class="form-field"><label>Expiry Date *</label><input type="date" [(ngModel)]="chemical.expiryDate"></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveChemical()" [disabled]="saving">{{saving ? 'Saving...' : 'Add Chemical'}}</button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Machinery Modal -->
+<div class="modal-overlay" *ngIf="activeModal === 'machinery'">
+  <div class="modal">
+    <h2>Add Machinery</h2>
+    <p class="modal-hint">Pre-filled with sample data</p>
+    <div class="form-grid">
+      <div class="form-field"><label>Machine Name *</label><input [(ngModel)]="machinery.machineName"></div>
+      <div class="form-field"><label>Manufacturer</label><input [(ngModel)]="machinery.manufacturer"></div>
+      <div class="form-field" style="grid-column:1/-1"><label>Serial Number</label><input [(ngModel)]="machinery.serialNumber"></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveMachinery()" [disabled]="saving">{{saving ? 'Saving...' : 'Add Machinery'}}</button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Consumable Modal -->
+<div class="modal-overlay" *ngIf="activeModal === 'consumable'">
+  <div class="modal">
+    <h2>Add Consumable</h2>
+    <p class="modal-hint">Pre-filled with sample data</p>
+    <div class="form-grid">
+      <div class="form-field"><label>Item Name *</label><input [(ngModel)]="consumable.name"></div>
+      <div class="form-field"><label>Unit *</label><input [(ngModel)]="consumable.unit" placeholder="e.g. Pieces, Box, Roll, Pack"></div>
+      <div class="form-field"><label>Quantity *</label><input type="number" [(ngModel)]="consumable.quantity" min="0"></div>
+      <div class="form-field"><label>Minimum Stock *</label><input type="number" [(ngModel)]="consumable.minimumStock" min="0"></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveConsumable()" [disabled]="saving">{{saving ? 'Saving...' : 'Add Consumable'}}</button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Purchase Modal -->
+<div class="modal-overlay" *ngIf="activeModal === 'purchase'">
+  <div class="modal">
+    <h2>Record Purchase</h2>
+    <p class="modal-hint">Pre-filled with sample data</p>
+    <div class="form-grid">
+      <div class="form-field"><label>Item Name *</label><input [(ngModel)]="purchase.itemName"></div>
+      <div class="form-field"><label>Vendor *</label><input [(ngModel)]="purchase.vendor"></div>
+      <div class="form-field" style="grid-column:1/-1"><label>Amount (₹) *</label><input type="number" [(ngModel)]="purchase.amount" min="0"></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="savePurchase()" [disabled]="saving">{{saving ? 'Saving...' : 'Record Purchase'}}</button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>

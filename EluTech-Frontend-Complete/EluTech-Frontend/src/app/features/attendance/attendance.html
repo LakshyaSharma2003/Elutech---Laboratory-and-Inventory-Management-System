@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="top">
+    <div>
+      <h1>Attendance</h1>
+      <p class="subtitle">Track employee attendance and time logs</p>
+    </div>
+    <div class="top-actions">
+      <button class="btn-primary" (click)="openMarkModal()">+ Mark Attendance</button>
+      <button class="btn-secondary" (click)="exportExcel()">⬇ Export Excel</button>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="cards" *ngIf="summary">
+    <div class="card present"><div class="label">Present</div><div class="value">{{summary.present}}</div></div>
+    <div class="card absent"><div class="label">Absent</div><div class="value">{{summary.absent}}</div></div>
+    <div class="card leave"><div class="label">Leave</div><div class="value">{{summary.leave}}</div></div>
+    <div class="card half"><div class="label">Half Day</div><div class="value">{{summary.halfDay}}</div></div>
+    <div class="card total"><div class="label">Total (Month)</div><div class="value">{{summary.total}}</div></div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <input [(ngModel)]="search" (ngModelChange)="filterRecords()" placeholder="Search by employee name or status...">
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading attendance records...</div>
+  <div *ngIf="!loading && filteredRecords.length === 0" class="empty">No attendance records found.</div>
+
+  <table *ngIf="!loading && filteredRecords.length > 0">
+    <thead>
+      <tr>
+        <th>Employee</th><th>Date</th><th>Check In</th><th>Check Out</th><th>Status</th><th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredRecords">
+        <td><b>{{item.employeeName}}</b></td>
+        <td>{{item.date | date:'dd MMM yyyy'}}</td>
+        <td class="time-cell">{{formatTime(item.checkIn)}}</td>
+        <td class="time-cell">
+          <span *ngIf="item.checkOut">{{formatTime(item.checkOut)}}</span>
+          <span *ngIf="!item.checkOut" class="not-checked-out">Not checked out</span>
+        </td>
+        <td><span class="badge" [ngClass]="item.status">{{item.status}}</span></td>
+        <td>
+          <button class="btn-checkout" (click)="openCheckoutModal(item)"
+            *ngIf="!item.checkOut && item.status === 'Present'">
+            Set Check-Out
+          </button>
+          <span *ngIf="item.checkOut" class="done-icon">✓ Done</span>
+          <span *ngIf="!item.checkOut && item.status !== 'Present'" class="na-text">—</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Mark Attendance Modal -->
+<div class="modal-overlay" *ngIf="showMarkModal">
+  <div class="modal">
+    <h2>Mark Attendance</h2>
+    <p class="modal-hint">Select employee, set exact check-in time and status</p>
+
+    <div class="form-field">
+      <label>Employee * <span class="count-hint">({{employees.length}} active)</span></label>
+      <select [(ngModel)]="markData.employeeId">
+        <option [value]="0" disabled>-- Select Employee --</option>
+        <option *ngFor="let e of employees" [value]="e.id">
+          #{{e.id}} — {{e.name}} ({{e.designation}})
+        </option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label>Check-In Time *</label>
+      <input type="datetime-local" [(ngModel)]="markData.checkInLocal">
+      <span class="field-hint">Current time is pre-filled — adjust if needed</span>
+    </div>
+
+    <div class="form-field">
+      <label>Status *</label>
+      <select [(ngModel)]="markData.status">
+        <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
+      </select>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="markAttendance()" [disabled]="saving">
+        {{saving ? 'Saving...' : 'Mark Attendance'}}
+      </button>
+      <button class="btn-cancel" (click)="showMarkModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" *ngIf="showCheckoutModal">
+  <div class="modal">
+    <h2>Record Check-Out</h2>
+    <div class="checkout-info" *ngIf="selectedRecord">
+      <span class="emp-name">{{selectedRecord.employeeName}}</span>
+      <span class="check-in-time">Checked in at {{formatTime(selectedRecord.checkIn)}}</span>
+    </div>
+
+    <div class="form-field">
+      <label>Check-Out Time *</label>
+      <input type="datetime-local" [(ngModel)]="checkoutData.checkOutLocal">
+      <span class="field-hint">Current time is pre-filled — adjust if needed</span>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="doCheckout()" [disabled]="saving">
+        {{saving ? 'Saving...' : 'Record Check-Out'}}
+      </button>
+      <button class="btn-cancel" (click)="showCheckoutModal = false">Cancel</button>
+    </div>
+  </div>
+</div>

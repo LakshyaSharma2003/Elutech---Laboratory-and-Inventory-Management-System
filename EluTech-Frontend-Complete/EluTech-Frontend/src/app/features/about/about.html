@@ -1,0 +1,154 @@
+<div class="about-page">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🏛️ Established · Jaipur, Rajasthan</div>
+      <h1>EluTech Laboratory &<br>Calibration Services</h1>
+      <p>A premier NABL-accredited testing and calibration facility, serving industries, government bodies, and institutions across Rajasthan with precision, integrity, and science.</p>
+      <div class="hero-stats">
+        <div class="stat" *ngFor="let s of stats">
+          <div class="stat-value">{{s.value}}</div>
+          <div class="stat-label">{{s.label}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-body">
+
+    <!-- ── ABOUT THE LAB ── -->
+    <section class="section">
+      <div class="section-label">Who We Are</div>
+      <div class="two-col">
+        <div class="text-block">
+          <h2>Precision You Can<br>Trust. Every Time.</h2>
+          <p>EluTech Laboratory & Calibration Services is a leading NABL-accredited testing and calibration laboratory based in Jaipur, Rajasthan. Founded with the mission of delivering accurate, reliable, and timely analytical services, EluTech has grown into one of the most trusted names in the laboratory science sector across Rajasthan and neighbouring states.</p>
+          <p>Our state-of-the-art facility houses advanced instrumentation for chemical, microbiological, environmental, and material testing, operated by a team of qualified scientists, engineers, and technicians. We adhere strictly to ISO/IEC 17025 standards — the international benchmark for laboratory competence — ensuring every result we deliver is technically sound and legally defensible.</p>
+          <p>From pharmaceutical manufacturers ensuring product purity, to construction companies verifying material strength, to municipal bodies monitoring water quality — EluTech serves as the trusted scientific partner across a diverse range of sectors.</p>
+        </div>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="ic-icon">📍</div>
+            <div class="ic-label">Location</div>
+            <div class="ic-value">Jaipur, Rajasthan, India</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🏅</div>
+            <div class="ic-label">Accreditation</div>
+            <div class="ic-value">NABL · ISO/IEC 17025</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🔬</div>
+            <div class="ic-label">Disciplines</div>
+            <div class="ic-value">Chemical · Physical · Microbiological · Calibration</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🕐</div>
+            <div class="ic-label">Turnaround</div>
+            <div class="ic-value">24–72 hours standard · Express available</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">📋</div>
+            <div class="ic-label">Reports</div>
+            <div class="ic-value">NABL-certified test reports accepted by regulatory bodies</div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🚀</div>
+            <div class="ic-label">On-Site Service</div>
+            <div class="ic-value">Field calibration & sample collection available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CEO SECTION ── -->
+    <section class="section ceo-section">
+      <div class="ceo-card">
+        <div class="ceo-avatar">
+          <div class="avatar-circle">JKS</div>
+          <div class="avatar-glow"></div>
+        </div>
+        <div class="ceo-content">
+          <div class="section-label" style="margin-bottom: 12px">Leadership</div>
+          <h2>Jitendra Kumar Sharma</h2>
+          <div class="ceo-title">Founder & Chief Executive Officer</div>
+          <p>Mr. Jitendra Kumar Sharma is the visionary founder and CEO of EluTech Laboratory & Calibration Services. With deep expertise in laboratory sciences, metrology, and quality management systems, he established EluTech with a clear purpose — to bring world-class testing and calibration capabilities to Rajasthan's industrial and institutional ecosystem.</p>
+          <p>Under his leadership, EluTech achieved NABL accreditation and built a reputation for scientific integrity, timely delivery, and customer-centric service. Mr. Sharma believes that accurate measurement is the foundation of quality in every industry — and has shaped EluTech's culture around this principle.</p>
+          <p>He actively engages with industry bodies, regulatory authorities, and academic institutions to promote the importance of quality testing in manufacturing, environment protection, and public health.</p>
+          <div class="ceo-credentials">
+            <div class="cred-tag">🎓 Laboratory Sciences</div>
+            <div class="cred-tag">📐 Metrology & Calibration</div>
+            <div class="cred-tag">✅ ISO/IEC 17025 QMS</div>
+            <div class="cred-tag">🏆 NABL Accreditation Expert</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES ── -->
+    <section class="section">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Our Testing & Calibration Services</h2>
+      <p class="section-sub">Comprehensive analytical services across 8 major disciplines, all performed under our NABL-accredited quality management system.</p>
+      <div class="services-grid">
+        <div class="service-card" *ngFor="let s of services">
+          <div class="service-icon">{{s.icon}}</div>
+          <div class="service-title">{{s.title}}</div>
+          <div class="service-desc">{{s.desc}}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACCREDITATIONS ── -->
+    <section class="section">
+      <div class="section-label">Quality & Compliance</div>
+      <h2 class="section-title">Accreditations & Standards</h2>
+      <div class="accred-grid">
+        <div class="accred-card" *ngFor="let a of accreditations">
+          <div class="accred-badge">{{a.name}}</div>
+          <div class="accred-full">{{a.full}}</div>
+          <div class="accred-body">{{a.body}}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CLIENTS ── -->
+    <section class="section">
+      <div class="section-label">Who We Serve</div>
+      <h2 class="section-title">Our Clients & Partners</h2>
+      <div class="clients-grid">
+        <div class="client-pill" *ngFor="let c of clients">{{c}}</div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT / CTA ── -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Ready to work with us?</h2>
+        <p>Contact EluTech Laboratory & Calibration Services for sample submission, calibration scheduling, or any testing enquiries.</p>
+        <div class="cta-contacts">
+          <div class="contact-item">
+            <span class="ci-icon">📍</span>
+            <span>Jaipur, Rajasthan — 302 001</span>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">✉️</span>
+            <span>info&#64;elutech.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon">🌐</span>
+            <span>www.elutech.com</span>
+          </div>
+        </div>
+      </div>
+      <a routerLink="/login" class="cta-btn">Access LIMS Portal →</a>
+    </section>
+
+  </div>
+</div>

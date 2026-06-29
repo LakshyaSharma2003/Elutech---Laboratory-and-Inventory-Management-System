@@ -1,0 +1,108 @@
+<div class="dashboard">
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div>
+      <div class="greeting">{{ greeting }}, {{ employeeName }} 👋</div>
+      <div class="date-line">{{ dayOfWeek }}, {{ formattedDate }}</div>
+    </div>
+    <div class="header-actions">
+      <a routerLink="/samples" class="header-btn">🧪 My Samples</a>
+      <a routerLink="/reports" class="header-btn">📄 My Reports</a>
+      <a routerLink="/notifications" class="header-btn">🔔 Notifications</a>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" *ngFor="let card of cards">
+      <div class="kpi-icon" [style.background]="card.bg" [style.color]="card.color">{{card.icon}}</div>
+      <div class="kpi-body">
+        <div class="kpi-value" [style.color]="card.color">
+          <span *ngIf="!loading">{{card.value}}</span>
+          <span *ngIf="loading" class="skeleton">—</span>
+        </div>
+        <div class="kpi-label">{{card.label}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+    <!-- Weekly Activity -->
+    <div class="chart-card wide">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">My Weekly Activity</div>
+          <div class="chart-subtitle">Samples worked &amp; reports submitted this week</div>
+        </div>
+        <div class="chart-legend">
+          <span class="ldot purple"></span> Samples
+          <span class="ldot blue"></span> Reports
+        </div>
+      </div>
+      <apx-chart [series]="activitySeries" [chart]="activityChart" [xaxis]="activityXAxis"
+        [plotOptions]="activityPlot" [colors]="activityColors" [grid]="activityGrid">
+      </apx-chart>
+    </div>
+
+    <!-- Sample Status Donut -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">My Sample Status</div>
+        <div class="chart-subtitle">Current distribution</div>
+      </div>
+      <div *ngIf="assignedSamples.length === 0" class="empty-chart">No samples assigned yet</div>
+      <apx-chart *ngIf="assignedSamples.length > 0"
+        [series]="sampleStatusSeries" [chart]="sampleStatusChart"
+        [labels]="sampleStatusLabels" [colors]="sampleStatusColors" [legend]="sampleStatusLegend">
+      </apx-chart>
+    </div>
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="bottom-row">
+    <!-- Assigned Samples Table (real data) -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">My Assigned Samples</div>
+        <div class="chart-subtitle">Loaded from database</div>
+      </div>
+      <div *ngIf="loading" class="loading-text">Loading...</div>
+      <div *ngIf="!loading && assignedSamples.length === 0" class="empty-state">
+        No samples assigned to you yet.
+      </div>
+      <table *ngIf="!loading && assignedSamples.length > 0">
+        <thead>
+          <tr><th>Code</th><th>Sample</th><th>Phase</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of assignedSamples">
+            <td class="mono">{{s.sampleCode}}</td>
+            <td><b>{{s.sampleName}}</b></td>
+            <td><span class="phase-pill">{{s.currentPhase}}</span></td>
+            <td><span class="badge" [ngClass]="s.status">{{s.status}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Recent Activity</div>
+        <div class="chart-subtitle">Your latest actions</div>
+      </div>
+      <div class="activity-list">
+        <div class="activity-item" *ngFor="let a of recentActivity">
+          <div class="activity-icon">{{a.icon}}</div>
+          <div class="activity-body">
+            <div class="activity-action">{{a.action}}</div>
+            <div class="activity-time">{{a.time}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

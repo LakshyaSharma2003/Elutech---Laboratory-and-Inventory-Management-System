@@ -1,0 +1,49 @@
+.container { max-width: 1100px; }
+.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+h1 { font-size: 24px; font-weight: 700; color: #1E293B; margin: 0 0 2px; }
+.subtitle { font-size: 13px; color: #94A3B8; margin: 0; }
+.top-actions { display: flex; gap: 10px; }
+.cards { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.card { flex: 1; min-width: 120px; background: white; padding: 16px 20px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border-left: 4px solid #E2E8F0; }
+.card.present { border-left-color: #10B981; } .card.absent { border-left-color: #EF4444; }
+.card.leave { border-left-color: #F59E0B; } .card.half { border-left-color: #3B82F6; }
+.card.total { border-left-color: #1E3A5F; }
+.label { font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+.value { font-size: 28px; font-weight: 700; color: #1E293B; }
+.search-bar { margin-bottom: 16px; }
+.search-bar input { width: 100%; max-width: 400px; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 14px; outline: none; }
+.search-bar input:focus { border-color: #1E3A5F; }
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+th { background: #F8FAFC; padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; border-bottom: 1px solid #E2E8F0; }
+td { padding: 13px 16px; border-bottom: 1px solid #F1F5F9; font-size: 14px; color: #334155; }
+tr:last-child td { border-bottom: none; }
+.time-cell { font-family: monospace; font-size: 13px; color: #475569; }
+.not-checked-out { color: #F59E0B; font-size: 12px; font-style: italic; }
+.badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge.Present { background: #F0FDF4; color: #16A34A; }
+.badge.Absent { background: #FEF2F2; color: #DC2626; }
+.badge.Leave { background: #FFF7ED; color: #EA580C; }
+.badge.HalfDay { background: #F0F9FF; color: #0284C7; }
+.btn-primary { padding: 9px 18px; background: #1E3A5F; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-primary:hover:not(:disabled) { background: #0F2544; }
+.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+.btn-secondary { padding: 9px 18px; background: #F1F5F9; color: #334155; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-checkout { padding: 6px 14px; background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+.done-icon { color: #16A34A; font-weight: 700; font-size: 13px; }
+.na-text { color: #CBD5E1; }
+.loading, .empty { text-align: center; color: #64748B; padding: 40px; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal { background: white; border-radius: 16px; padding: 32px; width: 440px; max-width: 92vw; }
+.modal h2 { font-size: 18px; font-weight: 700; color: #1E293B; margin: 0 0 4px; }
+.modal-hint { font-size: 12px; color: #94A3B8; margin: 0 0 20px; }
+.checkout-info { display: flex; flex-direction: column; gap: 4px; background: #F8FAFC; padding: 12px 14px; border-radius: 10px; margin-bottom: 18px; }
+.emp-name { font-weight: 700; color: #1E293B; font-size: 15px; }
+.check-in-time { font-size: 12px; color: #64748B; }
+.form-field { margin-bottom: 16px; }
+.form-field label { display: block; font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+.form-field input, .form-field select { width: 100%; padding: 10px 12px; border: 1.5px solid #E2E8F0; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; background: white; }
+.form-field input:focus, .form-field select:focus { border-color: #1E3A5F; }
+.field-hint { font-size: 11px; color: #94A3B8; margin-top: 5px; display: block; }
+.count-hint { font-weight: 400; color: #94A3B8; text-transform: none; }
+.modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
+.btn-cancel { padding: 9px 18px; background: white; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px; cursor: pointer; }

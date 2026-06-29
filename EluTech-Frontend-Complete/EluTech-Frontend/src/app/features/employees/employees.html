@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="top">
+    <h1>Employees</h1>
+    <button class="btn-primary" (click)="openModal()">+ Add Employee</button>
+  </div>
+
+  <div class="search-bar">
+    <input [(ngModel)]="search" (ngModelChange)="filterEmployees()" placeholder="Search by name, email, department...">
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading employees...</div>
+
+  <div *ngIf="!loading && filteredEmployees.length === 0" class="empty">No employees found.</div>
+
+  <table *ngIf="!loading && filteredEmployees.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Salary</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of filteredEmployees">
+        <td><b>{{emp.name}}</b></td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.department}}</td>
+        <td>{{emp.designation}}</td>
+        <td>₹{{emp.salary | number}}</td>
+        <td>
+          <span class="badge" [ngClass]="{'active': !emp.isTerminated, 'terminated': emp.isTerminated}">
+            {{emp.isTerminated ? 'Terminated' : 'Active'}}
+          </span>
+        </td>
+        <td>
+          <button class="btn-fire" (click)="fireEmployee(emp.id)" *ngIf="!emp.isTerminated">Terminate</button>
+          <span *ngIf="emp.isTerminated" class="done-text">—</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add Employee Modal -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal">
+    <h2>Add Employee</h2>
+    <p class="modal-hint">Fields pre-filled with sample data — edit as needed</p>
+    <div class="form-grid">
+      <div class="form-field">
+        <label>Full Name *</label>
+        <input [(ngModel)]="newEmployee.fullName" placeholder="e.g. Ravi Sharma">
+      </div>
+      <div class="form-field">
+        <label>Email *</label>
+        <input type="email" [(ngModel)]="newEmployee.email" placeholder="e.g. ravi@elutech.com">
+      </div>
+      <div class="form-field">
+        <label>Password *</label>
+        <input type="password" [(ngModel)]="newEmployee.password" placeholder="Password">
+      </div>
+      <div class="form-field">
+        <label>Phone Number</label>
+        <input [(ngModel)]="newEmployee.phoneNumber" placeholder="e.g. 9876543210">
+      </div>
+      <div class="form-field">
+        <label>Department</label>
+        <input [(ngModel)]="newEmployee.department" placeholder="e.g. Chemistry, Physics, Biology">
+      </div>
+      <div class="form-field">
+        <label>Designation</label>
+        <input [(ngModel)]="newEmployee.designation" placeholder="e.g. Lab Analyst, Technician">
+      </div>
+      <div class="form-field">
+        <label>Monthly Salary (₹)</label>
+        <input type="number" [(ngModel)]="newEmployee.salary" placeholder="Monthly salary in ₹">
+      </div>
+      <div class="form-field">
+        <label>Role *</label>
+        <select [(ngModel)]="newEmployee.roleName">
+          <option value="Employee">Employee</option>
+          <option value="Manager">Manager</option>
+          <option value="FinanceOfficer">Finance Officer</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveEmployee()" [disabled]="saving">
+        {{saving ? 'Adding...' : 'Add Employee'}}
+      </button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+// ADD THIS ENDPOINT to EmployeeController:
+
+    [Authorize]
+    [HttpGet("my-id")]
+    public async Task<IActionResult> GetMyEmployeeId()
+    {
+        var userIdStr = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (!int.TryParse(userIdStr, out int userId))
+            return BadRequest("Invalid token");
+
+        var employee = await _context.Employees
+            .FirstOrDefaultAsync(x => x.UserId == userId && !x.IsTerminated);
+
+        if (employee == null)
+            return NotFound("Employee record not found");
+
+        return Ok(new { employeeId = employee.Id, userId = userId });
+    }

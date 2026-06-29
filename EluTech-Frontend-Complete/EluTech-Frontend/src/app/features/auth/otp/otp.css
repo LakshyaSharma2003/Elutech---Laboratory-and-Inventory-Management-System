@@ -1,0 +1,23 @@
+.page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1E3A5F 0%, #0F2544 100%); padding: 20px; }
+.card { background: white; padding: 40px; border-radius: 20px; width: 420px; max-width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+.logo { font-size: 28px; font-weight: 800; color: #1E3A5F; letter-spacing: 4px; margin-bottom: 2px; }
+.logo-sub { font-size: 11px; color: #94A3B8; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 28px; }
+h2 { font-size: 20px; font-weight: 700; color: #1E293B; margin: 0 0 4px; }
+.hint { font-size: 13px; color: #64748B; margin: 0 0 24px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+.input-row { display: flex; gap: 8px; }
+.field input { width: 100%; padding: 11px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box; transition: border-color .2s; }
+.field input:focus { border-color: #1E3A5F; }
+.btn-lookup { padding: 0 14px; background: #F1F5F9; border: 1.5px solid #E2E8F0; border-radius: 10px; cursor: pointer; font-size: 16px; flex-shrink: 0; }
+.btn { width: 100%; padding: 13px; background: #1E3A5F; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 4px; }
+.btn:hover:not(:disabled) { background: #0F2544; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.error-box { background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; }
+.success-box { background: #F0FDF4; border: 1px solid #BBF7D0; color: #15803D; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; }
+.dev-otp-box { background: #FFFBEB; border: 2px dashed #F59E0B; border-radius: 12px; padding: 16px; margin-bottom: 20px; text-align: center; }
+.dev-label { font-size: 12px; font-weight: 600; color: #92400E; margin-bottom: 8px; }
+.dev-otp-code { font-size: 36px; font-weight: 800; color: #1E3A5F; letter-spacing: 10px; font-family: monospace; margin-bottom: 6px; }
+.dev-note { font-size: 11px; color: #B45309; font-style: italic; }
+.back-link { display: block; text-align: center; margin-top: 20px; font-size: 13px; color: #64748B; text-decoration: none; }
+.back-link:hover { color: #1E3A5F; }

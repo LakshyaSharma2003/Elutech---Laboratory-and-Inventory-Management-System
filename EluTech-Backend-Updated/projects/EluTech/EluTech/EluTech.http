@@ -1,0 +1,6 @@
+@EluTech_HostAddress = http://localhost:5291
+
+GET {{EluTech_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

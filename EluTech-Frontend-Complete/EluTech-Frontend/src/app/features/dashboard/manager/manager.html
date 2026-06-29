@@ -1,0 +1,130 @@
+<div class="dashboard">
+
+  <!-- Header Row -->
+  <div class="dash-header">
+    <div>
+      <div class="greeting">{{ greeting }}, Manager 👋</div>
+      <div class="date-line">{{ dayOfWeek }}, {{ formattedDate }}</div>
+    </div>
+    <div class="header-right">
+      <div class="date-card">
+        <div class="dc-day">{{ today | date:'d' }}</div>
+        <div class="dc-info">
+          <span>{{ today | date:'MMMM' }}</span>
+          <span>{{ today | date:'yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" *ngFor="let card of cards">
+      <div class="kpi-icon" [style.background]="card.bg" [style.color]="card.color">{{card.icon}}</div>
+      <div class="kpi-body">
+        <div class="kpi-value" [style.color]="card.color">
+          <span *ngIf="!loading">{{card.value}}</span>
+          <span *ngIf="loading" class="skeleton-num">—</span>
+        </div>
+        <div class="kpi-label">{{card.label}}</div>
+        <div class="kpi-trend">{{card.trend}}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Bar -->
+  <div class="alert-row" *ngIf="dashboard.lowStockChemicals > 0 || dashboard.pendingRequests > 0">
+    <div class="alert-item warn" *ngIf="dashboard.lowStockChemicals > 0">
+      ⚠️ {{dashboard.lowStockChemicals}} chemical(s) need restocking
+      <a routerLink="/inventory">View →</a>
+    </div>
+    <div class="alert-item info" *ngIf="dashboard.pendingRequests > 0">
+      🔔 {{dashboard.pendingRequests}} sample request(s) awaiting your approval
+      <a routerLink="/samples">Review →</a>
+    </div>
+    <div class="alert-item danger" *ngIf="dashboard.pendingReports > 0">
+      📄 {{dashboard.pendingReports}} report(s) pending review
+      <a routerLink="/reports">Review →</a>
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-links">
+    <a *ngFor="let q of quickLinks" [routerLink]="q.route" class="quick-link">
+      <span class="ql-icon" [style.background]="q.color + '20'" [style.color]="q.color">{{q.icon}}</span>
+      <span class="ql-label">{{q.label}}</span>
+      <span class="ql-arrow">→</span>
+    </a>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+    <!-- Sample Trend -->
+    <div class="chart-card wide">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Sample Activity — This Week</div>
+          <div class="chart-subtitle">Samples received vs completed</div>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-dot blue"></span> Received
+          <span class="legend-dot green"></span> Completed
+        </div>
+      </div>
+      <apx-chart [series]="sampleSeries" [chart]="sampleChart" [xaxis]="sampleXAxis" [yaxis]="sampleYAxis"
+        [fill]="sampleFill" [stroke]="sampleStroke" [grid]="sampleGrid" [colors]="sampleColors">
+      </apx-chart>
+    </div>
+
+    <!-- Attendance Donut -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Today's Attendance</div>
+          <div class="chart-subtitle">{{dashboard.presentEmployees}} / {{dashboard.employees}} employees present</div>
+        </div>
+      </div>
+      <div class="donut-center-wrap">
+        <apx-chart [series]="attendanceSeries" [chart]="attendanceChart"
+          [labels]="attendanceLabels" [colors]="attendanceColors" [legend]="attendanceLegend">
+        </apx-chart>
+        <div class="donut-center-text">
+          <div class="donut-pct">{{attendancePercent}}%</div>
+          <div class="donut-label">Present</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="bottom-row">
+    <!-- Sample Phase Distribution -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Samples by Phase</div>
+        <div class="chart-subtitle">Current distribution</div>
+      </div>
+      <apx-chart [series]="statusSeries" [chart]="statusChart" [xaxis]="statusXAxis"
+        [plotOptions]="statusPlot" [dataLabels]="statusDataLabels" [colors]="statusColors" [grid]="statusGrid">
+      </apx-chart>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="chart-card activity-card">
+      <div class="chart-header">
+        <div class="chart-title">Recent Activity</div>
+        <div class="chart-subtitle">Latest system events</div>
+      </div>
+      <div class="activity-list">
+        <div class="activity-item" *ngFor="let a of recentActivities">
+          <div class="activity-icon" [ngClass]="a.type">{{a.icon}}</div>
+          <div class="activity-body">
+            <div class="activity-action">{{a.action}}</div>
+            <div class="activity-time">{{a.time}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

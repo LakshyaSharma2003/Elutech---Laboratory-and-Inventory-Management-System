@@ -1,0 +1,38 @@
+<div class="page">
+  <div class="card">
+    <div class="logo">ELUTECH</div>
+    <div class="logo-sub">OTP Verification</div>
+    <h2>Verify Your Account</h2>
+    <p class="hint">Enter the OTP sent to your email</p>
+
+    <!-- Dev OTP box -->
+    <div class="dev-otp-box" *ngIf="devOtp">
+      <div class="dev-label">🔧 Dev Mode — Your OTP</div>
+      <div class="dev-otp-code">{{devOtp}}</div>
+      <div class="dev-note">Configure SMTP to receive OTPs via email</div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>Email Address</label>
+        <div class="input-row">
+          <input type="email" formControlName="email" placeholder="your@email.com">
+          <button type="button" class="btn-lookup" (click)="lookupOtp()" [disabled]="fetching">
+            {{fetching ? '...' : '🔍'}}
+          </button>
+        </div>
+      </div>
+      <div class="field">
+        <label>OTP Code</label>
+        <input type="text" formControlName="otp" placeholder="Enter OTP" maxlength="10">
+      </div>
+      <div class="error-box" *ngIf="error">{{error}}</div>
+      <div class="success-box" *ngIf="success">{{success}}</div>
+      <button type="submit" class="btn" [disabled]="loading">
+        {{loading ? 'Verifying...' : 'Verify OTP'}}
+      </button>
+    </form>
+
+    <a class="back-link" routerLink="/login">Back to Login</a>
+  </div>
+</div>

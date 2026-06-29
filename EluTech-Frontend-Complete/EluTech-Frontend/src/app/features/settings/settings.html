@@ -1,0 +1,298 @@
+<div class="settings-layout animate-up">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1>Settings</h1>
+      <p>Manage your appearance, profile, and preferences</p>
+    </div>
+  </div>
+
+  <div class="settings-body">
+    <!-- Left Nav -->
+    <aside class="settings-nav">
+      <button class="nav-item" [class.active]="activeSection==='appearance'" (click)="activeSection='appearance'">
+        <span class="nav-icon">🎨</span> Appearance
+      </button>
+      <button class="nav-item" [class.active]="activeSection==='profile'" (click)="activeSection='profile'">
+        <span class="nav-icon">👤</span> Profile
+      </button>
+      <button class="nav-item" [class.active]="activeSection==='password'" (click)="activeSection='password'">
+        <span class="nav-icon">🔒</span> Password
+      </button>
+      <button class="nav-item" [class.active]="activeSection==='notifications'" (click)="activeSection='notifications'">
+        <span class="nav-icon">🔔</span> Notifications
+      </button>
+    </aside>
+
+    <!-- Right Content -->
+    <main class="settings-content">
+
+      <!-- ── APPEARANCE ── -->
+      <div *ngIf="activeSection==='appearance'" class="section animate-fade">
+        <div class="section-head">
+          <h2>Theme</h2>
+          <p>Choose the look and feel of your EluTech workspace</p>
+        </div>
+
+        <!-- Light Themes -->
+        <div class="theme-group">
+          <div class="group-label">☀️ Light Themes</div>
+          <div class="theme-grid">
+            <div *ngFor="let t of lightThemes"
+              class="theme-card"
+              [class.selected]="isActive(t.id)"
+              (click)="applyTheme(t.id)">
+              <div class="theme-swatch">
+                <div class="sw-sidebar" [style.background]="t.preview[0]"></div>
+                <div class="sw-body" [style.background]="t.preview[2]">
+                  <div class="sw-card" [style.background]="'white'">
+                    <div class="sw-bar" [style.background]="t.preview[1]"></div>
+                    <div class="sw-line"></div>
+                    <div class="sw-line sw-line-short"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="theme-info">
+                <div class="theme-name">{{t.name}}</div>
+                <div class="theme-desc">{{t.description}}</div>
+              </div>
+              <div class="selected-check" *ngIf="isActive(t.id)">✓</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Glass Theme -->
+        <div class="theme-group">
+          <div class="group-label">🪟 Glass / Liquid</div>
+          <div class="theme-grid">
+            <ng-container *ngFor="let t of themes">
+              <ng-container *ngIf="t.id === 'glass'">
+                <div class="theme-card glass-card"
+                  [class.selected]="isActive(t.id)"
+                  (click)="applyTheme(t.id)">
+                  <div class="theme-swatch glass-swatch">
+                    <div class="glass-bg">
+                      <div class="glass-blob b1"></div>
+                      <div class="glass-blob b2"></div>
+                      <div class="glass-panel"></div>
+                    </div>
+                  </div>
+                  <div class="theme-info">
+                    <div class="theme-name">{{t.name}}</div>
+                    <div class="theme-desc">{{t.description}}</div>
+                  </div>
+                  <div class="selected-check" *ngIf="isActive(t.id)">✓</div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Dark Themes -->
+        <div class="theme-group">
+          <div class="group-label">🌙 Dark Themes</div>
+          <div class="theme-grid">
+            <div *ngFor="let t of darkThemes"
+              class="theme-card dark-card"
+              [class.selected]="isActive(t.id)"
+              (click)="applyTheme(t.id)">
+              <div class="theme-swatch dark-swatch">
+                <div class="sw-sidebar" [style.background]="t.preview[0]"></div>
+                <div class="sw-body" [style.background]="t.preview[0]"
+                  style="filter: brightness(1.3)">
+                  <div class="sw-card" [style.background]="t.preview[1]" style="opacity: .8">
+                    <div class="sw-bar" [style.background]="t.preview[2]"></div>
+                    <div class="sw-line dark-line"></div>
+                    <div class="sw-line dark-line sw-line-short"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="theme-info">
+                <div class="theme-name">{{t.name}}</div>
+                <div class="theme-desc">{{t.description}}</div>
+              </div>
+              <div class="selected-check" *ngIf="isActive(t.id)">✓</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Theme Banner -->
+        <div class="current-theme-banner">
+          <div class="ct-swatches">
+            <span *ngFor="let c of themeService.getCurrentThemeObj().preview"
+              class="ct-dot" [style.background]="c"></span>
+          </div>
+          <div class="ct-text">
+            <span class="ct-label">Current theme:</span>
+            <span class="ct-name">{{themeService.getCurrentThemeObj().name}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROFILE ── -->
+      <div *ngIf="activeSection==='profile'" class="section animate-fade">
+        <div class="section-head">
+          <h2>Your Profile</h2>
+          <p>Update your display name, email and contact info</p>
+        </div>
+        <div class="form-card">
+          <div class="avatar-row">
+            <div class="big-avatar">{{profile.fullName.charAt(0) || '?'}}</div>
+            <div>
+              <div class="avatar-name">{{profile.fullName}}</div>
+              <div class="avatar-role">{{auth.role()}}</div>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field full">
+              <label>Full Name</label>
+              <input type="text" [(ngModel)]="profile.fullName" placeholder="Your full name as on records">
+            </div>
+            <div class="form-field">
+              <label>Email Address</label>
+              <input type="email" [(ngModel)]="profile.email" placeholder="Your registered email address">
+            </div>
+            <div class="form-field">
+              <label>Phone Number</label>
+              <input type="tel" [(ngModel)]="profile.phoneNumber" placeholder="10-digit mobile number">
+            </div>
+          </div>
+          <button class="save-btn" (click)="saveProfile()" [disabled]="savingProfile">
+            {{savingProfile ? 'Saving...' : 'Save Profile'}}
+          </button>
+        </div>
+      </div>
+
+      <!-- ── PASSWORD ── -->
+      <div *ngIf="activeSection==='password'" class="section animate-fade">
+        <div class="section-head">
+          <h2>Change Password</h2>
+          <p>Choose a strong password to keep your account secure</p>
+        </div>
+        <div class="form-card">
+          <div class="form-field full">
+            <label>Current Password</label>
+            <div class="pw-input-wrap">
+              <input [type]="showCurrentPw ? 'text' : 'password'"
+                [(ngModel)]="passwords.currentPassword" placeholder="Your current password">
+              <button class="pw-toggle" type="button" (click)="showCurrentPw=!showCurrentPw">
+                {{showCurrentPw ? '🙈' : '👁️'}}
+              </button>
+            </div>
+          </div>
+          <div class="form-field full">
+            <label>New Password</label>
+            <div class="pw-input-wrap">
+              <input [type]="showNewPw ? 'text' : 'password'"
+                [(ngModel)]="passwords.newPassword" placeholder="Choose a strong password">
+              <button class="pw-toggle" type="button" (click)="showNewPw=!showNewPw">
+                {{showNewPw ? '🙈' : '👁️'}}
+              </button>
+            </div>
+            <!-- Strength meter -->
+            <div class="pw-strength" *ngIf="passwords.newPassword">
+              <div class="strength-bar">
+                <div class="strength-fill"
+                  [style.width]="pwStrength.pct + '%'"
+                  [style.background]="pwStrength.color"></div>
+              </div>
+              <span class="strength-label" [style.color]="pwStrength.color">
+                {{pwStrength.label}}
+              </span>
+            </div>
+          </div>
+          <div class="form-field full">
+            <label>Confirm New Password</label>
+            <div class="pw-input-wrap">
+              <input [type]="showConfirmPw ? 'text' : 'password'"
+                [(ngModel)]="passwords.confirmPassword" placeholder="Re-enter new password to confirm">
+              <button class="pw-toggle" type="button" (click)="showConfirmPw=!showConfirmPw">
+                {{showConfirmPw ? '🙈' : '👁️'}}
+              </button>
+            </div>
+            <div class="match-hint"
+              *ngIf="passwords.confirmPassword && passwords.newPassword !== passwords.confirmPassword"
+              style="color: #EF4444">
+              ⚠ Passwords do not match
+            </div>
+            <div class="match-hint"
+              *ngIf="passwords.confirmPassword && passwords.newPassword === passwords.confirmPassword"
+              style="color: #10B981">
+              ✓ Passwords match
+            </div>
+          </div>
+          <div class="pw-rules">
+            <div class="rule" [class.met]="pwRule_minLength">
+              <span class="rule-dot"></span> At least 6 characters
+            </div>
+            <div class="rule" [class.met]="pwRule_uppercase">
+              <span class="rule-dot"></span> One uppercase letter
+            </div>
+            <div class="rule" [class.met]="pwRule_number">
+              <span class="rule-dot"></span> One number
+            </div>
+            <div class="rule" [class.met]="pwRule_special">
+              <span class="rule-dot"></span> One special character
+            </div>
+          </div>
+          <button class="save-btn" (click)="savePassword()" [disabled]="savingPassword">
+            {{savingPassword ? 'Changing...' : 'Change Password'}}
+          </button>
+        </div>
+      </div>
+
+      <!-- ── NOTIFICATIONS ── -->
+      <div *ngIf="activeSection==='notifications'" class="section animate-fade">
+        <div class="section-head">
+          <h2>Notification Preferences</h2>
+          <p>Control which notifications you receive in-app</p>
+        </div>
+        <div class="form-card">
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-label">System Alerts</div>
+              <div class="toggle-desc">Low stock, expiry warnings, and system messages</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notifPrefs.systemAlerts">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-label">Sample Updates</div>
+              <div class="toggle-desc">Phase changes, approvals, and rejections</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notifPrefs.sampleUpdates">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-label">Finance Alerts</div>
+              <div class="toggle-desc">Payments, invoices, and salary notifications</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notifPrefs.financeAlerts">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row" style="border-bottom: none;">
+            <div class="toggle-info">
+              <div class="toggle-label">Email Digest</div>
+              <div class="toggle-desc">Daily summary sent to your email (requires SMTP)</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notifPrefs.emailDigest">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <button class="save-btn" (click)="saveNotifPrefs()">Save Preferences</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>

@@ -1,0 +1,606 @@
+2026-06-21 20:52:40.053 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:52:40.143 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:40.148 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 99.2526ms
+2026-06-21 20:52:40.151 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:52:40.170 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:40 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:40.179 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:40 PM'.
+2026-06-21 20:52:40.183 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:40.183 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:40.183 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 32.2609ms
+2026-06-21 20:52:43.226 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:43.226 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:43.226 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 0.8187ms
+2026-06-21 20:52:43.232 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:43.233 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:43 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:43.234 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:43 PM'.
+2026-06-21 20:52:43.234 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:43.234 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:43.234 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 2.4907ms
+2026-06-21 20:52:45.504 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:52:45.504 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:45.504 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 0.7111ms
+2026-06-21 20:52:45.509 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:52:45.510 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:45 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:45.511 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:45 PM'.
+2026-06-21 20:52:45.512 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:45.512 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:45.512 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 4.8761ms
+2026-06-21 20:52:53.425 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 20:52:53.426 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:53.426 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - 204 null null 0.8201ms
+2026-06-21 20:52:53.429 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 20:52:53.432 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:53 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:53.433 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:53 PM'.
+2026-06-21 20:52:53.434 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (FinanceOfficer)
+2026-06-21 20:52:53.434 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:53.435 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 5.7554ms
+2026-06-21 20:52:53.967 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:53.970 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:53.970 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 3.4134ms
+2026-06-21 20:52:53.974 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:53.976 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:53 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:53.976 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:53 PM'.
+2026-06-21 20:52:53.976 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:53.977 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:53.977 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 4.2508ms
+2026-06-21 20:52:56.396 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:56.397 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:56 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:56.398 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:56 PM'.
+2026-06-21 20:52:56.398 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:56.398 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:56.399 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 2.9334ms
+2026-06-21 20:52:56.717 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:52:56.717 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:56.717 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 0.4123ms
+2026-06-21 20:52:56.719 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:52:56.720 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:56 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:56.721 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:56 PM'.
+2026-06-21 20:52:56.721 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:56.721 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:56.722 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 2.1009ms
+2026-06-21 20:52:57.312 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 20:52:57.314 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:57 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:57.314 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:57 PM'.
+2026-06-21 20:52:57.316 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (FinanceOfficer)
+2026-06-21 20:52:57.316 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:57.316 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 3.5719ms
+2026-06-21 20:52:58.356 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 20:52:58.358 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:58 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:58.359 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:58 PM'.
+2026-06-21 20:52:58.359 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (FinanceOfficer)
+2026-06-21 20:52:58.359 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:58.359 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 3.3584ms
+2026-06-21 20:52:59.362 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 20:52:59.362 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:59.362 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - 204 null null 0.5026ms
+2026-06-21 20:52:59.366 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 20:52:59.367 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:59 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:59.367 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:59 PM'.
+2026-06-21 20:52:59.367 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (FinanceOfficer)
+2026-06-21 20:52:59.367 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:59.368 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 2.0795ms
+2026-06-21 20:52:59.780 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:59.780 +05:30 [INF] CORS policy execution successful.
+2026-06-21 20:52:59.780 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 0.3309ms
+2026-06-21 20:52:59.783 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 20:52:59.784 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:59 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:52:59.784 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:22:59 PM'.
+2026-06-21 20:52:59.785 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:52:59.785 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:52:59.785 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 2.243ms
+2026-06-21 20:53:00.039 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 20:53:00.043 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:23:00 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:53:00.044 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:23:00 PM'.
+2026-06-21 20:53:00.044 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:53:00.044 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:53:00.044 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 5.032ms
+2026-06-21 20:53:00.436 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 20:53:00.437 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:23:00 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 20:53:00.437 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:23:00 PM'.
+2026-06-21 20:53:00.438 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 20:53:00.438 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 20:53:00.438 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 2.3905ms
+2026-06-21 21:08:27.491 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Attendance'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:08:27.579 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Invoice'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:08:27.579 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Payment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:08:27.580 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Salary'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:08:27.580 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'TestingRequest'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:08:29.797 +05:30 [INF] Executed DbCommand (181ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:08:30.333 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:08:30.595 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:08:30.667 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:08:30.710 +05:30 [INF] User profile is available. Using 'C:\Users\Lakshya\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-21 21:08:31.189 +05:30 [INF] Now listening on: https://localhost:7295
+2026-06-21 21:08:31.189 +05:30 [INF] Now listening on: http://localhost:5291
+2026-06-21 21:08:31.360 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-21 21:08:31.361 +05:30 [INF] Hosting environment: Development
+2026-06-21 21:08:31.361 +05:30 [INF] Content root path: C:\Users\Lakshya\source\repos\EluTech\EluTech
+2026-06-21 21:08:32.373 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/index.html - null null
+2026-06-21 21:08:33.118 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_vs/browserLink - null null
+2026-06-21 21:08:33.123 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-21 21:08:33.128 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/index.html - 200 null text/html;charset=utf-8 777.365ms
+2026-06-21 21:08:33.218 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - 200 14919 application/javascript; charset=utf-8 94.6959ms
+2026-06-21 21:08:33.297 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_vs/browserLink - 200 null text/javascript; charset=UTF-8 178.4531ms
+2026-06-21 21:08:33.423 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - null null
+2026-06-21 21:08:33.486 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 63.3546ms
+2026-06-21 21:16:59.114 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Attendance'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:16:59.179 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Invoice'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:16:59.179 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Payment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:16:59.179 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Salary'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:16:59.179 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'TestingRequest'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 21:17:00.989 +05:30 [INF] Executed DbCommand (65ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:17:02.038 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:17:02.067 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:17:02.133 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 21:17:02.190 +05:30 [INF] User profile is available. Using 'C:\Users\Lakshya\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-21 21:17:02.695 +05:30 [INF] Now listening on: https://localhost:7295
+2026-06-21 21:17:02.695 +05:30 [INF] Now listening on: http://localhost:5291
+2026-06-21 21:17:02.897 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-21 21:17:02.898 +05:30 [INF] Hosting environment: Development
+2026-06-21 21:17:02.900 +05:30 [INF] Content root path: C:\Users\Lakshya\source\repos\EluTech\EluTech
+2026-06-21 21:17:05.331 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/index.html - null null
+2026-06-21 21:17:06.282 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_vs/browserLink - null null
+2026-06-21 21:17:06.282 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-21 21:17:06.360 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - 200 14919 application/javascript; charset=utf-8 71.7066ms
+2026-06-21 21:17:06.360 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/index.html - 200 null text/html;charset=utf-8 1101.9303ms
+2026-06-21 21:17:06.488 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_vs/browserLink - 200 null text/javascript; charset=UTF-8 205.7837ms
+2026-06-21 21:17:06.980 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - null null
+2026-06-21 21:17:07.073 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 93.3839ms
+2026-06-21 21:27:40.184 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-06-21 21:27:40.329 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:27:40.333 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 149.1252ms
+2026-06-21 21:27:40.337 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 21:27:40.483 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:40 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:27:40.531 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:40 PM'.
+2026-06-21 21:27:40.544 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:27:40.555 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:27:40.555 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 219.0909ms
+2026-06-21 21:27:41.194 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:27:41.198 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:27:41.199 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - 204 null null 4.4151ms
+2026-06-21 21:27:41.201 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:27:41.215 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:41 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:27:41.216 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:41 PM'.
+2026-06-21 21:27:41.219 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:27:41.220 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:27:41.220 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 19.4547ms
+2026-06-21 21:27:44.476 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 21:27:44.481 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:44 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:27:44.481 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:44 PM'.
+2026-06-21 21:27:44.485 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:27:44.485 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:27:44.486 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 9.9068ms
+2026-06-21 21:27:47.070 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 21:27:47.073 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:27:47.073 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 3.3044ms
+2026-06-21 21:27:47.076 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 21:27:47.079 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:47 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:27:47.082 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:47 PM'.
+2026-06-21 21:27:47.082 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:27:47.082 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:27:47.082 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 6.1482ms
+2026-06-21 21:27:49.107 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:27:49.113 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:27:49.114 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - 204 null null 14.203ms
+2026-06-21 21:27:49.119 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:27:49.124 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:49 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:27:49.124 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:57:49 PM'.
+2026-06-21 21:27:49.124 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:27:49.124 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:27:49.125 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 8.0649ms
+2026-06-21 21:28:06.511 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Sample/add-sample - null null
+2026-06-21 21:28:06.512 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:28:06.512 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Sample/add-sample - 204 null null 1.2031ms
+2026-06-21 21:28:06.515 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7295/api/Sample/add-sample - application/json 63
+2026-06-21 21:28:06.517 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:58:06 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:28:06.517 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:58:06 PM'.
+2026-06-21 21:28:06.518 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:28:06.518 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:28:06.518 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7295/api/Sample/add-sample - 401 0 null 3.0183ms
+2026-06-21 21:28:11.022 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7295/api/Sample/add-sample - application/json 63
+2026-06-21 21:28:11.023 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:58:11 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:28:11.024 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 3:58:11 PM'.
+2026-06-21 21:28:11.024 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:28:11.024 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:28:11.024 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7295/api/Sample/add-sample - 401 0 null 1.9078ms
+2026-06-21 21:39:17.832 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:17.834 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:39:17.835 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - 204 null null 2.663ms
+2026-06-21 21:39:17.839 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:17.864 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:17 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:17.865 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:17 PM'.
+2026-06-21 21:39:17.865 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager|FinanceOfficer)
+2026-06-21 21:39:17.865 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:17.865 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 27.1605ms
+2026-06-21 21:39:26.749 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:39:26.749 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:39:26.749 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - 204 null null 0.6532ms
+2026-06-21 21:39:26.767 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:39:26.771 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:26 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:26.773 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:26 PM'.
+2026-06-21 21:39:26.774 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:39:26.774 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:26.774 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 7.6758ms
+2026-06-21 21:39:27.125 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:27.126 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:39:27.127 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - 204 null null 1.5381ms
+2026-06-21 21:39:27.129 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:27.130 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:27 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:27.131 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:27 PM'.
+2026-06-21 21:39:27.131 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager|FinanceOfficer)
+2026-06-21 21:39:27.131 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:27.131 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 2.051ms
+2026-06-21 21:39:27.375 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:39:27.377 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:27 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:27.377 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:27 PM'.
+2026-06-21 21:39:27.378 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:39:27.378 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:27.378 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 2.8274ms
+2026-06-21 21:39:28.790 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:28.790 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:28 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:28.791 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:28 PM'.
+2026-06-21 21:39:28.791 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager|FinanceOfficer)
+2026-06-21 21:39:28.791 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:28.791 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 1.7004ms
+2026-06-21 21:39:29.307 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:39:29.308 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:29 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:29.308 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:29 PM'.
+2026-06-21 21:39:29.309 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:39:29.309 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:29.309 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 2.5557ms
+2026-06-21 21:39:31.260 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 21:39:31.261 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:31 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:31.262 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:31 PM'.
+2026-06-21 21:39:31.262 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:39:31.262 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:31.262 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 2.3232ms
+2026-06-21 21:39:31.562 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-06-21 21:39:31.562 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:39:31.562 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 0.8069ms
+2026-06-21 21:39:31.566 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 21:39:31.567 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:31 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:31.569 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:31 PM'.
+2026-06-21 21:39:31.569 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:39:31.569 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:31.569 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 3.5206ms
+2026-06-21 21:39:31.928 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 21:39:31.929 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:39:31.929 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 1.3466ms
+2026-06-21 21:39:31.932 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 21:39:31.934 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:31 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:31.935 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:31 PM'.
+2026-06-21 21:39:31.935 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 21:39:31.935 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:31.935 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 3.0482ms
+2026-06-21 21:39:36.381 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:36.382 +05:30 [INF] CORS policy execution successful.
+2026-06-21 21:39:36.382 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/finance - 204 null null 1.0357ms
+2026-06-21 21:39:36.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/finance - null null
+2026-06-21 21:39:36.386 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:36 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 21:39:36.387 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 4:09:36 PM'.
+2026-06-21 21:39:36.387 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager|FinanceOfficer)
+2026-06-21 21:39:36.387 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 21:39:36.387 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/finance - 401 0 null 2.5679ms
+2026-06-21 23:17:38.209 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - null null
+2026-06-21 23:17:38.212 +05:30 [INF] CORS policy execution successful.
+2026-06-21 23:17:38.212 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Sample/samples - 204 null null 3.6359ms
+2026-06-21 23:17:38.242 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 23:17:38.244 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:38 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 23:17:38.245 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:38 PM'.
+2026-06-21 23:17:38.245 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 23:17:38.246 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 23:17:38.246 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 3.7461ms
+2026-06-21 23:17:42.377 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-06-21 23:17:42.378 +05:30 [INF] CORS policy execution successful.
+2026-06-21 23:17:42.378 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 0.7421ms
+2026-06-21 23:17:42.381 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 23:17:42.382 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:42 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 23:17:42.383 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:42 PM'.
+2026-06-21 23:17:42.383 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 23:17:42.383 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 23:17:42.383 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 2.0488ms
+2026-06-21 23:17:42.694 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 23:17:42.695 +05:30 [INF] CORS policy execution successful.
+2026-06-21 23:17:42.695 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 0.9983ms
+2026-06-21 23:17:42.700 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 23:17:42.701 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:42 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 23:17:42.701 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:42 PM'.
+2026-06-21 23:17:42.710 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 23:17:42.710 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 23:17:42.710 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 10.8394ms
+2026-06-21 23:17:42.975 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Sample/samples - null null
+2026-06-21 23:17:42.977 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:42 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 23:17:42.978 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:42 PM'.
+2026-06-21 23:17:42.978 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 23:17:42.978 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 23:17:42.978 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Sample/samples - 401 0 null 3.4109ms
+2026-06-21 23:17:43.238 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-06-21 23:17:43.242 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:43 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 23:17:43.243 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:43 PM'.
+2026-06-21 23:17:43.243 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 23:17:43.243 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 23:17:43.244 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 401 0 null 5.8592ms
+2026-06-21 23:17:45.729 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-06-21 23:17:45.730 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:45 PM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-06-21 23:17:45.731 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '6/20/2026 4:23:17 PM', Current time (UTC): '6/21/2026 5:47:45 PM'.
+2026-06-21 23:17:45.731 +05:30 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Manager)
+2026-06-21 23:17:45.731 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2026-06-21 23:17:45.731 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 401 0 null 2.4416ms
+2026-06-21 23:17:56.208 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Attendance'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 23:17:56.290 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Invoice'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 23:17:56.290 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Payment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 23:17:56.290 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Salary'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 23:17:56.291 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'TestingRequest'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-06-21 23:17:57.797 +05:30 [INF] Executed DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 23:17:58.233 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 23:17:58.249 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 23:17:58.307 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-06-21 23:17:58.353 +05:30 [INF] User profile is available. Using 'C:\Users\Lakshya\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-06-21 23:17:58.746 +05:30 [INF] Now listening on: https://localhost:7295
+2026-06-21 23:17:58.746 +05:30 [INF] Now listening on: http://localhost:5291
+2026-06-21 23:17:58.902 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-06-21 23:17:58.903 +05:30 [INF] Hosting environment: Development
+2026-06-21 23:17:58.903 +05:30 [INF] Content root path: C:\Users\Lakshya\source\repos\EluTech\EluTech
+2026-06-21 23:17:59.805 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/index.html - null null
+2026-06-21 23:18:00.464 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/index.html - 200 null text/html;charset=utf-8 691.6792ms
+2026-06-21 23:18:00.464 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - null null
+2026-06-21 23:18:00.471 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_vs/browserLink - null null
+2026-06-21 23:18:00.484 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - 200 14919 application/javascript; charset=utf-8 21.803ms
+2026-06-21 23:18:00.581 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_vs/browserLink - 200 null text/javascript; charset=UTF-8 114.1389ms
+2026-06-21 23:18:00.665 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - null null
+2026-06-21 23:18:00.743 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 78.3637ms

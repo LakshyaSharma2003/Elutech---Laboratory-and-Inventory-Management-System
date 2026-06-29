@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="top">
+    <h1>Reports</h1>
+    <button class="btn-primary" *ngIf="isEmployee" (click)="openUpload()" [disabled]="loadingEmployeeId">
+      {{ loadingEmployeeId ? 'Loading...' : '📤 Upload Report' }}
+    </button>
+  </div>
+
+  <div class="search-bar">
+    <input [(ngModel)]="search" (ngModelChange)="filterReports()" placeholder="Search by sample, employee, or status...">
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading reports...</div>
+  <div *ngIf="!loading && filteredReports.length === 0" class="empty">No reports found.</div>
+
+  <table *ngIf="!loading && filteredReports.length > 0">
+    <thead>
+      <tr>
+        <th>Sample</th><th>Employee</th><th>File</th><th>Version</th><th>Status</th>
+        <th *ngIf="isManager">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of filteredReports">
+        <td>{{r.sample}}</td>
+        <td>{{r.employee}}</td>
+        <td class="file-name">📄 {{r.fileName}}</td>
+        <td>v{{r.version}}</td>
+        <td><span class="badge" [ngClass]="r.status">{{r.status}}</span></td>
+        <td *ngIf="isManager">
+          <button class="btn-approve" (click)="approve(r.id)" *ngIf="r.status === 'Pending'">Approve</button>
+          <button class="btn-reject" (click)="reject(r.id)" *ngIf="r.status === 'Pending'">Reject</button>
+          <span *ngIf="r.status !== 'Pending'" class="done-text">—</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Upload Modal -->
+<div class="modal-overlay" *ngIf="showUploadModal">
+  <div class="modal">
+    <h2>Upload Report</h2>
+    <p class="modal-hint">Your employee ID: <b>#{{myEmployeeId}}</b></p>
+
+    <div class="form-field">
+      <label>Select Sample * <span class="count-hint">({{mySamples.length}} assigned to you)</span></label>
+      <select [(ngModel)]="uploadSampleId">
+        <option [value]="0" disabled>-- Select Sample --</option>
+        <option *ngFor="let s of mySamples" [value]="s.id">
+          {{s.sampleCode}} — {{s.sampleName}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label>Report File * (PDF / DOC)</label>
+      <input type="file" (change)="onFileSelect($event)" accept=".pdf,.doc,.docx">
+    </div>
+
+    <div class="form-field">
+      <label>Remarks</label>
+      <textarea [(ngModel)]="uploadRemarks" rows="3" placeholder="Optional remarks about this report submission"></textarea>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="uploadReport()" [disabled]="uploading">
+        {{uploading ? 'Uploading...' : 'Upload'}}
+      </button>
+      <button class="btn-cancel" (click)="showUploadModal = false">Cancel</button>
+    </div>
+  </div>
+</div>

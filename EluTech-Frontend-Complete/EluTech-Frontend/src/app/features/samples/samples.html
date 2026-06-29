@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="top">
+    <h1>Samples</h1>
+    <button class="btn-primary" (click)="openModal()" *ngIf="isManager">+ Add Sample</button>
+  </div>
+
+  <div class="search-bar">
+    <input [(ngModel)]="search" (ngModelChange)="filterSamples()" placeholder="Search by code, name, employee, or status...">
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading samples...</div>
+  <div *ngIf="!loading && filteredSamples.length === 0" class="empty">No samples found.</div>
+
+  <table *ngIf="!loading && filteredSamples.length > 0">
+    <thead>
+      <tr>
+        <th>Sample Code</th><th>Sample Name</th><th>Assigned To</th><th>Phase</th><th>Status</th>
+        <th *ngIf="isManager">Pending Request</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of filteredSamples">
+        <td class="mono">{{s.sampleCode}}</td>
+        <td><b>{{s.sampleName}}</b></td>
+        <td>{{s.employee}}</td>
+        <td><span class="phase-badge">{{s.currentPhase}}</span></td>
+        <td><span class="badge" [ngClass]="s.status">{{s.status}}</span></td>
+        <td *ngIf="isManager">
+          <div class="action-group" *ngIf="s.requestId">
+            <button class="btn-approve" (click)="approve(s.requestId!)">✓ Approve</button>
+            <button class="btn-reject" (click)="reject(s.requestId!)">✗ Reject</button>
+          </div>
+          <span *ngIf="!s.requestId" class="na-text">No pending request</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add Sample Modal -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal">
+    <h2>Add Sample</h2>
+    <p class="modal-hint">Dropdowns are loaded from the database</p>
+
+    <div class="form-field">
+      <label>Sample Name *</label>
+      <input [(ngModel)]="newSample.sampleName" placeholder="Describe the sample e.g. Water Quality Analysis">
+    </div>
+
+    <div class="form-field">
+      <label>Customer * <span class="count-hint">({{customers.length}} available)</span></label>
+      <select [(ngModel)]="newSample.customerId">
+        <option [value]="0" disabled>-- Select Customer --</option>
+        <option *ngFor="let c of customers" [value]="c.id">
+          #{{c.id}} — {{c.name}}
+        </option>
+      </select>
+      <div *ngIf="customers.length === 0" class="field-hint error-hint">
+        ⚠ No customers in database. <a routerLink="/customers">Add customers first →</a>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label>Assign to Employee * <span class="count-hint">({{employees.length}} available)</span></label>
+      <div *ngIf="loadingDropdowns" class="loading-inline">Loading...</div>
+      <select *ngIf="!loadingDropdowns" [(ngModel)]="newSample.assignedEmployeeId">
+        <option [value]="0" disabled>-- Select Employee --</option>
+        <option *ngFor="let e of employees" [value]="e.id">
+          #{{e.id}} — {{e.name}} ({{e.designation}})
+        </option>
+      </select>
+      <div *ngIf="!loadingDropdowns && employees.length === 0" class="field-hint error-hint">
+        ⚠ No active employees found.
+      </div>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveSample()" [disabled]="saving || customers.length === 0 || employees.length === 0">
+        {{saving ? 'Adding...' : 'Add Sample'}}
+      </button>
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>

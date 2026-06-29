@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="top">
+    <h1>Audit Logs</h1>
+    <button class="btn-export" (click)="exportCSV()">⬇ Export CSV</button>
+  </div>
+
+  <div class="search-bar">
+    <input [(ngModel)]="search" (ngModelChange)="filterLogs()" placeholder="Search by action, entity, or IP...">
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading audit logs...</div>
+
+  <div *ngIf="!loading && filteredLogs.length === 0" class="empty">No audit logs found.</div>
+
+  <table *ngIf="!loading && filteredLogs.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User ID</th>
+        <th>Action</th>
+        <th>Entity</th>
+        <th>IP Address</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of filteredLogs">
+        <td>{{log.id}}</td>
+        <td>{{log.userId || '—'}}</td>
+        <td>{{log.action}}</td>
+        <td><span class="entity-badge">{{log.entityName || '—'}}</span></td>
+        <td class="ip">{{log.ipAddress || '—'}}</td>
+        <td class="time">{{log.timestamp | date:'dd MMM yyyy, hh:mm a'}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="total" *ngIf="!loading">Total: {{filteredLogs.length}} logs</div>
+</div>

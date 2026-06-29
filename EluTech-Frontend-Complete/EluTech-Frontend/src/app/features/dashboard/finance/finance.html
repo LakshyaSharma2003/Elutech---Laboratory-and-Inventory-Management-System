@@ -1,0 +1,95 @@
+<div class="dashboard">
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div>
+      <div class="greeting">Finance Overview 💰</div>
+      <div class="date-line">{{ dayOfWeek }}, {{ formattedDate }}</div>
+    </div>
+    <div class="header-links">
+      <a routerLink="/finance-module" class="header-btn">Manage Finance →</a>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card" *ngFor="let card of cards">
+      <div class="kpi-icon" [style.background]="card.bg" [style.color]="card.color">{{card.icon}}</div>
+      <div class="kpi-body">
+        <div class="kpi-label">{{card.label}}</div>
+        <div class="kpi-value" [style.color]="card.color">
+          <span *ngIf="!loading">{{card.prefix}}{{card.value | number}}</span>
+          <span *ngIf="loading" class="skeleton">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+    <!-- Revenue vs Expense -->
+    <div class="chart-card wide">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Revenue vs Expenses — 2026</div>
+          <div class="chart-subtitle">Monthly comparison (Jan–Jun)</div>
+        </div>
+        <div class="chart-legend">
+          <span class="ldot green"></span> Revenue
+          <span class="ldot red"></span> Expenses
+        </div>
+      </div>
+      <apx-chart [series]="revExpSeries" [chart]="revExpChart" [xaxis]="revExpXAxis"
+        [yaxis]="revExpYAxis" [plotOptions]="revExpPlot" [colors]="revExpColors" [grid]="revExpGrid">
+      </apx-chart>
+    </div>
+
+    <!-- Expense Breakdown -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Expense Breakdown</div>
+        <div class="chart-subtitle">By category</div>
+      </div>
+      <apx-chart [series]="expBreakSeries" [chart]="expBreakChart"
+        [labels]="expBreakLabels" [colors]="expBreakColors" [legend]="expBreakLegend">
+      </apx-chart>
+    </div>
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="bottom-row">
+    <!-- Profit Trend -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Profit Trend</div>
+        <div class="chart-subtitle">Monthly net profit (Jan–Jun 2026)</div>
+      </div>
+      <apx-chart [series]="profitSeries" [chart]="profitChart" [xaxis]="profitXAxis"
+        [fill]="profitFill" [stroke]="profitStroke" [colors]="profitColors" [grid]="profitGrid">
+      </apx-chart>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Recent Transactions</div>
+        <div class="chart-subtitle">Latest financial activity</div>
+      </div>
+      <div class="txn-list">
+        <div class="txn-item" *ngFor="let t of recentTransactions">
+          <div class="txn-icon" [ngClass]="t.type">
+            {{ t.type === 'credit' ? '↑' : '↓' }}
+          </div>
+          <div class="txn-body">
+            <div class="txn-desc">{{t.desc}}</div>
+            <div class="txn-date">{{t.date}}</div>
+          </div>
+          <div class="txn-amount" [ngClass]="t.type">
+            {{ t.type === 'credit' ? '+' : '−' }}{{fmt(t.amount)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,107 @@
+<div class="login-page">
+
+  <!-- Left Panel — Brand & Lab Identity -->
+  <div class="left-panel">
+    <div class="left-content">
+
+      <!-- Logo -->
+      <div class="brand">
+        <div class="brand-icon">⬡</div>
+        <div class="brand-name">ELUTECH</div>
+      </div>
+
+      <!-- Hero text -->
+      <div class="hero">
+        <h1>Laboratory &<br>Calibration<br>Management</h1>
+        <p>A complete digital platform for managing samples, employees, inventory, finance and compliance — built exclusively for EluTech Laboratory & Calibration Services, Jaipur.</p>
+      </div>
+
+      <!-- Feature pills -->
+      <div class="features">
+        <div class="feat"><span class="feat-icon">🧪</span><span>Sample Tracking</span></div>
+        <div class="feat"><span class="feat-icon">📦</span><span>Inventory Control</span></div>
+        <div class="feat"><span class="feat-icon">💰</span><span>Finance & Invoicing</span></div>
+        <div class="feat"><span class="feat-icon">📄</span><span>Report Management</span></div>
+        <div class="feat"><span class="feat-icon">📅</span><span>Attendance System</span></div>
+        <div class="feat"><span class="feat-icon">🔔</span><span>Live Notifications</span></div>
+      </div>
+
+      <!-- Accreditation badges -->
+      <div class="badges">
+        <div class="badge-pill">ISO/IEC 17025</div>
+        <div class="badge-pill">NABL Accredited</div>
+        <div class="badge-pill">Jaipur, Rajasthan</div>
+      </div>
+
+    </div>
+
+    <!-- Decorative blobs -->
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <!-- Right Panel — Login Form -->
+  <div class="right-panel">
+    <div class="form-card">
+
+      <div class="form-header">
+        <div class="form-logo">⬡ ELUTECH</div>
+        <h2>Welcome back</h2>
+        <p>Sign in to your account to continue</p>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="field">
+          <label>Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">✉</span>
+            <input type="email" formControlName="email"
+              placeholder="your@elutech.com"
+              autocomplete="email">
+          </div>
+          <div class="field-error"
+            *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+            Enter a valid email address
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔒</span>
+            <input type="password" formControlName="password"
+              placeholder="••••••••"
+              autocomplete="current-password">
+          </div>
+          <div class="field-error"
+            *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+            Password is required
+          </div>
+        </div>
+
+        <div class="row-between">
+          <span></span>
+          <a class="forgot-link" routerLink="/forgot-password">Forgot password?</a>
+        </div>
+
+        <div class="error-box" *ngIf="error">
+          <span>⚠</span> {{error}}
+        </div>
+
+        <button type="submit" class="btn" [disabled]="loading || form.invalid">
+          <span *ngIf="!loading">Sign In →</span>
+          <span *ngIf="loading" class="loading-row">
+            <span class="spinner"></span> Signing in...
+          </span>
+        </button>
+      </form>
+
+      <div class="form-footer">
+        <span>EluTech LIMS · Jaipur, Rajasthan</span>
+        <a routerLink="/about" class="about-link">About EluTech →</a>
+      </div>
+    </div>
+  </div>
+
+</div>

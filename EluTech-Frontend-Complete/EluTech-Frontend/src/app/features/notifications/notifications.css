@@ -1,0 +1,31 @@
+.container { max-width: 760px; }
+.top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+h1 { font-size: 24px; font-weight: 700; color: #1E293B; margin: 0 0 4px; display: flex; align-items: center; gap: 12px; }
+.subtitle { font-size: 13px; color: #94A3B8; margin: 0; }
+.badge-count { background: #EF4444; color: white; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.btn-secondary { padding: 9px 18px; background: #F1F5F9; color: #334155; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.btn-secondary:hover { background: #E2E8F0; }
+.loading { text-align: center; color: #94A3B8; padding: 40px; }
+.empty { text-align: center; padding: 60px 20px; color: #94A3B8; }
+.empty-icon { font-size: 48px; margin-bottom: 12px; }
+.empty-sub { font-size: 13px; margin-top: 6px; }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.notification-card {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: white; border: 1px solid #E2E8F0; border-radius: 12px;
+  padding: 16px 18px; transition: all .15s;
+}
+.notification-card.unread { border-left: 4px solid #1E3A5F; background: #F8FBFF; }
+.notification-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.notif-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.notif-body { flex: 1; }
+.notif-title { font-size: 14px; font-weight: 600; color: #1E293B; margin-bottom: 4px; }
+.notif-message { font-size: 13px; color: #64748B; margin-bottom: 6px; line-height: 1.5; }
+.notif-time { font-size: 11px; color: #94A3B8; }
+.notif-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+.unread-dot { background: #1E3A5F; }
+.read-dot { background: #CBD5E1; }
+.btn-read { padding: 5px 12px; background: #1E3A5F; color: white; border: none; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.btn-read:hover { background: #0F2544; }
+.read-label { font-size: 11px; color: #94A3B8; }

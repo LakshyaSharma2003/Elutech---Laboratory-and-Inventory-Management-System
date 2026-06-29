@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="top">
+    <div>
+      <h1>Customers</h1>
+      <p class="subtitle">Add customers here first before creating samples or invoices</p>
+    </div>
+    <button class="btn-primary" (click)="openModal()">+ Add Customer</button>
+  </div>
+
+  <div class="search-bar">
+    <input [(ngModel)]="search" (ngModelChange)="filterCustomers()" placeholder="Search by name, email, or GST...">
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading customers...</div>
+  <div *ngIf="!loading && filteredCustomers.length === 0" class="empty">
+    No customers yet. Add your first customer to get started.
+  </div>
+
+  <table *ngIf="!loading && filteredCustomers.length > 0">
+    <thead>
+      <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>GST Number</th><th>Address</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of filteredCustomers">
+        <td class="id-cell">#{{c.id}}</td>
+        <td><b>{{c.name}}</b></td>
+        <td>{{c.email}}</td>
+        <td>{{c.phoneNumber}}</td>
+        <td><span class="gst-badge">{{c.gstNumber || '—'}}</span></td>
+        <td>{{c.address}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add Customer Modal -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal">
+    <h2>Add Customer</h2>
+    <p class="modal-hint">⚠️ Add customers here first — they are required for samples and payments</p>
+    <div class="form-field"><label>Customer / Company Name *</label><input [(ngModel)]="newCustomer.name" placeholder="e.g. ABC Pharma Ltd"></div>
+    <div class="form-field"><label>Email *</label><input type="email" [(ngModel)]="newCustomer.email" placeholder="lab@company.com"></div>
+    <div class="form-field"><label>Phone Number</label><input [(ngModel)]="newCustomer.phoneNumber" placeholder="10-digit mobile number"></div>
+    <div class="form-field"><label>GST Number</label><input [(ngModel)]="newCustomer.gstNumber" placeholder="15-digit GST number (optional)"></div>
+    <div class="form-field"><label>Address</label><input [(ngModel)]="newCustomer.address" placeholder="Full address with city & state"></div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveCustomer()" [disabled]="saving">
+        {{saving ? 'Saving...' : 'Add Customer'}}
+      </button>
+      <button class="btn-cancel" (click)="showModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
