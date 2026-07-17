@@ -524,4 +524,118 @@ ExportAttendance()
 
 
     }
+
+    public async Task<EmployeeCheckLogDto> SelfCheckIn(int employeeId)
+    {
+        var today = DateTime.UtcNow.Date;
+
+        var log = await _context.EmployeeCheckLogs
+            .FirstOrDefaultAsync(x => x.EmployeeId == employeeId && x.Date == today);
+
+        if (log == null)
+        {
+            log = new EmployeeCheckLog
+            {
+                EmployeeId = employeeId,
+                Date = today,
+                SelfCheckIn = DateTime.UtcNow
+            };
+            _context.EmployeeCheckLogs.Add(log);
+        }
+        else if (log.SelfCheckIn.HasValue && !log.SelfCheckOut.HasValue)
+        {
+            // Already checked in today and hasn't checked out yet — block re-check-in
+            throw new Exception("You've already checked in today. You can only check out now.");
+        }
+        else if (log.SelfCheckIn.HasValue && log.SelfCheckOut.HasValue)
+        {
+            // Already completed a full in/out cycle today
+            throw new Exception("You've already completed your check-in/check-out for today.");
+        }
+        else
+        {
+            log.SelfCheckIn = DateTime.UtcNow;
+            log.UpdatedAt = DateTime.UtcNow;
+        }
+
+        await _context.SaveChangesAsync();
+
+        var employee = await _context.Employees.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == employeeId);
+
+        return new EmployeeCheckLogDto
+        {
+            EmployeeId = employeeId,
+            EmployeeName = employee?.User?.FullName,
+            Date = log.Date,
+            SelfCheckIn = log.SelfCheckIn,
+            SelfCheckOut = log.SelfCheckOut
+        };
+    }
+
+    public async Task<EmployeeCheckLogDto> SelfCheckOut(int employeeId)
+    {
+        var today = DateTime.UtcNow.Date;
+
+        var log = await _context.EmployeeCheckLogs
+            .FirstOrDefaultAsync(x => x.EmployeeId == employeeId && x.Date == today);
+
+        if (log == null)
+            throw new Exception("You must check in before checking out");
+
+        if (log.SelfCheckOut.HasValue)
+            throw new Exception("You've already checked out today");
+
+        log.SelfCheckOut = DateTime.UtcNow;
+        log.UpdatedAt = DateTime.UtcNow;
+        await _context.SaveChangesAsync();
+
+        var employee = await _context.Employees.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == employeeId);
+
+        return new EmployeeCheckLogDto
+        {
+            EmployeeId = employeeId,
+            EmployeeName = employee?.User?.FullName,
+            Date = log.Date,
+            SelfCheckIn = log.SelfCheckIn,
+            SelfCheckOut = log.SelfCheckOut
+        };
+    }
+
+    public async Task<List<EmployeeCheckLogDto>> GetTodaySelfCheckLogs()
+    {
+        var today = DateTime.UtcNow.Date;
+
+        return await _context.EmployeeCheckLogs
+            .Include(x => x.Employee).ThenInclude(x => x.User)
+            .Where(x => x.Date == today)
+            .Select(x => new EmployeeCheckLogDto
+            {
+                EmployeeId = x.EmployeeId,
+                EmployeeName = x.Employee.User.FullName,
+                Date = x.Date,
+                SelfCheckIn = x.SelfCheckIn,
+                SelfCheckOut = x.SelfCheckOut
+            })
+            .ToListAsync();
+    }
+
+    public async Task<EmployeeCheckLogDto?> GetMyTodayStatus(int employeeId)
+    {
+        var today = DateTime.UtcNow.Date;
+
+        var log = await _context.EmployeeCheckLogs
+            .Include(x => x.Employee).ThenInclude(x => x.User)
+            .FirstOrDefaultAsync(x => x.EmployeeId == employeeId && x.Date == today);
+
+        if (log == null) return null;
+
+        return new EmployeeCheckLogDto
+        {
+            EmployeeId = employeeId,
+            EmployeeName = log.Employee?.User?.FullName,
+            Date = log.Date,
+            SelfCheckIn = log.SelfCheckIn,
+            SelfCheckOut = log.SelfCheckOut
+        };
+    }
 }

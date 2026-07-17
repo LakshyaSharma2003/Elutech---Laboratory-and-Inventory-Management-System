@@ -1,4 +1,4 @@
-﻿using Asp.Versioning;
+using Asp.Versioning;
 using EluTech.API.DTOs.Sample;
 using EluTech.API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -18,110 +18,52 @@ public class SampleController : ControllerBase
         _service = service;
     }
 
-
-    //------------------------------------------------
-    // Manager
-    //------------------------------------------------
-
     [Authorize(Policy = "ManagerOnly")]
     [HttpPost("add-sample")]
-    public async Task<IActionResult> AddSample(
-        AddSampleDto dto)
+    public async Task<IActionResult> AddSample(AddSampleDto dto)
     {
-
         await _service.AddSample(dto);
-
-        return Ok(new
-        {
-            Message = "Sample Added Successfully"
-        });
-
+        return Ok(new { Message = "Sample Added Successfully" });
     }
-
-
-    //------------------------------------------------
-    // Manager
-    //------------------------------------------------
 
     [Authorize(Policy = "ManagerOnly")]
     [HttpGet("samples")]
     public async Task<IActionResult> GetSamples()
     {
-
-        var data = await _service.GetSamples();
-
-
-        return Ok(data);
-
+        return Ok(await _service.GetSamples());
     }
 
-
-    //------------------------------------------------
-    // Employee
-    //------------------------------------------------
+    // Government / Private tab filter
+    [Authorize(Policy = "ManagerOnly")]
+    [HttpGet("samples/{sampleType}")]
+    public async Task<IActionResult> GetSamplesByType(string sampleType)
+    {
+        return Ok(await _service.GetSamplesByType(sampleType));
+    }
 
     [Authorize(Policy = "EmployeeOnly")]
     [HttpPost("request-phase")]
-    public async Task<IActionResult> RequestPhase(
-        RequestPhaseDto dto)
+    public async Task<IActionResult> RequestPhase(RequestPhaseDto dto)
     {
-
         await _service.RequestPhase(dto);
-
-
-        return Ok(new
-        {
-            Message = "Phase Request Submitted"
-        });
-
+        return Ok(new { Message = "Phase Request Submitted" });
     }
-
-
-    //------------------------------------------------
-    // Manager
-    //------------------------------------------------
 
     [Authorize(Policy = "ManagerOnly")]
     [HttpPut("approve-request/{id}")]
-    public async Task<IActionResult> ApproveRequest(
-        int id)
+    public async Task<IActionResult> ApproveRequest(int id)
     {
-
         await _service.ApproveRequest(id);
-
-
-        return Ok(new
-        {
-            Message = "Request Approved"
-        });
-
+        return Ok(new { Message = "Request Approved" });
     }
-
-
-    //------------------------------------------------
-    // Manager
-    //------------------------------------------------
 
     [Authorize(Policy = "ManagerOnly")]
     [HttpPut("reject-request/{id}")]
-    public async Task<IActionResult> RejectRequest(
-        int id)
+    public async Task<IActionResult> RejectRequest(int id)
     {
-
         await _service.RejectRequest(id);
-
-
-        return Ok(new
-        {
-            Message = "Request Rejected"
-        });
-
+        return Ok(new { Message = "Request Rejected" });
     }
-
-
-    //------------------------------------------------
-    // Employee - get own assigned samples
-    //------------------------------------------------
 
     [Authorize(Policy = "EmployeeOnly")]
     [HttpGet("my-samples/{employeeId}")]
@@ -131,5 +73,46 @@ public class SampleController : ControllerBase
         return Ok(data);
     }
 
+    // Fill in / edit details that weren't available at intake time
+    [Authorize]
+    [HttpPut("{id}/update-details")]
+    public async Task<IActionResult> UpdateDetails(int id, UpdateSampleDetailsDto dto)
+    {
+        await _service.UpdateSampleDetails(id, dto);
+        return Ok(new { Message = "Sample details updated" });
+    }
 
+    // Employee accepts an assigned sample and sets expected completion date
+    [Authorize(Policy = "EmployeeOnly")]
+    [HttpPut("{id}/accept")]
+    public async Task<IActionResult> Accept(int id, AcceptSampleDto dto)
+    {
+        await _service.AcceptSample(id, dto);
+        return Ok(new { Message = "Sample accepted" });
+    }
+
+    // Employee rejects an assigned sample with a reason
+    [Authorize(Policy = "EmployeeOnly")]
+    [HttpPut("{id}/reject")]
+    public async Task<IActionResult> Reject(int id, RejectSampleDto dto)
+    {
+        await _service.RejectSample(id, dto);
+        return Ok(new { Message = "Sample rejected" });
+    }
+
+    // Employee posts a progress update with remarks
+    [Authorize(Policy = "EmployeeOnly")]
+    [HttpPost("progress")]
+    public async Task<IActionResult> AddProgress(AddProgressDto dto)
+    {
+        await _service.AddProgress(dto);
+        return Ok(new { Message = "Progress updated" });
+    }
+
+    [Authorize]
+    [HttpGet("progress/{sampleId}")]
+    public async Task<IActionResult> GetProgress(int sampleId)
+    {
+        return Ok(await _service.GetProgressLogs(sampleId));
+    }
 }

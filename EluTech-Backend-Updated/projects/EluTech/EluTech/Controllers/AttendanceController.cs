@@ -231,6 +231,42 @@ Export()
 
 
     }
+
+    // Employee self-reported check-in — REFERENCE ONLY for the Manager.
+    // Does not mark official attendance; Manager still marks it manually.
+    [Authorize(Policy = "EmployeeOnly")]
+    [HttpPost("self-checkin")]
+    public async Task<IActionResult> SelfCheckIn(SelfCheckDto dto)
+    {
+        var result = await _service.SelfCheckIn(dto.EmployeeId);
+        return Ok(result);
+    }
+
+    [Authorize(Policy = "EmployeeOnly")]
+    [HttpPost("self-checkout")]
+    public async Task<IActionResult> SelfCheckOut(SelfCheckDto dto)
+    {
+        var result = await _service.SelfCheckOut(dto.EmployeeId);
+        return Ok(result);
+    }
+
+    // Manager reference view — who has self-reported in/out today, and when
+    [Authorize(Policy = "ManagerOnly")]
+    [HttpGet("self-logs/today")]
+    public async Task<IActionResult> TodaySelfLogs()
+    {
+        return Ok(await _service.GetTodaySelfCheckLogs());
+    }
+
+    // Employee checks their OWN today's status — used to restore check-in
+    // button state correctly after a page reload or re-login.
+    [Authorize(Policy = "EmployeeOnly")]
+    [HttpGet("self-status/{employeeId}")]
+    public async Task<IActionResult> MyTodayStatus(int employeeId)
+    {
+        var result = await _service.GetMyTodayStatus(employeeId);
+        return Ok(result);
+    }
 }
 
 

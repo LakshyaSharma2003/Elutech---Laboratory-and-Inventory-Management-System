@@ -40,4 +40,12 @@ public interface IAttendanceService
     GetMonthlySummary();
 
     Task<byte[]> ExportAttendance();
+
+    // Employee self-reported check-in/out — reference only, does NOT mark official attendance
+    Task<EmployeeCheckLogDto> SelfCheckIn(int employeeId);
+    Task<EmployeeCheckLogDto> SelfCheckOut(int employeeId);
+    Task<List<EmployeeCheckLogDto>> GetTodaySelfCheckLogs();
+
+    // Lets the employee's own dashboard know if they've already checked in/out today
+    Task<EmployeeCheckLogDto?> GetMyTodayStatus(int employeeId);
 }

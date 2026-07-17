@@ -74,6 +74,64 @@
   },
   {
     "ContainingType": "EluTech.API.Controllers.AttendanceController",
+    "Method": "SelfCheckIn",
+    "RelativePath": "api/Attendance/self-checkin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Attendance.SelfCheckDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.AttendanceController",
+    "Method": "SelfCheckOut",
+    "RelativePath": "api/Attendance/self-checkout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Attendance.SelfCheckDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.AttendanceController",
+    "Method": "TodaySelfLogs",
+    "RelativePath": "api/Attendance/self-logs/today",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.AttendanceController",
+    "Method": "MyTodayStatus",
+    "RelativePath": "api/Attendance/self-status/{employeeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.AttendanceController",
     "Method": "Summary",
     "RelativePath": "api/Attendance/summary",
     "HttpMethod": "GET",
@@ -520,6 +578,75 @@
   },
   {
     "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "DeleteChemical",
+    "RelativePath": "api/Inventory/chemical/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "DismissExpiry",
+    "RelativePath": "api/Inventory/chemical/{id}/dismiss-expiry",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "DismissLowStock",
+    "RelativePath": "api/Inventory/chemical/{id}/dismiss-low-stock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "Restock",
+    "RelativePath": "api/Inventory/chemical/{id}/restock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Inventory.RestockChemicalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
     "Method": "GetChemicals",
     "RelativePath": "api/Inventory/chemicals",
     "HttpMethod": "GET",
@@ -546,8 +673,34 @@
   },
   {
     "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "DeleteConsumable",
+    "RelativePath": "api/Inventory/consumable/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
     "Method": "GetConsumables",
     "RelativePath": "api/Inventory/consumables",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "Expiring",
+    "RelativePath": "api/Inventory/expiring",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -588,6 +741,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.InventoryController",
+    "Method": "DeleteMachinery",
+    "RelativePath": "api/Inventory/machinery/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -712,6 +881,11 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Report.RejectReportDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -740,9 +914,93 @@
         "IsRequired": false
       },
       {
+        "Name": "ReportNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "Remarks",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.ReportController",
+    "Method": "ViewReport",
+    "RelativePath": "api/Report/view/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.SampleController",
+    "Method": "Accept",
+    "RelativePath": "api/Sample/{id}/accept",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Sample.AcceptSampleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.SampleController",
+    "Method": "Reject",
+    "RelativePath": "api/Sample/{id}/reject",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Sample.RejectSampleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.SampleController",
+    "Method": "UpdateDetails",
+    "RelativePath": "api/Sample/{id}/update-details",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Sample.UpdateSampleDetailsDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -797,6 +1055,38 @@
   },
   {
     "ContainingType": "EluTech.API.Controllers.SampleController",
+    "Method": "AddProgress",
+    "RelativePath": "api/Sample/progress",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "EluTech.API.DTOs.Sample.AddProgressDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.SampleController",
+    "Method": "GetProgress",
+    "RelativePath": "api/Sample/progress/{sampleId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sampleId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.SampleController",
     "Method": "RejectRequest",
     "RelativePath": "api/Sample/reject-request/{id}",
     "HttpMethod": "PUT",
@@ -835,6 +1125,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EluTech.API.Controllers.SampleController",
+    "Method": "GetSamplesByType",
+    "RelativePath": "api/Sample/samples/{sampleType}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sampleType",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]

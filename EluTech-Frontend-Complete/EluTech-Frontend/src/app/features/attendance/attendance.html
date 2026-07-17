@@ -10,6 +10,22 @@
     </div>
   </div>
 
+  <!-- Self-Reported Check-In/Out Reference — helps Manager know who has arrived before marking -->
+  <div class="self-log-panel" *ngIf="!loadingSelfLogs && selfLogs.length > 0">
+    <div class="self-log-header">
+      <span>📍 Self-Reported Presence Today</span>
+      <span class="self-log-hint">Employees marked this themselves — click a row to pre-fill Mark Attendance</span>
+    </div>
+    <div class="self-log-list">
+      <div class="self-log-item" *ngFor="let log of selfLogs" (click)="useSelfCheckIn(log)">
+        <span class="sl-name">{{log.employeeName}}</span>
+        <span class="sl-time in" *ngIf="log.selfCheckIn">In: {{log.selfCheckIn | date:'h:mm a'}}</span>
+        <span class="sl-time out" *ngIf="log.selfCheckOut">Out: {{log.selfCheckOut | date:'h:mm a'}}</span>
+        <span class="sl-time pending" *ngIf="!log.selfCheckOut">Still in lab</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Summary Cards -->
   <div class="cards" *ngIf="summary">
     <div class="card present"><div class="label">Present</div><div class="value">{{summary.present}}</div></div>
@@ -25,7 +41,12 @@
   </div>
 
   <div *ngIf="loading" class="loading">Loading attendance records...</div>
-  <div *ngIf="!loading && filteredRecords.length === 0" class="empty">No attendance records found.</div>
+  <div *ngIf="!loading && filteredRecords.length === 0" class="empty">
+    <div class="empty-icon">📅</div>
+    <div class="empty-title">No attendance records</div>
+    <div class="empty-sub">{{search ? 'Try a different search' : 'Mark attendance to begin tracking'}}</div>
+    <button class="btn-primary" *ngIf="!search" (click)="openMarkModal()" style="margin-top:16px">+ Mark Attendance</button>
+  </div>
 
   <table *ngIf="!loading && filteredRecords.length > 0">
     <thead>
@@ -54,6 +75,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="table-footer" *ngIf="!loading && filteredRecords.length > 0">{{filteredRecords.length}} of {{records.length}} records</div>
 </div>
 
 <!-- Mark Attendance Modal -->

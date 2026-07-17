@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { AttendanceRecord, AttendanceSummary } from '../models/attendance.model';
+import { AttendanceRecord, AttendanceSummary, EmployeeCheckLog } from '../models/attendance.model';
 
 @Injectable({ providedIn: 'root' })
 export class AttendanceService {
@@ -32,5 +32,23 @@ export class AttendanceService {
 
   exportExcel() {
     return this.api.get<Blob>('Attendance/export');
+  }
+
+  // Employee self-reported check-in/out — reference only, does NOT mark official attendance
+  selfCheckIn(employeeId: number): Observable<EmployeeCheckLog> {
+    return this.api.post<EmployeeCheckLog>('Attendance/self-checkin', { employeeId });
+  }
+
+  selfCheckOut(employeeId: number): Observable<EmployeeCheckLog> {
+    return this.api.post<EmployeeCheckLog>('Attendance/self-checkout', { employeeId });
+  }
+
+  getTodaySelfLogs(): Observable<EmployeeCheckLog[]> {
+    return this.api.get<EmployeeCheckLog[]>('Attendance/self-logs/today');
+  }
+
+  // Restores the employee's own today status after page reload/re-login
+  getMyTodayStatus(employeeId: number): Observable<EmployeeCheckLog | null> {
+    return this.api.get<EmployeeCheckLog | null>(`Attendance/self-status/${employeeId}`);
   }
 }

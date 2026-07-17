@@ -1,48 +1,25 @@
-﻿using EluTech.API.DTOs.Sample;
+using EluTech.API.DTOs.Sample;
 
 namespace EluTech.API.Interfaces;
 
-
 public interface ISampleService
 {
+    Task AddSample(AddSampleDto dto);
 
+    Task<List<SampleDto>> GetSamples();
+    Task<List<SampleDto>> GetSamplesByType(string sampleType);
 
-    Task AddSample(
+    Task RequestPhase(RequestPhaseDto dto);
+    Task ApproveRequest(int requestId);
+    Task RejectRequest(int requestId);
 
-    AddSampleDto dto);
+    Task<List<SampleDto>> GetSamplesByEmployee(int employeeId);
 
+    Task UpdateSampleDetails(int sampleId, UpdateSampleDetailsDto dto);
 
+    Task AcceptSample(int sampleId, AcceptSampleDto dto);
+    Task RejectSample(int sampleId, RejectSampleDto dto);
 
-    Task<List<SampleDto>>
-
-    GetSamples();
-
-
-
-    Task RequestPhase(
-
-    RequestPhaseDto dto);
-
-
-
-    Task ApproveRequest(
-
-    int requestId);
-
-
-
-    Task RejectRequest(
-
-    int requestId);
-
-
-
-
-
-    Task<List<SampleDto>>
-
-    GetSamplesByEmployee(
-
-    int employeeId);
-
+    Task AddProgress(AddProgressDto dto);
+    Task<List<ProgressLogDto>> GetProgressLogs(int sampleId);
 }

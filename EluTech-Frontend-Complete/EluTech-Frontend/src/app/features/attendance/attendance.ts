@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AttendanceService } from '../../core/services/attendance.service';
-import { AttendanceRecord, AttendanceSummary } from '../../core/models/attendance.model';
+import { AttendanceRecord, AttendanceSummary, EmployeeCheckLog } from '../../core/models/attendance.model';
 import { ToastService } from '../../core/services/toast.service';
 import { EmployeeService } from '../../core/services/employee.service';
 import { Employee } from '../../core/models/employee.model';
@@ -28,6 +28,10 @@ export class Attendance implements OnInit {
   statuses = ['Present', 'Absent', 'Leave', 'HalfDay'];
   selectedRecord?: AttendanceRecord;
 
+  // Reference-only: employees' self-reported check-in/out times, for the Manager to see before marking
+  selfLogs: EmployeeCheckLog[] = [];
+  loadingSelfLogs = false;
+
   markData = {
     employeeId: 0,
     checkInLocal: this.nowLocal(),
@@ -50,6 +54,27 @@ export class Attendance implements OnInit {
       next: (res) => { this.employees = res.filter(e => !e.isTerminated); },
       error: () => {}
     });
+    this.loadSelfLogs();
+  }
+
+  loadSelfLogs() {
+    this.loadingSelfLogs = true;
+    this.service.getTodaySelfLogs().subscribe({
+      next: (res) => { this.selfLogs = res; this.loadingSelfLogs = false; },
+      error: () => { this.loadingSelfLogs = false; }
+    });
+  }
+
+  // Quickly pre-fill the Mark Attendance modal using an employee's self-reported check-in time
+  useSelfCheckIn(log: EmployeeCheckLog) {
+    this.markData.employeeId = log.employeeId;
+    if (log.selfCheckIn) {
+      const d = new Date(log.selfCheckIn);
+      const pad = (n: number) => String(n).padStart(2, '0');
+      this.markData.checkInLocal = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+    this.markData.status = 'Present';
+    this.showMarkModal = true;
   }
 
   nowLocal(): string {

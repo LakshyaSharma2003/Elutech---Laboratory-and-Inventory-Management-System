@@ -1,45 +1,12 @@
-﻿using EluTech.API.DTOs.Report;
+using EluTech.API.DTOs.Report;
 
 namespace EluTech.API.Interfaces;
 
-
-
 public interface IReportService
 {
-
-
-    Task UploadReport(
-
-    IFormFile file,
-
-    UploadReportDto dto);
-
-
-
-    Task<List<ReportDto>>
-
-    GetReports();
-
-
-
-    Task<byte[]>
-
-    DownloadReport(
-
-    int id);
-
-
-
-    Task ApproveReport(
-
-    int id);
-
-
-
-    Task RejectReport(
-
-    int id);
-
-
-
+    Task UploadReport(IFormFile file, UploadReportDto dto);
+    Task<List<ReportDto>> GetReports();
+    Task<(byte[] Bytes, string FileName, string ContentType)> GetReportFile(int id);
+    Task ApproveReport(int id);
+    Task RejectReport(int id, string? managerRemarks);
 }

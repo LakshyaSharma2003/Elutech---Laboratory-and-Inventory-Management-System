@@ -1,12 +1,13 @@
-import { Component, computed } from '@angular/core';
+import { Component, OnInit, OnDestroy, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { ThemeService } from '../../core/services/theme.service';
+import { NotificationBadgeService } from '../../core/services/notification-badge.service';
 import { LiquidGlassDirective } from '../../shared/liquid-glass/liquid-glass.directive';
 
 interface MenuItem {
-  title: string; route: string; icon: string; roles: string[];
+  title: string; route: string; icon: string; roles: string[]; badge?: boolean;
 }
 
 @Component({
@@ -16,7 +17,7 @@ interface MenuItem {
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
-export class Sidebar {
+export class Sidebar implements OnInit, OnDestroy {
 
   allMenus: MenuItem[] = [
     { title: 'Dashboard',     route: '/manager',        icon: '⊞',  roles: ['Manager'] },
@@ -29,10 +30,10 @@ export class Sidebar {
     { title: 'Finance',       route: '/finance-module', icon: '💰', roles: ['FinanceOfficer'] },
     { title: 'Inventory',     route: '/inventory',      icon: '📦', roles: ['Manager'] },
     { title: 'Reports',       route: '/reports',        icon: '📄', roles: ['Manager', 'Employee'] },
-    { title: 'Notifications', route: '/notifications',  icon: '🔔', roles: ['Manager', 'FinanceOfficer', 'Employee'] },
+    { title: 'Notifications', route: '/notifications',  icon: '🔔', roles: ['Manager', 'FinanceOfficer', 'Employee'], badge: true },
     { title: 'Audit',         route: '/audit',          icon: '🔍', roles: ['Manager'] },
     { title: 'Settings',      route: '/settings',       icon: '⚙️', roles: ['Manager', 'FinanceOfficer', 'Employee'] },
-    { title: 'About EluTech',  route: '/about',          icon: '🏛️', roles: ['Manager', 'FinanceOfficer', 'Employee'] },
+    { title: 'About EluTech', route: '/about',          icon: '🏛️', roles: ['Manager', 'FinanceOfficer', 'Employee'] },
   ];
 
   menus = computed(() => {
@@ -40,5 +41,12 @@ export class Sidebar {
     return this.allMenus.filter(m => m.roles.includes(role));
   });
 
-  constructor(public auth: AuthService, public theme: ThemeService) {}
+  constructor(
+    public auth: AuthService,
+    public theme: ThemeService,
+    public badge: NotificationBadgeService
+  ) {}
+
+  ngOnInit() { this.badge.startPolling(); }
+  ngOnDestroy() { this.badge.stopPolling(); }
 }

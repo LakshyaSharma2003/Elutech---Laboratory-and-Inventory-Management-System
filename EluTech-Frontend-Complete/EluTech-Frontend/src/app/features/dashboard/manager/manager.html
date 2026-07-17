@@ -10,8 +10,8 @@
       <div class="date-card">
         <div class="dc-day">{{ today | date:'d' }}</div>
         <div class="dc-info">
-          <span>{{ today | date:'MMMM' }}</span>
-          <span>{{ today | date:'yyyy' }}</span>
+          <span>{{ today | date:'MMMM yyyy' }}</span>
+          <span class="live-time">{{ today | date:'HH:mm:ss' }}</span>
         </div>
       </div>
     </div>
@@ -20,9 +20,9 @@
   <!-- KPI Cards -->
   <div class="kpi-grid">
     <div class="kpi-card" *ngFor="let card of cards">
-      <div class="kpi-icon" [style.background]="card.bg" [style.color]="card.color">{{card.icon}}</div>
+      <div class="kpi-icon" [ngClass]="'icon-' + card.cls">{{card.icon}}</div>
       <div class="kpi-body">
-        <div class="kpi-value" [style.color]="card.color">
+        <div class="kpi-value" [ngClass]="'val-' + card.cls">
           <span *ngIf="!loading">{{card.value}}</span>
           <span *ngIf="loading" class="skeleton-num">—</span>
         </div>

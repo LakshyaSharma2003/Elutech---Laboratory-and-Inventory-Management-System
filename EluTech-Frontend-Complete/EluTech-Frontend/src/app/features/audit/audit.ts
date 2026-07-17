@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { exportToCSV } from '../../core/utils/export.utils';
 import { AuditService } from '../../core/services/audit.service';
 import { AuditLog } from '../../core/models/audit.model';
 import { ToastService } from '../../core/services/toast.service';
@@ -53,4 +54,5 @@ export class Audit implements OnInit {
     URL.revokeObjectURL(url);
     this.toast.show(`Exported ${this.filteredLogs.length} logs`, 'success');
   }
+
 }

@@ -16,6 +16,7 @@ import { ToastService } from '../../core/services/toast.service';
         </span>
         <span class="msg">{{t.message}}</span>
         <button class="close" (click)="toast.remove(t.id)">×</button>
+        <span class="progress"></span>
       </div>
     </div>
   `,
@@ -30,13 +31,29 @@ import { ToastService } from '../../core/services/toast.service';
       min-width: 280px; max-width: 380px;
       font-size: 14px; font-weight: 500;
       pointer-events: all;
-      animation: toastIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      overflow: hidden;
+      animation: toastIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
       box-shadow: 0 8px 28px rgba(0,0,0,0.14);
       font-family: 'Inter', system-ui, sans-serif;
     }
     @keyframes toastIn {
       from { transform: translateX(110%) scale(0.95); opacity: 0; }
       to   { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    .progress {
+      position: absolute;
+      left: 0; bottom: 0;
+      height: 2.5px;
+      width: 100%;
+      background: currentColor;
+      opacity: 0.35;
+      transform-origin: left;
+      animation: toastProgress 3.5s linear forwards;
+    }
+    @keyframes toastProgress {
+      from { transform: scaleX(1); }
+      to   { transform: scaleX(0); }
     }
     .toast.success { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
     .toast.error   { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
@@ -56,8 +73,8 @@ import { ToastService } from '../../core/services/toast.service';
     :host-context(body[data-dark="true"]) .toast.info    { background: #0C1A3A; color: #93C5FD; border-color: #1E3A8A; }
     .icon { font-size: 16px; flex-shrink: 0; }
     .msg  { flex: 1; line-height: 1.4; }
-    .close { background: none; border: none; cursor: pointer; font-size: 18px; color: inherit; opacity: 0.6; padding: 0; line-height: 1; font-family: inherit; }
-    .close:hover { opacity: 1; }
+    .close { background: none; border: none; cursor: pointer; font-size: 18px; color: inherit; opacity: 0.6; padding: 0; line-height: 1; font-family: inherit; transition: opacity 0.2s ease, transform 0.2s ease; }
+    .close:hover { opacity: 1; transform: scale(1.15); }
   `]
 })
 export class ToastComponent {

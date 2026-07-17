@@ -4,7 +4,10 @@
       <h1>Customers</h1>
       <p class="subtitle">Add customers here first before creating samples or invoices</p>
     </div>
-    <button class="btn-primary" (click)="openModal()">+ Add Customer</button>
+    <div class="top-actions">
+      <button class="btn-secondary" (click)="exportCSV()">⬇ Export CSV</button>
+      <button class="btn-primary" (click)="openModal()">+ Add Customer</button>
+    </div>
   </div>
 
   <div class="search-bar">
@@ -13,12 +16,22 @@
 
   <div *ngIf="loading" class="loading">Loading customers...</div>
   <div *ngIf="!loading && filteredCustomers.length === 0" class="empty">
-    No customers yet. Add your first customer to get started.
+    <div class="empty-icon">🏢</div>
+    <div class="empty-title">No customers found</div>
+    <div class="empty-sub">{{search ? 'Try a different search' : 'Add your first customer to get started'}}</div>
+    <button class="btn-primary" *ngIf="!search" (click)="openModal()" style="margin-top:16px">+ Add Customer</button>
   </div>
 
   <table *ngIf="!loading && filteredCustomers.length > 0">
     <thead>
-      <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>GST Number</th><th>Address</th></tr>
+      <tr>
+        <th class="sortable" (click)="setSort('id')"># {{sortIcon('id')}}</th>
+        <th class="sortable" (click)="setSort('name')">Name {{sortIcon('name')}}</th>
+        <th class="sortable" (click)="setSort('email')">Email {{sortIcon('email')}}</th>
+        <th>Phone</th>
+        <th>GST Number</th>
+        <th>Address</th>
+      </tr>
     </thead>
     <tbody>
       <tr *ngFor="let c of filteredCustomers">

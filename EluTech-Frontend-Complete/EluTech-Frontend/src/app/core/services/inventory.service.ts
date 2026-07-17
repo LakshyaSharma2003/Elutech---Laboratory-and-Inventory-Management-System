@@ -7,14 +7,16 @@ import { Chemical, AddChemical, Machinery, AddMachinery, Consumable, AddConsumab
 export class InventoryService {
   constructor(private api: ApiService) {}
 
-  // GET all chemicals (any stock level)
   getAllChemicals(): Observable<Chemical[]> {
     return this.api.get<Chemical[]>('Inventory/chemicals');
   }
 
-  // GET low stock only
   getLowStock(): Observable<Chemical[]> {
     return this.api.get<Chemical[]>('Inventory/low-stock');
+  }
+
+  getExpiring(): Observable<Chemical[]> {
+    return this.api.get<Chemical[]>('Inventory/expiring');
   }
 
   getAllMachinery(): Observable<Machinery[]> {
@@ -43,5 +45,29 @@ export class InventoryService {
 
   addPurchase(data: AddPurchase) {
     return this.api.post('Inventory/purchase', data);
+  }
+
+  restockChemical(id: number, addedQuantity: number) {
+    return this.api.put(`Inventory/chemical/${id}/restock`, { addedQuantity });
+  }
+
+  dismissLowStock(id: number) {
+    return this.api.put(`Inventory/chemical/${id}/dismiss-low-stock`, {});
+  }
+
+  dismissExpiry(id: number) {
+    return this.api.put(`Inventory/chemical/${id}/dismiss-expiry`, {});
+  }
+
+  deleteChemical(id: number) {
+    return this.api.delete(`Inventory/chemical/${id}`);
+  }
+
+  deleteMachinery(id: number) {
+    return this.api.delete(`Inventory/machinery/${id}`);
+  }
+
+  deleteConsumable(id: number) {
+    return this.api.delete(`Inventory/consumable/${id}`);
   }
 }

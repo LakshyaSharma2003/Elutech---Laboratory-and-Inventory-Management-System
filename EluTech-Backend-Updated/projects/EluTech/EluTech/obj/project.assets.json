@@ -7009,11 +7009,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lakshya\\Desktop\\Elutech 2\\files\\EluTech-Backend-Updated\\projects\\EluTech\\EluTech\\EluTech.csproj",
+      "projectUniqueName": "C:\\Users\\Lakshya\\Desktop\\Elutech Test 9\\files\\EluTech-Backend-Updated\\projects\\EluTech\\EluTech\\EluTech.csproj",
       "projectName": "EluTech",
-      "projectPath": "C:\\Users\\Lakshya\\Desktop\\Elutech 2\\files\\EluTech-Backend-Updated\\projects\\EluTech\\EluTech\\EluTech.csproj",
+      "projectPath": "C:\\Users\\Lakshya\\Desktop\\Elutech Test 9\\files\\EluTech-Backend-Updated\\projects\\EluTech\\EluTech\\EluTech.csproj",
       "packagesPath": "C:\\Users\\Lakshya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lakshya\\Desktop\\Elutech 2\\files\\EluTech-Backend-Updated\\projects\\EluTech\\EluTech\\obj\\",
+      "outputPath": "C:\\Users\\Lakshya\\Desktop\\Elutech Test 9\\files\\EluTech-Backend-Updated\\projects\\EluTech\\EluTech\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7158,7 +7158,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

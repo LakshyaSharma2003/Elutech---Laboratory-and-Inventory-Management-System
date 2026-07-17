@@ -41,3 +41,10 @@ export interface MarkAttendance {
   status: string;
 
 }
+export interface EmployeeCheckLog {
+  employeeId: number;
+  employeeName: string;
+  date: string;
+  selfCheckIn?: string;
+  selfCheckOut?: string;
+}

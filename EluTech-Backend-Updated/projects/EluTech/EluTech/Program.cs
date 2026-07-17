@@ -18,7 +18,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Services
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new EluTech.API.Common.UtcDateTimeConverter());
+        options.JsonSerializerOptions.Converters.Add(new EluTech.API.Common.UtcNullableDateTimeConverter());
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 

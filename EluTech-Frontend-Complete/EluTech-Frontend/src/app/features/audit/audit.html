@@ -10,7 +10,7 @@
 
   <div *ngIf="loading" class="loading">Loading audit logs...</div>
 
-  <div *ngIf="!loading && filteredLogs.length === 0" class="empty">No audit logs found.</div>
+  <div *ngIf="!loading && filteredLogs.length === 0" class="empty"><div class="empty-icon">🔍</div><div class="empty-title">No audit logs</div><div class="empty-sub">Activity will appear here as actions are performed</div></div>
 
   <table *ngIf="!loading && filteredLogs.length > 0">
     <thead>

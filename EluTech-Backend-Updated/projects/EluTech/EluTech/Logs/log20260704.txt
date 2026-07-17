@@ -1,0 +1,599 @@
+2026-07-04 13:05:49.919 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:05:49.928 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:05:49.928 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 9.4245ms
+2026-07-04 13:05:49.933 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:05:49.934 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '7/3/2026 8:48:57 AM', Current time (UTC): '7/4/2026 7:35:49 AM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-04 13:05:49.996 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '7/3/2026 8:48:57 AM', Current time (UTC): '7/4/2026 7:35:49 AM'.
+2026-07-04 13:05:49.996 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:05:49.996 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:05:49.996 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:05:50.078 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:05:50.078 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:05:50.079 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 82.135ms
+2026-07-04 13:05:50.079 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:05:50.079 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 146.0387ms
+2026-07-04 13:05:53.052 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:05:53.053 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '7/3/2026 8:48:57 AM', Current time (UTC): '7/4/2026 7:35:53 AM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-04 13:05:53.053 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '7/3/2026 8:48:57 AM', Current time (UTC): '7/4/2026 7:35:53 AM'.
+2026-07-04 13:05:53.053 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:05:53.053 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:05:53.053 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:05:53.056 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:05:53.056 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:05:53.056 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 2.7591ms
+2026-07-04 13:05:53.056 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:05:53.056 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 4.1158ms
+2026-07-04 13:06:23.060 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:06:23.060 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:06:23.060 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 0.6204ms
+2026-07-04 13:06:23.063 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:06:23.064 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '7/3/2026 8:48:57 AM', Current time (UTC): '7/4/2026 7:36:23 AM'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-07-04 13:06:23.064 +05:30 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '7/3/2026 8:48:57 AM', Current time (UTC): '7/4/2026 7:36:23 AM'.
+2026-07-04 13:06:23.064 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:06:23.065 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:06:23.065 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:06:23.067 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:06:23.068 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:06:23.068 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 3.5553ms
+2026-07-04 13:06:23.068 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:06:23.068 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 5.8634ms
+2026-07-04 13:07:34.557 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Attendance'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-04 13:07:34.837 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Invoice'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-04 13:07:34.838 +05:30 [WRN] Entity 'Customer' has a global query filter defined and is the required end of a relationship with the entity 'Payment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-04 13:07:34.840 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'Salary'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-04 13:07:34.841 +05:30 [WRN] Entity 'Employee' has a global query filter defined and is the required end of a relationship with the entity 'TestingRequest'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-07-04 13:07:43.888 +05:30 [INF] Executed DbCommand (297ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-07-04 13:07:45.239 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-07-04 13:07:45.547 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Users] AS [u]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-07-04 13:07:45.695 +05:30 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[IsDeleted] = CAST(0 AS bit)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-07-04 13:07:45.897 +05:30 [INF] User profile is available. Using 'C:\Users\Lakshya\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-04 13:07:47.495 +05:30 [INF] Now listening on: https://localhost:7295
+2026-07-04 13:07:47.497 +05:30 [INF] Now listening on: http://localhost:5291
+2026-07-04 13:07:48.240 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-04 13:07:48.242 +05:30 [INF] Hosting environment: Development
+2026-07-04 13:07:48.242 +05:30 [INF] Content root path: D:\Projects\Elutech LIMS\EluTech-Backend-Updated\projects\EluTech\EluTech
+2026-07-04 13:07:51.624 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/index.html - null null
+2026-07-04 13:07:54.068 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - null null
+2026-07-04 13:07:54.099 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/_vs/browserLink - null null
+2026-07-04 13:07:54.132 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_framework/aspnetcore-browser-refresh.js - 200 14919 application/javascript; charset=utf-8 38.1131ms
+2026-07-04 13:07:54.132 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/index.html - 200 null text/html;charset=utf-8 2547.186ms
+2026-07-04 13:07:54.909 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/_vs/browserLink - 200 null text/javascript; charset=UTF-8 809.5851ms
+2026-07-04 13:08:19.051 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - null null
+2026-07-04 13:08:19.127 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 77.617ms
+2026-07-04 13:08:19.767 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/swagger/favicon-32x32.png - null null
+2026-07-04 13:08:19.962 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-07-04 13:08:19.970 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/swagger/favicon-32x32.png - 200 628 image/png 203.1647ms
+2026-07-04 13:09:19.086 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Auth/login - null null
+2026-07-04 13:09:21.070 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:21.072 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Auth/login - 204 null null 1986.9612ms
+2026-07-04 13:09:21.075 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7295/api/Auth/login - application/json 51
+2026-07-04 13:09:21.081 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:21.084 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.AuthController.Login (EluTech)'
+2026-07-04 13:09:21.117 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(EluTech.API.DTOs.Auth.LoginDto) on controller EluTech.API.Controllers.AuthController (EluTech).
+2026-07-04 13:09:21.586 +05:30 [INF] Executed DbCommand (126ms) [Parameters=[@__dto_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedAt], [u].[Email], [u].[FullName], [u].[IsActive], [u].[IsDeleted], [u].[PasswordHash], [u].[PhoneNumber], [u].[RoleId], [u].[UpdatedAt], [r].[Id], [r].[CreatedAt], [r].[IsDeleted], [r].[Name], [r].[UpdatedAt]
+FROM [Users] AS [u]
+INNER JOIN [Roles] AS [r] ON [u].[RoleId] = [r].[Id]
+WHERE [u].[Email] = @__dto_Email_0
+2026-07-04 13:09:22.600 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (DbType = Boolean), @p4='?' (DbType = DateTime2), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime2), @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([CreatedAt], [ExpiryDate], [IsDeleted], [IsRevoked], [RevokedAt], [Token], [UpdatedAt], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-07-04 13:09:22.642 +05:30 [INF] Executing OkObjectResult, writing value of type 'EluTech.API.DTOs.Auth.LoginResponseDto'.
+2026-07-04 13:09:22.659 +05:30 [INF] Executed action EluTech.API.Controllers.AuthController.Login (EluTech) in 1535.8653ms
+2026-07-04 13:09:22.660 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.AuthController.Login (EluTech)'
+2026-07-04 13:09:22.670 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7295/api/Auth/login - 200 null application/json; charset=utf-8 1594.3485ms
+2026-07-04 13:09:22.729 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:09:22.735 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:22.736 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 11.0306ms
+2026-07-04 13:09:22.741 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:09:22.744 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:22.744 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 2.6116ms
+2026-07-04 13:09:22.747 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:09:22.749 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:09:22.844 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:22.844 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:09:22.851 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:09:22.852 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:22.852 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:09:22.856 +05:30 [INF] Route matched with {action = "Manager", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Manager() on controller EluTech.API.Controllers.DashboardController (EluTech).
+2026-07-04 13:09:22.894 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:09:22.897 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:22.901 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 49.3919ms
+2026-07-04 13:09:22.901 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:09:22.902 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 160.0598ms
+2026-07-04 13:09:22.924 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:09:22.952 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Attendances] AS [a]
+WHERE CONVERT(date, [a].[Date]) = CONVERT(date, GETUTCDATE())
+2026-07-04 13:09:22.972 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Samples] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[Status] = N'Active'
+2026-07-04 13:09:22.988 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [TestingRequests] AS [t]
+WHERE [t].[Status] = N'Pending'
+2026-07-04 13:09:23.004 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Reports] AS [r]
+WHERE [r].[IsDeleted] = CAST(0 AS bit) AND [r].[Status] = N'Pending'
+2026-07-04 13:09:23.017 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Chemicals] AS [c]
+WHERE [c].[Quantity] <= [c].[MinimumStock]
+2026-07-04 13:09:23.018 +05:30 [INF] Executing OkObjectResult, writing value of type 'EluTech.API.DTOs.Dashboard.DashboardDto'.
+2026-07-04 13:09:23.020 +05:30 [INF] Executed action EluTech.API.Controllers.DashboardController.Manager (EluTech) in 164.0859ms
+2026-07-04 13:09:23.020 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:09:23.021 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 200 null application/json; charset=utf-8 272.165ms
+2026-07-04 13:09:31.633 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Report - null null
+2026-07-04 13:09:31.634 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:31.635 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Report - 204 null null 1.8151ms
+2026-07-04 13:09:31.639 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Report - null null
+2026-07-04 13:09:31.640 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:31.640 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.ReportController.Reports (EluTech)'
+2026-07-04 13:09:31.648 +05:30 [INF] Route matched with {action = "Reports", controller = "Report"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Reports() on controller EluTech.API.Controllers.ReportController (EluTech).
+2026-07-04 13:09:31.709 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [t].[SampleName] AS [Sample], [u].[FullName] AS [Employee], [r].[Version], [r].[IsApproved] AS [Approved], [r].[Status], [r].[FileName]
+FROM [Reports] AS [r]
+INNER JOIN (
+    SELECT [s].[Id], [s].[SampleName]
+    FROM [Samples] AS [s]
+    WHERE [s].[IsDeleted] = CAST(0 AS bit)
+) AS [t] ON [r].[SampleId] = [t].[Id]
+INNER JOIN (
+    SELECT [e].[Id], [e].[UserId]
+    FROM [Employees] AS [e]
+    WHERE [e].[IsDeleted] = CAST(0 AS bit)
+) AS [t0] ON [r].[EmployeeId] = [t0].[Id]
+INNER JOIN [Users] AS [u] ON [t0].[UserId] = [u].[Id]
+WHERE [r].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:09:31.711 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Report.ReportDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:31.715 +05:30 [INF] Executed action EluTech.API.Controllers.ReportController.Reports (EluTech) in 66.1344ms
+2026-07-04 13:09:31.715 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.ReportController.Reports (EluTech)'
+2026-07-04 13:09:31.715 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Report - 200 null application/json; charset=utf-8 77.2132ms
+2026-07-04 13:09:32.596 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Inventory/chemicals - null null
+2026-07-04 13:09:32.597 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.597 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Inventory/chemicals - 204 null null 1.7083ms
+2026-07-04 13:09:32.598 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Inventory/machinery - null null
+2026-07-04 13:09:32.598 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Inventory/consumables - null null
+2026-07-04 13:09:32.602 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Inventory/purchases - null null
+2026-07-04 13:09:32.603 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.603 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.603 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Inventory/purchases - 204 null null 0.9376ms
+2026-07-04 13:09:32.603 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Inventory/consumables - 204 null null 4.7075ms
+2026-07-04 13:09:32.607 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.607 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Inventory/machinery - 204 null null 9.3196ms
+2026-07-04 13:09:32.614 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Inventory/purchases - null null
+2026-07-04 13:09:32.615 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Inventory/chemicals - null null
+2026-07-04 13:09:32.616 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Inventory/consumables - null null
+2026-07-04 13:09:32.616 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Inventory/machinery - null null
+2026-07-04 13:09:32.618 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.619 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.InventoryController.GetConsumables (EluTech)'
+2026-07-04 13:09:32.619 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.619 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.InventoryController.GetPurchases (EluTech)'
+2026-07-04 13:09:32.620 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.620 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.InventoryController.GetChemicals (EluTech)'
+2026-07-04 13:09:32.618 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.621 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.InventoryController.GetMachinery (EluTech)'
+2026-07-04 13:09:32.625 +05:30 [INF] Route matched with {action = "GetConsumables", controller = "Inventory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetConsumables() on controller EluTech.API.Controllers.InventoryController (EluTech).
+2026-07-04 13:09:32.626 +05:30 [INF] Route matched with {action = "GetPurchases", controller = "Inventory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPurchases() on controller EluTech.API.Controllers.InventoryController (EluTech).
+2026-07-04 13:09:32.631 +05:30 [INF] Route matched with {action = "GetMachinery", controller = "Inventory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMachinery() on controller EluTech.API.Controllers.InventoryController (EluTech).
+2026-07-04 13:09:32.631 +05:30 [INF] Route matched with {action = "GetChemicals", controller = "Inventory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetChemicals() on controller EluTech.API.Controllers.InventoryController (EluTech).
+2026-07-04 13:09:32.655 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAt], [c].[IsDeleted], [c].[MinimumStock], [c].[Name], [c].[Quantity], [c].[Unit], [c].[UpdatedAt]
+FROM [Consumables] AS [c]
+ORDER BY [c].[Name]
+2026-07-04 13:09:32.695 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Amount], [p].[CreatedAt], [p].[IsDeleted], [p].[ItemName], [p].[PurchaseDate], [p].[UpdatedAt], [p].[Vendor]
+FROM [Purchases] AS [p]
+ORDER BY [p].[PurchaseDate] DESC
+2026-07-04 13:09:32.704 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CASNumber], [c].[CreatedAt], [c].[ExpiryDate], [c].[IsDeleted], [c].[MinimumStock], [c].[Name], [c].[Quantity], [c].[Unit], [c].[UpdatedAt]
+FROM [Chemicals] AS [c]
+ORDER BY [c].[Name]
+2026-07-04 13:09:32.707 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.Entities.Consumable, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:32.709 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[Id], [m].[CreatedAt], [m].[IsActive], [m].[IsDeleted], [m].[LastMaintenance], [m].[MachineName], [m].[Manufacturer], [m].[PurchaseDate], [m].[SerialNumber], [m].[UpdatedAt]
+FROM [Machineries] AS [m]
+ORDER BY [m].[Id] DESC
+2026-07-04 13:09:32.720 +05:30 [INF] Executed action EluTech.API.Controllers.InventoryController.GetConsumables (EluTech) in 95.0574ms
+2026-07-04 13:09:32.720 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.InventoryController.GetConsumables (EluTech)'
+2026-07-04 13:09:32.720 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Inventory/consumables - 200 null application/json; charset=utf-8 104.7915ms
+2026-07-04 13:09:32.734 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.Entities.Purchase, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:32.754 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.Entities.Chemical, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:32.755 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.Entities.Machinery, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:32.757 +05:30 [INF] Executed action EluTech.API.Controllers.InventoryController.GetChemicals (EluTech) in 126.0255ms
+2026-07-04 13:09:32.757 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.InventoryController.GetChemicals (EluTech)'
+2026-07-04 13:09:32.759 +05:30 [INF] Executed action EluTech.API.Controllers.InventoryController.GetPurchases (EluTech) in 132.1703ms
+2026-07-04 13:09:32.759 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Inventory/chemicals - 200 null application/json; charset=utf-8 143.8465ms
+2026-07-04 13:09:32.759 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.InventoryController.GetPurchases (EluTech)'
+2026-07-04 13:09:32.760 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Inventory/purchases - 200 null application/json; charset=utf-8 145.7471ms
+2026-07-04 13:09:32.765 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Inventory/low-stock - null null
+2026-07-04 13:09:32.766 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.767 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Inventory/low-stock - 204 null null 1.7817ms
+2026-07-04 13:09:32.769 +05:30 [INF] Executed action EluTech.API.Controllers.InventoryController.GetMachinery (EluTech) in 137.9718ms
+2026-07-04 13:09:32.769 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.InventoryController.GetMachinery (EluTech)'
+2026-07-04 13:09:32.770 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Inventory/machinery - 200 null application/json; charset=utf-8 153.7377ms
+2026-07-04 13:09:32.771 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Inventory/low-stock - null null
+2026-07-04 13:09:32.774 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:32.774 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.InventoryController.LowStock (EluTech)'
+2026-07-04 13:09:32.783 +05:30 [INF] Route matched with {action = "LowStock", controller = "Inventory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LowStock() on controller EluTech.API.Controllers.InventoryController (EluTech).
+2026-07-04 13:09:32.803 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CASNumber], [c].[CreatedAt], [c].[ExpiryDate], [c].[IsDeleted], [c].[MinimumStock], [c].[Name], [c].[Quantity], [c].[Unit], [c].[UpdatedAt]
+FROM [Chemicals] AS [c]
+WHERE [c].[Quantity] <= [c].[MinimumStock]
+2026-07-04 13:09:32.803 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.Entities.Chemical, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:32.804 +05:30 [INF] Executed action EluTech.API.Controllers.InventoryController.LowStock (EluTech) in 20.1217ms
+2026-07-04 13:09:32.804 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.InventoryController.LowStock (EluTech)'
+2026-07-04 13:09:32.804 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Inventory/low-stock - 200 null application/json; charset=utf-8 34.2783ms
+2026-07-04 13:09:34.063 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Customer - null null
+2026-07-04 13:09:34.064 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:34.064 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Customer - 204 null null 0.815ms
+2026-07-04 13:09:34.067 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Customer - null null
+2026-07-04 13:09:34.070 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:34.070 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.CustomerController.GetCustomers (EluTech)'
+2026-07-04 13:09:34.079 +05:30 [INF] Route matched with {action = "GetCustomers", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomers() on controller EluTech.API.Controllers.CustomerController (EluTech).
+2026-07-04 13:09:34.101 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name], [c].[Email], [c].[PhoneNumber], [c].[Address], [c].[GSTNumber]
+FROM [Customers] AS [c]
+WHERE [c].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:09:34.102 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType2`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:34.109 +05:30 [INF] Executed action EluTech.API.Controllers.CustomerController.GetCustomers (EluTech) in 30.1233ms
+2026-07-04 13:09:34.110 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.CustomerController.GetCustomers (EluTech)'
+2026-07-04 13:09:34.110 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Customer - 200 null application/json; charset=utf-8 43.525ms
+2026-07-04 13:09:34.512 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:09:34.514 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:34.514 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 1.9169ms
+2026-07-04 13:09:34.518 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:09:34.519 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:34.519 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:09:34.520 +05:30 [INF] Route matched with {action = "Manager", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Manager() on controller EluTech.API.Controllers.DashboardController (EluTech).
+2026-07-04 13:09:34.530 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:09:34.554 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Attendances] AS [a]
+WHERE CONVERT(date, [a].[Date]) = CONVERT(date, GETUTCDATE())
+2026-07-04 13:09:34.574 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Samples] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[Status] = N'Active'
+2026-07-04 13:09:34.580 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [TestingRequests] AS [t]
+WHERE [t].[Status] = N'Pending'
+2026-07-04 13:09:34.586 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Reports] AS [r]
+WHERE [r].[IsDeleted] = CAST(0 AS bit) AND [r].[Status] = N'Pending'
+2026-07-04 13:09:34.591 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Chemicals] AS [c]
+WHERE [c].[Quantity] <= [c].[MinimumStock]
+2026-07-04 13:09:34.592 +05:30 [INF] Executing OkObjectResult, writing value of type 'EluTech.API.DTOs.Dashboard.DashboardDto'.
+2026-07-04 13:09:34.592 +05:30 [INF] Executed action EluTech.API.Controllers.DashboardController.Manager (EluTech) in 72.085ms
+2026-07-04 13:09:34.592 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:09:34.593 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 200 null application/json; charset=utf-8 75.5673ms
+2026-07-04 13:09:53.074 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:09:53.075 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:53.075 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 1.2593ms
+2026-07-04 13:09:53.077 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:09:53.078 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:09:53.078 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:09:53.078 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:09:53.087 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:09:53.087 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:09:53.087 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 9.1832ms
+2026-07-04 13:09:53.087 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:09:53.088 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 10.4997ms
+2026-07-04 13:10:22.725 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:10:22.726 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:22.726 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 0.8445ms
+2026-07-04 13:10:22.729 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:10:22.729 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:22.730 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:10:22.730 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:10:22.737 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:10:22.737 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:10:22.738 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 8.0093ms
+2026-07-04 13:10:22.738 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:10:22.738 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 9.5197ms
+2026-07-04 13:10:23.800 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:10:23.800 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:23.800 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 0.9376ms
+2026-07-04 13:10:23.803 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:10:23.803 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:23.804 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:10:23.804 +05:30 [INF] Route matched with {action = "Manager", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Manager() on controller EluTech.API.Controllers.DashboardController (EluTech).
+2026-07-04 13:10:23.810 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:10:23.814 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Attendances] AS [a]
+WHERE CONVERT(date, [a].[Date]) = CONVERT(date, GETUTCDATE())
+2026-07-04 13:10:23.819 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Samples] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[Status] = N'Active'
+2026-07-04 13:10:23.822 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [TestingRequests] AS [t]
+WHERE [t].[Status] = N'Pending'
+2026-07-04 13:10:23.826 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Reports] AS [r]
+WHERE [r].[IsDeleted] = CAST(0 AS bit) AND [r].[Status] = N'Pending'
+2026-07-04 13:10:23.829 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Chemicals] AS [c]
+WHERE [c].[Quantity] <= [c].[MinimumStock]
+2026-07-04 13:10:23.829 +05:30 [INF] Executing OkObjectResult, writing value of type 'EluTech.API.DTOs.Dashboard.DashboardDto'.
+2026-07-04 13:10:23.830 +05:30 [INF] Executed action EluTech.API.Controllers.DashboardController.Manager (EluTech) in 25.8645ms
+2026-07-04 13:10:23.830 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:10:23.830 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 200 null application/json; charset=utf-8 27.5122ms
+2026-07-04 13:10:33.820 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Customer - null null
+2026-07-04 13:10:33.820 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:33.821 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Customer - 204 null null 1.0146ms
+2026-07-04 13:10:33.824 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Customer - null null
+2026-07-04 13:10:33.826 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:33.826 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.CustomerController.GetCustomers (EluTech)'
+2026-07-04 13:10:33.826 +05:30 [INF] Route matched with {action = "GetCustomers", controller = "Customer"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCustomers() on controller EluTech.API.Controllers.CustomerController (EluTech).
+2026-07-04 13:10:33.835 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name], [c].[Email], [c].[PhoneNumber], [c].[Address], [c].[GSTNumber]
+FROM [Customers] AS [c]
+WHERE [c].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:10:33.836 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[<>f__AnonymousType2`6[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:10:33.836 +05:30 [INF] Executed action EluTech.API.Controllers.CustomerController.GetCustomers (EluTech) in 10.5523ms
+2026-07-04 13:10:33.837 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.CustomerController.GetCustomers (EluTech)'
+2026-07-04 13:10:33.837 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Customer - 200 null application/json; charset=utf-8 13.0873ms
+2026-07-04 13:10:36.614 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Employee - null null
+2026-07-04 13:10:36.614 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:36.615 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Employee - 204 null null 0.3861ms
+2026-07-04 13:10:36.619 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Employee - null null
+2026-07-04 13:10:36.620 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:36.621 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.EmployeeController.GetEmployees (EluTech)'
+2026-07-04 13:10:36.632 +05:30 [INF] Route matched with {action = "GetEmployees", controller = "Employee"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetEmployees() on controller EluTech.API.Controllers.EmployeeController (EluTech).
+2026-07-04 13:10:36.664 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [u].[FullName] AS [Name], [u].[Email], [e].[Department], [e].[Designation], [e].[Salary], [e].[IsTerminated]
+FROM [Employees] AS [e]
+INNER JOIN [Users] AS [u] ON [e].[UserId] = [u].[Id]
+WHERE [e].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:10:36.667 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Employee.EmployeeDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:10:36.674 +05:30 [INF] Executed action EluTech.API.Controllers.EmployeeController.GetEmployees (EluTech) in 42.5377ms
+2026-07-04 13:10:36.675 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.EmployeeController.GetEmployees (EluTech)'
+2026-07-04 13:10:36.675 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Employee - 200 null application/json; charset=utf-8 55.8614ms
+2026-07-04 13:10:38.663 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:10:38.663 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:38.663 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Dashboard/manager - 204 null null 0.5486ms
+2026-07-04 13:10:38.667 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Dashboard/manager - null null
+2026-07-04 13:10:38.668 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:38.668 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:10:38.668 +05:30 [INF] Route matched with {action = "Manager", controller = "Dashboard"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Manager() on controller EluTech.API.Controllers.DashboardController (EluTech).
+2026-07-04 13:10:38.677 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+WHERE [e].[IsDeleted] = CAST(0 AS bit)
+2026-07-04 13:10:38.685 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Attendances] AS [a]
+WHERE CONVERT(date, [a].[Date]) = CONVERT(date, GETUTCDATE())
+2026-07-04 13:10:38.693 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Samples] AS [s]
+WHERE [s].[IsDeleted] = CAST(0 AS bit) AND [s].[Status] = N'Active'
+2026-07-04 13:10:38.702 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [TestingRequests] AS [t]
+WHERE [t].[Status] = N'Pending'
+2026-07-04 13:10:38.709 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Reports] AS [r]
+WHERE [r].[IsDeleted] = CAST(0 AS bit) AND [r].[Status] = N'Pending'
+2026-07-04 13:10:38.713 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Chemicals] AS [c]
+WHERE [c].[Quantity] <= [c].[MinimumStock]
+2026-07-04 13:10:38.713 +05:30 [INF] Executing OkObjectResult, writing value of type 'EluTech.API.DTOs.Dashboard.DashboardDto'.
+2026-07-04 13:10:38.713 +05:30 [INF] Executed action EluTech.API.Controllers.DashboardController.Manager (EluTech) in 45.5219ms
+2026-07-04 13:10:38.713 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.DashboardController.Manager (EluTech)'
+2026-07-04 13:10:38.714 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Dashboard/manager - 200 null application/json; charset=utf-8 47.5506ms
+2026-07-04 13:10:53.167 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:10:53.168 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:53.168 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 1.1428ms
+2026-07-04 13:10:53.172 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:10:53.173 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:10:53.174 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:10:53.174 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:10:53.185 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:10:53.186 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:10:53.186 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 11.6279ms
+2026-07-04 13:10:53.186 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:10:53.186 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 14.7697ms
+2026-07-04 13:11:23.080 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:11:23.081 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:11:23.081 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 0.9354ms
+2026-07-04 13:11:23.083 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:11:23.085 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:11:23.086 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:11:23.086 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:11:23.105 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:11:23.105 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:11:23.106 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 19.7546ms
+2026-07-04 13:11:23.106 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:11:23.106 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 22.3567ms
+2026-07-04 13:11:53.065 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:11:53.065 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:11:53.066 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 0.9976ms
+2026-07-04 13:11:53.069 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:11:53.069 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:11:53.069 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:11:53.069 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:11:53.087 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:11:53.088 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:11:53.088 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 18.3867ms
+2026-07-04 13:11:53.088 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:11:53.088 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 20.0674ms
+2026-07-04 13:12:23.060 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:12:23.061 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:12:23.061 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 1.4393ms
+2026-07-04 13:12:23.066 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:12:23.067 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:12:23.067 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:12:23.067 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:12:23.084 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:12:23.085 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:12:23.085 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 17.949ms
+2026-07-04 13:12:23.085 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:12:23.086 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 20.1853ms
+2026-07-04 13:13:43.084 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:13:43.085 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:13:43.085 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 1.0667ms
+2026-07-04 13:13:43.088 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:13:43.090 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:13:43.090 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:13:43.090 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:13:43.105 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:13:43.105 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:13:43.105 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 15.5735ms
+2026-07-04 13:13:43.105 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:13:43.106 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 17.8276ms
+2026-07-04 13:14:43.079 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:14:43.079 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:14:43.079 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 1.1643ms
+2026-07-04 13:14:43.081 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:14:43.082 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:14:43.082 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:14:43.082 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:14:43.088 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:14:43.088 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:14:43.088 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 6.3692ms
+2026-07-04 13:14:43.088 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:14:43.089 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 7.6367ms
+2026-07-04 13:15:43.072 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:15:43.073 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:15:43.073 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 0.8278ms
+2026-07-04 13:15:43.078 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:15:43.079 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:15:43.080 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:15:43.080 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:15:43.087 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:15:43.087 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:15:43.087 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 7.583ms
+2026-07-04 13:15:43.087 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:15:43.087 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 9.6861ms
+2026-07-04 13:16:43.074 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:16:43.074 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:16:43.074 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7295/api/Notification/1 - 204 null null 0.8636ms
+2026-07-04 13:16:43.077 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7295/api/Notification/1 - null null
+2026-07-04 13:16:43.108 +05:30 [INF] CORS policy execution successful.
+2026-07-04 13:16:43.108 +05:30 [INF] Executing endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:16:43.108 +05:30 [INF] Route matched with {action = "Notifications", controller = "Notification"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Notifications(Int32) on controller EluTech.API.Controllers.NotificationController (EluTech).
+2026-07-04 13:16:43.120 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[Title], [n].[Message], [n].[Type], [n].[IsRead], [n].[SentAt]
+FROM [Notifications] AS [n]
+WHERE [n].[UserId] = @__userId_0
+ORDER BY [n].[SentAt] DESC
+2026-07-04 13:16:43.120 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EluTech.API.DTOs.Notification.NotificationDto, EluTech, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-07-04 13:16:43.120 +05:30 [INF] Executed action EluTech.API.Controllers.NotificationController.Notifications (EluTech) in 11.994ms
+2026-07-04 13:16:43.120 +05:30 [INF] Executed endpoint 'EluTech.API.Controllers.NotificationController.Notifications (EluTech)'
+2026-07-04 13:16:43.120 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7295/api/Notification/1 - 200 null application/json; charset=utf-8 43.667ms

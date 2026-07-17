@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CustomerService, CustomerItem, AddCustomerDto } from '../../core/services/customer.service';
+import { exportToCSV } from '../../core/utils/export.utils';
+import { sortData, SortState } from '../../core/utils/sort.utils';
 import { ToastService } from '../../core/services/toast.service';
 
 @Component({
@@ -16,6 +18,8 @@ export class Customers implements OnInit {
   search = '';
   customers: CustomerItem[] = [];
   filteredCustomers: CustomerItem[] = [];
+  sort: SortState = { column: '', direction: 'none' };
+  readonly sortIcons: Record<string, string> = { none: '⇅', asc: '↑', desc: '↓' };
   loading = true;
   showModal = false;
   saving = false;
@@ -38,18 +42,30 @@ export class Customers implements OnInit {
   loadCustomers() {
     this.loading = true;
     this.service.getCustomers().subscribe({
-      next: (res) => { this.customers = res; this.filteredCustomers = res; this.loading = false; },
+      next: (res) => { this.customers = res; this.applyFilter(); this.loading = false; },
       error: () => { this.loading = false; this.toast.show('Failed to load customers', 'error'); }
     });
   }
 
-  filterCustomers() {
+  applyFilter() {
     const v = this.search.toLowerCase();
-    this.filteredCustomers = this.customers.filter(c =>
+    let result = !v ? [...this.customers] : this.customers.filter((c: CustomerItem) =>
       c.name.toLowerCase().includes(v) ||
       c.email.toLowerCase().includes(v) ||
-      c.gstNumber?.toLowerCase().includes(v)
-    );
+      c.gstNumber?.toLowerCase().includes(v));
+    this.filteredCustomers = sortData(result, this.sort);
+  }
+  filterCustomers() { this.applyFilter(); }
+  setSort(col: string) {
+    this.sort = this.sort.column === col
+      ? { column: col, direction: this.sort.direction === 'asc' ? 'desc' : this.sort.direction === 'desc' ? 'none' : 'asc' }
+      : { column: col, direction: 'asc' };
+    this.applyFilter();
+  }
+  sortIcon(col: string) { return this.sort.column === col ? this.sortIcons[this.sort.direction] : this.sortIcons['none']; }
+  exportCSV() {
+    const rows = this.filteredCustomers.map(c => ({ ID: c.id, Name: c.name, Email: c.email, Phone: c.phoneNumber, GST: c.gstNumber, Address: c.address }));
+    exportToCSV(rows, 'customers');
   }
 
   openModal() {

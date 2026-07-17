@@ -10,6 +10,8 @@ import { DashboardService } from '../../../core/services/dashboard.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { EmployeeService } from '../../../core/services/employee.service';
 import { SampleService } from '../../../core/services/sample.service';
+import { AttendanceService } from '../../../core/services/attendance.service';
+import { ToastService } from '../../../core/services/toast.service';
 import { Sample } from '../../../core/models/sample.model';
 import { EmployeeDashboard } from '../../../core/models/dashboard.model';
 
@@ -29,10 +31,10 @@ export class Employee implements OnInit {
 
   get cards() {
     return [
-      { label: 'Assigned Samples', value: this.dashboard.assignedSamples, icon: '🧪', color: '#8B5CF6', bg: '#F5F3FF' },
-      { label: 'Pending Requests', value: this.dashboard.pendingRequests, icon: '⏳', color: '#F59E0B', bg: '#FFFBEB' },
-      { label: 'Reports Uploaded', value: this.dashboard.reportsUploaded, icon: '📄', color: '#3B82F6', bg: '#EFF6FF' },
-      { label: 'Today Attendance', value: 'Present', icon: '✅', color: '#10B981', bg: '#F0FDF4' },
+      { label: 'Assigned Samples', value: this.dashboard.assignedSamples, icon: '🧪', cls: 'purple' },
+      { label: 'Pending Requests', value: this.dashboard.pendingRequests, icon: '⏳', cls: 'amber'  },
+      { label: 'Reports Uploaded', value: this.dashboard.reportsUploaded, icon: '📄', cls: 'blue'   },
+      { label: 'Today Attendance', value: 'Present',                      icon: '✅', cls: 'green'  },
     ];
   }
 
@@ -59,10 +61,21 @@ export class Employee implements OnInit {
     { action: 'Log in to see your latest sample activity', time: 'Just now', icon: 'ℹ️' },
   ];
 
+  // Self check-in/out — reference only for Manager, does not mark official attendance
+  myEmpId = 0;
+  selfCheckedIn = false;
+  selfCheckedOut = false;
+  selfCheckInTime: string | null = null;
+  selfCheckOutTime: string | null = null;
+  checkingIn = false;
+  checkingOut = false;
+
   constructor(
     private dashboardService: DashboardService,
     private employeeService: EmployeeService,
     private sampleService: SampleService,
+    private attendanceService: AttendanceService,
+    private toast: ToastService,
     public auth: AuthService
   ) {}
 
@@ -74,6 +87,8 @@ export class Employee implements OnInit {
     this.employeeService.getMyEmployeeId().subscribe({
       next: (res) => {
         const empId = res.employeeId;
+        this.myEmpId = empId;
+        this.loadSelfCheckStatus(empId);
         this.dashboardService.getEmployeeDashboard(empId).subscribe({
           next: (r) => { this.dashboard = r; this.loading = false; },
           error: () => { this.loading = false; }
@@ -109,5 +124,57 @@ export class Employee implements OnInit {
   get greeting(): string {
     const h = this.today.getHours();
     return h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
+  }
+
+  loadSelfCheckStatus(employeeId: number) {
+    this.attendanceService.getMyTodayStatus(employeeId).subscribe({
+      next: (log) => {
+        if (log) {
+          this.selfCheckedIn = !!log.selfCheckIn;
+          this.selfCheckInTime = log.selfCheckIn || null;
+          this.selfCheckedOut = !!log.selfCheckOut;
+          this.selfCheckOutTime = log.selfCheckOut || null;
+        } else {
+          this.selfCheckedIn = false;
+          this.selfCheckedOut = false;
+          this.selfCheckInTime = null;
+          this.selfCheckOutTime = null;
+        }
+      },
+      error: () => {}
+    });
+  }
+
+  doSelfCheckIn() {
+    if (!this.myEmpId) { this.toast.show('Loading your profile… try again in a moment', 'info'); return; }
+    this.checkingIn = true;
+    this.attendanceService.selfCheckIn(this.myEmpId).subscribe({
+      next: (log) => {
+        this.checkingIn = false;
+        this.selfCheckedIn = true;
+        this.selfCheckInTime = log.selfCheckIn || new Date().toISOString();
+        this.toast.show('Checked in! Your Manager can now see you\'ve arrived.', 'success');
+      },
+      error: (err) => { this.checkingIn = false; this.toast.show(err?.error?.message || 'Failed to check in', 'error'); }
+    });
+  }
+
+  doSelfCheckOut() {
+    if (!this.myEmpId) return;
+    this.checkingOut = true;
+    this.attendanceService.selfCheckOut(this.myEmpId).subscribe({
+      next: (log) => {
+        this.checkingOut = false;
+        this.selfCheckedOut = true;
+        this.selfCheckOutTime = log.selfCheckOut || new Date().toISOString();
+        this.toast.show('Checked out! Have a good day.', 'success');
+      },
+      error: (err) => { this.checkingOut = false; this.toast.show(err?.error?.message || 'Failed to check out. Check in first.', 'error'); }
+    });
+  }
+
+  formatTime(iso: string | null): string {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
   }
 }

@@ -1,35 +1,100 @@
-.container { max-width: 1100px; }
+.container { max-width: 1100px; animation: fadeUp 0.35s cubic-bezier(0.4,0,0.2,1) both; }
 .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-h1 { font-size: 24px; font-weight: 700; color: #1E293B; margin: 0; }
+h1 { font-size: 22px; font-weight: 800; color: var(--text); margin: 0; letter-spacing: -0.3px; transition: color var(--transition-slow); }
 .search-bar { margin-bottom: 20px; }
-.search-bar input { width: 100%; max-width: 400px; padding: 10px 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-size: 14px; outline: none; }
-.search-bar input:focus { border-color: #1E3A5F; }
-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
-th { background: #F8FAFC; padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #64748B; text-transform: uppercase; border-bottom: 1px solid #E2E8F0; }
-td { padding: 13px 16px; border-bottom: 1px solid #F1F5F9; font-size: 14px; color: #334155; }
-tr:last-child td { border-bottom: none; }
-.file-name { color: #1E3A5F; font-weight: 500; font-size: 13px; }
-.badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-.badge.Pending { background: #FFF7ED; color: #EA580C; }
-.badge.Approved { background: #F0FDF4; color: #16A34A; }
-.badge.Rejected { background: #FEF2F2; color: #DC2626; }
-.btn-primary { padding: 9px 18px; background: #1E3A5F; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
-.btn-primary:hover:not(:disabled) { background: #0F2544; }
-.btn-primary:disabled { opacity: .6; cursor: not-allowed; }
-.btn-approve { padding: 6px 14px; background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; margin-right: 6px; }
-.btn-reject { padding: 6px 14px; background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
-.done-text { color: #CBD5E1; }
-.loading, .empty { text-align: center; color: #64748B; padding: 40px; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-.modal { background: white; border-radius: 16px; padding: 32px; width: 460px; max-width: 92vw; }
-.modal h2 { font-size: 18px; font-weight: 700; color: #1E293B; margin: 0 0 4px; }
-.modal-hint { font-size: 12px; color: #94A3B8; margin: 0 0 20px; }
-.form-field { margin-bottom: 14px; }
-.form-field label { display: block; font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
-.form-field input, .form-field textarea { width: 100%; padding: 10px 12px; border: 1.5px solid #E2E8F0; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box; }
+.search-bar input { width: 100%; max-width: 400px; padding: 10px 14px; border-radius: var(--radius); font-size: 14px; }
+
+table { animation: fadeUp 0.4s cubic-bezier(0.4,0,0.2,1) both; }
+
+.file-name { color: var(--primary); font-weight: 600; font-size: 13px; transition: color var(--transition-slow); }
+
+.btn-approve { padding: 6px 14px; font-size: 12px; font-weight: 600; margin-right: 6px; }
+.btn-reject  { padding: 6px 14px; font-size: 12px; font-weight: 600; }
+.done-text { color: var(--text-disabled); }
+.loading, .empty { text-align: center; padding: 48px; }
+
+.modal-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal { padding: 32px; width: 460px; max-width: 92vw; }
+.modal h2 { margin: 0 0 4px; }
+.modal-hint { font-size: 12px; margin: 0 0 20px; }
+
+.form-field {
+  margin-bottom: 14px;
+}
+.form-field label { display: block; margin-bottom: 6px; }
+.form-field input, .form-field textarea { width: 100%; padding: 10px 12px; box-sizing: border-box; }
 .form-field input[type="file"] { padding: 8px 12px; cursor: pointer; }
 .form-field textarea { resize: vertical; }
-.form-field input:focus, .form-field textarea:focus { border-color: #1E3A5F; }
+
 .modal-buttons { display: flex; gap: 10px; margin-top: 16px; }
-.btn-cancel { padding: 9px 18px; background: white; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 13px; cursor: pointer; }
-.count-hint { font-weight: 400; color: #94A3B8; text-transform: none; letter-spacing: 0; }
+.count-hint { font-weight: 400; color: var(--text-muted); text-transform: none; letter-spacing: 0; }
+.empty { display: flex; flex-direction: column; align-items: center; padding: 56px 24px; border-radius: var(--radius-lg); margin-top: 8px; }
+.empty-icon  { font-size: 48px; margin-bottom: 12px; opacity: 0.6; }
+.empty-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.empty-sub   { font-size: 13px; color: var(--text-muted); }
+
+.btn-view {
+  padding: 6px 14px; font-size: 12px; font-weight: 600;
+  background: var(--badge-info-bg); color: var(--badge-info-text);
+  border: 1px solid rgba(37,99,235,0.2); border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.2s ease;
+}
+.btn-view:hover:not(:disabled) { background: #DBEAFE; transform: translateY(-1px); }
+.btn-view:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.manager-remark { font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 4px; max-width: 220px; }
+
+.btn-reject-confirm {
+  padding: 10px 22px; background: #EF4444; color: white; border: none;
+  border-radius: var(--radius-sm); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s ease;
+}
+.btn-reject-confirm:hover:not(:disabled) { background: #DC2626; }
+.btn-reject-confirm:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Version history thread ── */
+.link-btn { background: none; border: none; color: var(--accent-text); font-size: 11px; font-weight: 600; cursor: pointer; padding: 0; margin-left: 6px; }
+.link-btn:hover { text-decoration: underline; }
+
+.history-row td { padding: 0 !important; border-bottom: 1px solid var(--border) !important; }
+.history-panel { background: var(--bg-subtle); padding: 16px 22px; display: flex; flex-direction: column; gap: 14px; }
+
+.thread-item { display: flex; gap: 12px; position: relative; }
+.thread-item:not(:last-child)::before {
+  content: ''; position: absolute; left: 5px; top: 16px; bottom: -14px; width: 2px; background: var(--border);
+}
+.thread-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; background: var(--text-disabled); z-index: 1; }
+.thread-dot.Approved { background: var(--badge-success-text); }
+.thread-dot.Rejected { background: #EF4444; }
+.thread-dot.Pending  { background: var(--badge-warn-text); }
+
+.thread-body { flex: 1; }
+.thread-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.thread-version { font-size: 12px; font-weight: 800; color: var(--text); }
+.thread-remark { font-size: 12px; color: var(--text-secondary); margin-top: 2px; line-height: 1.5; }
+.thread-item.current .thread-version { color: var(--primary); }
+
+.btn-view-sm {
+  padding: 3px 10px; font-size: 11px; font-weight: 600;
+  background: var(--badge-info-bg); color: var(--badge-info-text);
+  border: 1px solid rgba(37,99,235,0.2); border-radius: 6px; cursor: pointer;
+}
+.btn-view-sm:hover { background: #DBEAFE; }
+
+/* ── Resubmit button ── */
+.btn-resubmit {
+  padding: 6px 14px; font-size: 12px; font-weight: 700;
+  background: var(--badge-warn-bg); color: var(--badge-warn-text);
+  border: 1px solid rgba(217,119,6,0.25); border-radius: var(--radius-sm); cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-resubmit:hover { background: #FEF3C7; transform: translateY(-1px); }
+
+/* ── Resubmit context banner in upload modal ── */
+.resubmit-banner {
+  background: var(--badge-warn-bg); border: 1px solid rgba(217,119,6,0.25);
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 18px;
+}
+.rb-title { font-size: 13px; font-weight: 700; color: var(--badge-warn-text); margin-bottom: 6px; }
+.rb-body { font-size: 13px; color: var(--text); font-style: italic; margin-bottom: 6px; }
+.rb-hint { font-size: 11px; color: var(--text-muted); }

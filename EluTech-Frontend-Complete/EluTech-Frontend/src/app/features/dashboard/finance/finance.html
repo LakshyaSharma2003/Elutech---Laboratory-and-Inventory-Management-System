@@ -14,10 +14,10 @@
   <!-- KPI Cards -->
   <div class="kpi-grid">
     <div class="kpi-card" *ngFor="let card of cards">
-      <div class="kpi-icon" [style.background]="card.bg" [style.color]="card.color">{{card.icon}}</div>
+      <div class="kpi-icon" [ngClass]="'icon-' + card.cls">{{card.icon}}</div>
       <div class="kpi-body">
         <div class="kpi-label">{{card.label}}</div>
-        <div class="kpi-value" [style.color]="card.color">
+        <div class="kpi-value" [ngClass]="'val-' + card.cls">
           <span *ngIf="!loading">{{card.prefix}}{{card.value | number}}</span>
           <span *ngIf="loading" class="skeleton">—</span>
         </div>

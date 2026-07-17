@@ -2,55 +2,127 @@
   <div class="top">
     <h1>Reports</h1>
     <button class="btn-primary" *ngIf="isEmployee" (click)="openUpload()" [disabled]="loadingEmployeeId">
-      {{ loadingEmployeeId ? 'Loading...' : '📤 Upload Report' }}
+      {{ loadingEmployeeId ? 'Loading…' : '📤 Upload Report' }}
     </button>
   </div>
 
   <div class="search-bar">
-    <input [(ngModel)]="search" (ngModelChange)="filterReports()" placeholder="Search by sample, employee, or status...">
+    <input [(ngModel)]="search" (ngModelChange)="filterReports()" placeholder="Search by report #, sample, employee, or status…">
   </div>
 
-  <div *ngIf="loading" class="loading">Loading reports...</div>
-  <div *ngIf="!loading && filteredReports.length === 0" class="empty">No reports found.</div>
+  <div *ngIf="loading" class="loading">Loading reports…</div>
+  <div *ngIf="!loading && filteredThreads.length === 0" class="empty">
+    <div class="empty-icon">📄</div>
+    <div class="empty-title">No reports found</div>
+    <div class="empty-sub">{{search ? 'Try a different search' : 'Reports uploaded by employees will appear here'}}</div>
+  </div>
 
-  <table *ngIf="!loading && filteredReports.length > 0">
+  <table *ngIf="!loading && filteredThreads.length > 0">
     <thead>
       <tr>
-        <th>Sample</th><th>Employee</th><th>File</th><th>Version</th><th>Status</th>
+        <th>Report #</th><th>Sample</th><th>Employee</th><th>File</th><th>Version</th><th>Status</th>
+        <th>View</th>
         <th *ngIf="isManager">Actions</th>
+        <th *ngIf="isEmployee">Resubmit</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let r of filteredReports">
-        <td>{{r.sample}}</td>
-        <td>{{r.employee}}</td>
-        <td class="file-name">📄 {{r.fileName}}</td>
-        <td>v{{r.version}}</td>
-        <td><span class="badge" [ngClass]="r.status">{{r.status}}</span></td>
-        <td *ngIf="isManager">
-          <button class="btn-approve" (click)="approve(r.id)" *ngIf="r.status === 'Pending'">Approve</button>
-          <button class="btn-reject" (click)="reject(r.id)" *ngIf="r.status === 'Pending'">Reject</button>
-          <span *ngIf="r.status !== 'Pending'" class="done-text">—</span>
-        </td>
-      </tr>
+      <ng-container *ngFor="let t of filteredThreads">
+        <tr>
+          <td class="mono">{{t.latest.reportNumber}}</td>
+          <td>{{t.latest.sample}}</td>
+          <td>{{t.latest.employee}}</td>
+          <td class="file-name">📄 {{t.latest.fileName}}</td>
+          <td>
+            v{{t.latest.version}}
+            <button class="link-btn" *ngIf="t.history.length > 0" (click)="toggleHistory(t.sampleId)">
+              {{ expandedSampleId === t.sampleId ? 'Hide' : t.history.length + ' earlier' }}
+            </button>
+          </td>
+          <td>
+            <span class="badge" [ngClass]="t.latest.status">{{t.latest.status}}</span>
+            <div class="manager-remark" *ngIf="t.latest.status === 'Rejected' && t.latest.managerRemarks">"{{t.latest.managerRemarks}}"</div>
+          </td>
+          <td>
+            <button class="btn-view" (click)="viewReport(t.latest.id)" [disabled]="viewingId === t.latest.id">
+              {{ viewingId === t.latest.id ? 'Opening…' : '👁 View' }}
+            </button>
+          </td>
+          <td *ngIf="isManager">
+            <button class="btn-approve" (click)="approve(t.latest.id)" *ngIf="t.latest.status === 'Pending'">Approve</button>
+            <button class="btn-reject" (click)="openReject(t.latest.id)" *ngIf="t.latest.status === 'Pending'">Reject</button>
+            <span *ngIf="t.latest.status !== 'Pending'" class="done-text">—</span>
+          </td>
+          <td *ngIf="isEmployee">
+            <button class="btn-resubmit" *ngIf="t.latest.status === 'Rejected'" (click)="openResubmit(t.latest)">🔄 Upload Corrected</button>
+            <span *ngIf="t.latest.status !== 'Rejected'" class="done-text">—</span>
+          </td>
+        </tr>
+
+        <!-- History thread: earlier rejected/superseded versions for this sample -->
+        <tr *ngIf="expandedSampleId === t.sampleId" class="history-row">
+          <td [attr.colspan]="isManager || isEmployee ? 8 : 7">
+            <div class="history-panel">
+              <div class="thread-item" *ngFor="let h of t.history">
+                <div class="thread-dot" [ngClass]="h.status"></div>
+                <div class="thread-body">
+                  <div class="thread-head">
+                    <span class="thread-version">v{{h.version}}</span>
+                    <span class="mono">{{h.reportNumber}}</span>
+                    <span class="badge" [ngClass]="h.status">{{h.status}}</span>
+                    <button class="btn-view-sm" (click)="viewReport(h.id)">👁 View this version</button>
+                  </div>
+                  <div class="thread-remark" *ngIf="h.status === 'Rejected' && h.managerRemarks">
+                    <b>Rejected:</b> "{{h.managerRemarks}}"
+                  </div>
+                  <div class="thread-remark" *ngIf="h.remarks">
+                    <b>Employee note:</b> {{h.remarks}}
+                  </div>
+                </div>
+              </div>
+              <div class="thread-item current">
+                <div class="thread-dot" [ngClass]="t.latest.status"></div>
+                <div class="thread-body">
+                  <div class="thread-head">
+                    <span class="thread-version">v{{t.latest.version}} (current)</span>
+                    <span class="mono">{{t.latest.reportNumber}}</span>
+                    <span class="badge" [ngClass]="t.latest.status">{{t.latest.status}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
+  <div class="table-footer" *ngIf="!loading && filteredThreads.length > 0">{{filteredThreads.length}} report thread(s) · {{reports.length}} total versions</div>
 </div>
 
 <!-- Upload Modal -->
 <div class="modal-overlay" *ngIf="showUploadModal">
   <div class="modal">
-    <h2>Upload Report</h2>
+    <h2>{{ resubmitContext ? 'Upload Corrected Report' : 'Upload Report' }}</h2>
     <p class="modal-hint">Your employee ID: <b>#{{myEmployeeId}}</b></p>
 
-    <div class="form-field">
-      <label>Select Sample * <span class="count-hint">({{mySamples.length}} assigned to you)</span></label>
+    <!-- Shows why the previous one was rejected, so this reads as one continuous thread -->
+    <div class="resubmit-banner" *ngIf="resubmitContext">
+      <div class="rb-title">⚠️ Previous submission was rejected</div>
+      <div class="rb-body">"{{resubmitContext.managerRemarks || 'No remarks provided'}}"</div>
+      <div class="rb-hint">Upload the corrected file below — it will be linked to this sample's report history.</div>
+    </div>
+
+    <div class="form-field" *ngIf="!resubmitContext">
+      <label>Select Sample * <span class="count-hint">({{mySamples.length}} accepted samples)</span></label>
       <select [(ngModel)]="uploadSampleId">
         <option [value]="0" disabled>-- Select Sample --</option>
-        <option *ngFor="let s of mySamples" [value]="s.id">
-          {{s.sampleCode}} — {{s.sampleName}}
-        </option>
+        <option *ngFor="let s of mySamples" [value]="s.id">{{s.sampleCode}} — {{s.sampleName}}</option>
       </select>
+    </div>
+
+    <div class="form-field">
+      <label>Test Report Number * <span class="count-hint">must be unique</span></label>
+      <input type="text" [(ngModel)]="uploadReportNumber" placeholder="e.g. TR-2026-0451">
     </div>
 
     <div class="form-field">
@@ -64,10 +136,24 @@
     </div>
 
     <div class="modal-buttons">
-      <button class="btn-primary" (click)="uploadReport()" [disabled]="uploading">
-        {{uploading ? 'Uploading...' : 'Upload'}}
-      </button>
+      <button class="btn-primary" (click)="uploadReport()" [disabled]="uploading">{{uploading ? 'Uploading…' : (resubmitContext ? 'Upload Corrected Version' : 'Upload')}}</button>
       <button class="btn-cancel" (click)="showUploadModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reject with Remarks Modal -->
+<div class="modal-overlay" *ngIf="showRejectModal">
+  <div class="modal">
+    <h2>Reject Report</h2>
+    <p class="modal-hint">Explain why this report is being rejected so the employee can resubmit correctly</p>
+    <div class="form-field">
+      <label>Rejection Remarks *</label>
+      <textarea [(ngModel)]="rejectRemarks" rows="4" placeholder="e.g. Missing calibration data on page 2, please resubmit"></textarea>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-reject-confirm" (click)="confirmReject()" [disabled]="rejecting">{{rejecting ? 'Rejecting…' : 'Reject Report'}}</button>
+      <button class="btn-cancel" (click)="showRejectModal = false">Cancel</button>
     </div>
   </div>
 </div>

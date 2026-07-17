@@ -13,12 +13,36 @@
     </div>
   </div>
 
+  <!-- Self Check-In / Check-Out Widget — reference only, Manager marks official attendance -->
+  <div class="checkin-widget">
+    <div class="checkin-info">
+      <div class="checkin-title">📍 Lab Presence</div>
+      <div class="checkin-sub">This lets your Manager know you've arrived or left. Official attendance is still marked by your Manager.</div>
+    </div>
+    <div class="checkin-status">
+      <div class="checkin-badge" [class.done]="selfCheckedIn">
+        <span class="dot"></span> In: {{ selfCheckInTime ? formatTime(selfCheckInTime) : '—' }}
+      </div>
+      <div class="checkin-badge" [class.done]="selfCheckedOut">
+        <span class="dot"></span> Out: {{ selfCheckOutTime ? formatTime(selfCheckOutTime) : '—' }}
+      </div>
+    </div>
+    <div class="checkin-actions">
+      <button class="checkin-btn in" (click)="doSelfCheckIn()" [disabled]="checkingIn || selfCheckedIn">
+        {{ checkingIn ? 'Checking in…' : selfCheckedIn ? '✓ Checked In' : '→ Check In' }}
+      </button>
+      <button class="checkin-btn out" (click)="doSelfCheckOut()" [disabled]="checkingOut || !selfCheckedIn || selfCheckedOut">
+        {{ checkingOut ? 'Checking out…' : selfCheckedOut ? '✓ Checked Out' : '← Check Out' }}
+      </button>
+    </div>
+  </div>
+
   <!-- KPI Cards -->
   <div class="kpi-grid">
     <div class="kpi-card" *ngFor="let card of cards">
-      <div class="kpi-icon" [style.background]="card.bg" [style.color]="card.color">{{card.icon}}</div>
+      <div class="kpi-icon" [ngClass]="'icon-' + card.cls">{{card.icon}}</div>
       <div class="kpi-body">
-        <div class="kpi-value" [style.color]="card.color">
+        <div class="kpi-value" [ngClass]="'val-' + card.cls">
           <span *ngIf="!loading">{{card.value}}</span>
           <span *ngIf="loading" class="skeleton">—</span>
         </div>

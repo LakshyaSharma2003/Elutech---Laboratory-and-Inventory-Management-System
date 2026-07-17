@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { Report } from '../models/report.model';
@@ -19,17 +19,26 @@ export class ReportService {
     return this.apiService.put(`Report/approve/${id}`, {});
   }
 
-  rejectReport(id: number) {
-    return this.apiService.put(`Report/reject/${id}`, {});
+  rejectReport(id: number, managerRemarks: string) {
+    return this.apiService.put(`Report/reject/${id}`, { managerRemarks });
   }
 
-  // UploadReportDto: SampleId, EmployeeId, Remarks (NOT notes!)
-  uploadReport(file: File, sampleId: number, employeeId: number, remarks: string): Observable<any> {
+  // Fetches the file as a blob (used to open in a new tab with proper auth header)
+  fetchReportBlob(id: number): Observable<Blob> {
+    const token = localStorage.getItem('token');
+    return this.http.get(`${this.apiUrl}/Report/view/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: 'blob'
+    });
+  }
+
+  uploadReport(file: File, sampleId: number, employeeId: number, reportNumber: string, remarks: string): Observable<any> {
     const token = localStorage.getItem('token');
     const formData = new FormData();
     formData.append('file', file);
     formData.append('sampleId', sampleId.toString());
     formData.append('employeeId', employeeId.toString());
+    formData.append('reportNumber', reportNumber);
     formData.append('remarks', remarks);
     return this.http.post(`${this.apiUrl}/Report/upload`, formData, {
       headers: { Authorization: `Bearer ${token}` }

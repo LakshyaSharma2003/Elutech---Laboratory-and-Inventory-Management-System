@@ -17,6 +17,11 @@
     >
       <span class="icon">{{item.icon}}</span>
       <span class="label">{{item.title}}</span>
+      <!-- Notification badge -->
+      <span class="notif-badge"
+        *ngIf="item.badge && badge.unreadCount() > 0">
+        {{badge.unreadCount() > 99 ? '99+' : badge.unreadCount()}}
+      </span>
       <span class="active-indicator"></span>
     </a>
   </nav>

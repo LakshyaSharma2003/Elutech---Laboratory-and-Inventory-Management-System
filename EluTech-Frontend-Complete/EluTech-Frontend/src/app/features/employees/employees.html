@@ -1,98 +1,105 @@
 <div class="container">
   <div class="top">
-    <h1>Employees</h1>
-    <button class="btn-primary" (click)="openModal()">+ Add Employee</button>
+    <div>
+      <h1>Employees</h1>
+      <p class="subtitle">Manage your lab team members</p>
+    </div>
+    <div class="top-actions">
+      <button class="btn-secondary" (click)="exportCSV()">⬇ Export CSV</button>
+      <button class="btn-primary" (click)="openModal()">+ Add Employee</button>
+    </div>
   </div>
 
   <div class="search-bar">
-    <input [(ngModel)]="search" (ngModelChange)="filterEmployees()" placeholder="Search by name, email, department...">
+    <input [(ngModel)]="search" (ngModelChange)="filterEmployees()"
+      placeholder="Search by name, email, department…">
   </div>
 
-  <div *ngIf="loading" class="loading">Loading employees...</div>
+  <div *ngIf="loading" class="loading">Loading employees…</div>
 
-  <div *ngIf="!loading && filteredEmployees.length === 0" class="empty">No employees found.</div>
+  <div *ngIf="!loading && filteredEmployees.length === 0" class="empty">
+    <div class="empty-icon">👥</div>
+    <div class="empty-title">No employees found</div>
+    <div class="empty-sub">{{search ? 'Try a different search term' : 'Add your first employee to get started'}}</div>
+    <button class="btn-primary" *ngIf="!search" (click)="openModal()" style="margin-top:16px">+ Add Employee</button>
+  </div>
 
   <table *ngIf="!loading && filteredEmployees.length > 0">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Department</th>
-        <th>Designation</th>
-        <th>Salary</th>
+        <th class="sortable" (click)="setSort('id')">#  {{sortIcon('id')}}</th>
+        <th class="sortable" (click)="setSort('name')">Name {{sortIcon('name')}}</th>
+        <th class="sortable" (click)="setSort('email')">Email {{sortIcon('email')}}</th>
+        <th class="sortable" (click)="setSort('department')">Dept {{sortIcon('department')}}</th>
+        <th class="sortable" (click)="setSort('designation')">Role {{sortIcon('designation')}}</th>
+        <th class="sortable" (click)="setSort('salary')">Salary {{sortIcon('salary')}}</th>
         <th>Status</th>
-        <th>Actions</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let emp of filteredEmployees">
-        <td><b>{{emp.name}}</b></td>
-        <td>{{emp.email}}</td>
-        <td>{{emp.department}}</td>
-        <td>{{emp.designation}}</td>
-        <td>₹{{emp.salary | number}}</td>
+      <tr *ngFor="let e of filteredEmployees">
+        <td class="mono">{{e.id}}</td>
+        <td><b>{{e.name}}</b></td>
+        <td>{{e.email}}</td>
+        <td>{{e.department}}</td>
+        <td>{{e.designation}}</td>
+        <td>₹{{e.salary | number}}</td>
         <td>
-          <span class="badge" [ngClass]="{'active': !emp.isTerminated, 'terminated': emp.isTerminated}">
-            {{emp.isTerminated ? 'Terminated' : 'Active'}}
+          <span class="badge" [ngClass]="e.isTerminated ? 'terminated' : 'active'">
+            {{e.isTerminated ? 'Terminated' : 'Active'}}
           </span>
         </td>
         <td>
-          <button class="btn-fire" (click)="fireEmployee(emp.id)" *ngIf="!emp.isTerminated">Terminate</button>
-          <span *ngIf="emp.isTerminated" class="done-text">—</span>
+          <button class="btn-fire" *ngIf="!e.isTerminated" (click)="askFire(e)">Terminate</button>
+          <span class="done-text" *ngIf="e.isTerminated">—</span>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <div class="table-footer" *ngIf="!loading && filteredEmployees.length > 0">
+    {{filteredEmployees.length}} of {{employees.length}} employees
+  </div>
 </div>
 
 <!-- Add Employee Modal -->
 <div class="modal-overlay" *ngIf="showModal">
   <div class="modal">
     <h2>Add Employee</h2>
-    <p class="modal-hint">Fields pre-filled with sample data — edit as needed</p>
+    <p class="modal-hint">All fields marked * are required</p>
     <div class="form-grid">
+      <div class="form-field"><label>Full Name *</label><input [(ngModel)]="newEmployee.fullName" placeholder="e.g. Ravi Sharma"></div>
+      <div class="form-field"><label>Email *</label><input type="email" [(ngModel)]="newEmployee.email" placeholder="e.g. ravi@elutech.com"></div>
+      <div class="form-field"><label>Password *</label><input type="password" [(ngModel)]="newEmployee.password" placeholder="Minimum 6 characters"></div>
+      <div class="form-field"><label>Phone Number</label><input [(ngModel)]="newEmployee.phoneNumber" placeholder="10-digit mobile number"></div>
+      <div class="form-field"><label>Department</label><input [(ngModel)]="newEmployee.department" placeholder="e.g. Chemistry, Physics"></div>
+      <div class="form-field"><label>Designation</label><input [(ngModel)]="newEmployee.designation" placeholder="e.g. Lab Analyst"></div>
+      <div class="form-field"><label>Monthly Salary (₹)</label><input type="number" [(ngModel)]="newEmployee.salary" placeholder="Monthly salary in ₹"></div>
       <div class="form-field">
-        <label>Full Name *</label>
-        <input [(ngModel)]="newEmployee.fullName" placeholder="e.g. Ravi Sharma">
-      </div>
-      <div class="form-field">
-        <label>Email *</label>
-        <input type="email" [(ngModel)]="newEmployee.email" placeholder="e.g. ravi@elutech.com">
-      </div>
-      <div class="form-field">
-        <label>Password *</label>
-        <input type="password" [(ngModel)]="newEmployee.password" placeholder="Password">
-      </div>
-      <div class="form-field">
-        <label>Phone Number</label>
-        <input [(ngModel)]="newEmployee.phoneNumber" placeholder="e.g. 9876543210">
-      </div>
-      <div class="form-field">
-        <label>Department</label>
-        <input [(ngModel)]="newEmployee.department" placeholder="e.g. Chemistry, Physics, Biology">
-      </div>
-      <div class="form-field">
-        <label>Designation</label>
-        <input [(ngModel)]="newEmployee.designation" placeholder="e.g. Lab Analyst, Technician">
-      </div>
-      <div class="form-field">
-        <label>Monthly Salary (₹)</label>
-        <input type="number" [(ngModel)]="newEmployee.salary" placeholder="Monthly salary in ₹">
-      </div>
-      <div class="form-field">
-        <label>Role *</label>
+        <label>Role</label>
         <select [(ngModel)]="newEmployee.roleName">
           <option value="Employee">Employee</option>
-          <option value="Manager">Manager</option>
           <option value="FinanceOfficer">Finance Officer</option>
+          <option value="Manager">Manager</option>
         </select>
       </div>
     </div>
     <div class="modal-buttons">
-      <button class="btn-primary" (click)="saveEmployee()" [disabled]="saving">
-        {{saving ? 'Adding...' : 'Add Employee'}}
-      </button>
-      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+      <button class="btn-primary" (click)="saveEmployee()" [disabled]="saving">{{saving ? 'Saving…' : 'Add Employee'}}</button>
+      <button class="btn-cancel" (click)="showModal = false">Cancel</button>
     </div>
   </div>
 </div>
+
+<!-- Confirm Terminate Dialog -->
+<app-confirm-dialog
+  [visible]="showConfirm"
+  title="Terminate Employee?"
+  [message]="'This will mark ' + confirmName + ' as terminated. This action cannot be undone.'"
+  confirmLabel="Yes, Terminate"
+  cancelLabel="Cancel"
+  type="danger"
+  (confirmed)="fireEmployee()"
+  (cancelled)="showConfirm = false">
+</app-confirm-dialog>

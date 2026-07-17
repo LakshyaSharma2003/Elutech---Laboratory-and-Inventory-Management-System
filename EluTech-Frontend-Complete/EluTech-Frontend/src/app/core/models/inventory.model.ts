@@ -6,11 +6,15 @@ export interface Chemical {
   unit: string;
   minimumStock: number;
   expiryDate: string;
+  lowStockDismissed: boolean;
+  expiryDismissed: boolean;
+  lastRestockedAt?: string;
+  isDeleted: boolean;
 }
 
 export interface AddChemical {
   name: string;
-  casNumber: string;  // maps to backend CASNumber via camelCase
+  casNumber: string;
   quantity: number;
   unit: string;
   minimumStock: number;
@@ -24,6 +28,7 @@ export interface Machinery {
   serialNumber: string;
   isActive: boolean;
   purchaseDate: string;
+  isDeleted: boolean;
 }
 
 export interface AddMachinery {
@@ -38,6 +43,7 @@ export interface Consumable {
   quantity: number;
   minimumStock: number;
   unit: string;
+  isDeleted: boolean;
 }
 
 export interface AddConsumable {

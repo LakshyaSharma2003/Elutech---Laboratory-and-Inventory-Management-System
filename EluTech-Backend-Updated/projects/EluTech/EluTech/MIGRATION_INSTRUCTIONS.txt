@@ -1,0 +1,31 @@
+═══════════════════════════════════════════════════════════
+  DATABASE MIGRATION — RUN THIS AFTER PULLING NEW BACKEND
+═══════════════════════════════════════════════════════════
+
+LATEST UPDATE (this pass) — NO new DB columns were added.
+Only fixes were made to: DateTime serialization (global UTC fix),
+EmployeeDto/ReportDto (extra read-only fields, no schema change),
+and check-in/check-out validation logic.
+
+If you have NOT yet run the PREVIOUS migration from the last
+backend update, you still need to run it — it added:
+  - Report: ReportNumber, ManagerRemarks
+  - Chemical: LowStockDismissed, ExpiryDismissed, LastRestockedAt
+  - Sample: SampleType, BranchName, BranchAddress, DateArrived, ISNumber,
+            TypeOfTest, SampleSize, GeneratedCode, ProcessStartDate,
+            CompletionDate, ConditionOnReceiving, OtherRemarks,
+            AcceptanceStatus, RejectionRemarks, ExpectedCompletionDate,
+            ProgressPercent  (+ CustomerId is now nullable)
+  - New table: EmployeeCheckLogs
+  - New table: SampleProgressLogs
+
+Run in Package Manager Console (Visual Studio):
+    Add-Migration SamplesReportsInventoryWorkflowUpdate
+    Update-Database
+
+Or via terminal in the project folder:
+    dotnet ef migrations add SamplesReportsInventoryWorkflowUpdate
+    dotnet ef database update
+
+If you already ran it last time, you're fully up to date — this
+pass only changed C# logic, not the database schema.

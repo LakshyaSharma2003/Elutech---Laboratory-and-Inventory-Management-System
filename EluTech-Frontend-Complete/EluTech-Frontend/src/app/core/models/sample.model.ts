@@ -1,37 +1,70 @@
 export interface Sample {
+  id: number;
+  requestId?: number;
+  sampleCode: string;
+  sampleName: string;
+  sampleType: 'Government' | 'Private' | string;
 
-    id:number;
+  customerId?: number;
+  customerOrBranchName?: string;
+  customerOrBranchAddress?: string;
 
-    requestId?:number;
+  employee: string;
+  assignedEmployeeId: number;
+  currentPhase: string;
+  status: string;
 
-    sampleCode:string;
+  dateArrived?: string;
+  isNumber?: string;
+  typeOfTest?: string;
+  sampleSize?: string;
+  generatedCode?: string;
+  processStartDate?: string;
+  completionDate?: string;
+  conditionOnReceiving?: string;
+  otherRemarks?: string;
 
-    sampleName:string;
-
-    employee:string;
-
-    currentPhase:string;
-
-    status:string;
-
+  acceptanceStatus: 'Pending' | 'Accepted' | 'Rejected' | string;
+  rejectionRemarks?: string;
+  expectedCompletionDate?: string;
+  progressPercent: number;
 }
 
-
-
-export interface AddSample{
-
-    sampleName:string;
-
-    customerId:number;
-
-    assignedEmployeeId:number;
-
+export interface AddSample {
+  sampleName: string;
+  sampleType: 'Government' | 'Private';
+  customerId?: number;
+  branchName?: string;
+  branchAddress?: string;
+  assignedEmployeeId: number;
+  dateArrived?: string;
+  isNumber?: string;
+  typeOfTest?: string;
+  sampleSize?: string;
+  conditionOnReceiving?: string;
+  otherRemarks?: string;
 }
 
+export interface UpdateSampleDetails {
+  dateArrived?: string;
+  isNumber?: string;
+  typeOfTest?: string;
+  sampleSize?: string;
+  generatedCode?: string;
+  processStartDate?: string;
+  completionDate?: string;
+  conditionOnReceiving?: string;
+  otherRemarks?: string;
+}
 
+export interface ProgressLog {
+  id: number;
+  progressPercent: number;
+  remarks?: string;
+  employee: string;
+  loggedAt: string;
+}
 
-export interface ApiResponse{
-
-    message:string;
-
+export interface ApiResponse {
+  message: string;
 }

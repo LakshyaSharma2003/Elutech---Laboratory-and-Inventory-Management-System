@@ -22,16 +22,24 @@ export class NotificationDispatchService {
 
   async notifyManagers(title: string, message: string, type: 'Info' | 'Warning' | 'Success' | 'Error' = 'Info') {
     const ids = await this.loadManagerIds();
-    // Don't notify yourself if you ARE the manager
+    if (ids.length === 0) {
+      console.warn('[Notifications] No manager user IDs found — cannot deliver notification:', title);
+      return;
+    }
     const myId = this.auth.userId();
     ids.filter(id => id !== myId).forEach(userId => {
-      this.api.post('Notification', { userId, title, message, type }).subscribe({ error: () => {} });
+      this.api.post('Notification', { userId, title, message, type }).subscribe({
+        error: (err) => console.error('[Notifications] Failed to notify manager', userId, err)
+      });
     });
   }
 
   notifyUser(userId: number, title: string, message: string, type: 'Info' | 'Warning' | 'Success' | 'Error' = 'Info') {
+    if (!userId) { console.warn('[Notifications] notifyUser called with invalid userId for:', title); return; }
     if (userId === this.auth.userId()) return; // Don't notify yourself
-    this.api.post('Notification', { userId, title, message, type }).subscribe({ error: () => {} });
+    this.api.post('Notification', { userId, title, message, type }).subscribe({
+      error: (err) => console.error('[Notifications] Failed to notify user', userId, err)
+    });
   }
 
   get currentUserName(): string { return this.auth.displayName(); }

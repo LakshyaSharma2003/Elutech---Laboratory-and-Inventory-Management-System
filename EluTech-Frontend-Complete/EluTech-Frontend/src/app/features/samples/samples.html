@@ -1,85 +1,253 @@
 <div class="container">
   <div class="top">
-    <h1>Samples</h1>
-    <button class="btn-primary" (click)="openModal()" *ngIf="isManager">+ Add Sample</button>
+    <div>
+      <h1>Samples</h1>
+      <p class="subtitle">Track sample testing progress</p>
+    </div>
+    <div class="top-actions">
+      <button class="btn-secondary" (click)="exportCSV()">⬇ Export CSV</button>
+      <button class="btn-primary" *ngIf="isManager" (click)="openModal()">+ Add Sample</button>
+    </div>
+  </div>
+
+  <!-- Government / Private Tabs — Manager only -->
+  <div class="sample-tabs" *ngIf="isManager">
+    <button class="stab" [class.active]="activeSampleTab === 'Private'" (click)="switchTab('Private')">🏢 Private Customers</button>
+    <button class="stab" [class.active]="activeSampleTab === 'Government'" (click)="switchTab('Government')">🏛️ Government</button>
   </div>
 
   <div class="search-bar">
-    <input [(ngModel)]="search" (ngModelChange)="filterSamples()" placeholder="Search by code, name, employee, or status...">
+    <input [(ngModel)]="search" (ngModelChange)="filterSamples()" placeholder="Search by code, name, employee, phase, status, or customer/branch…">
   </div>
 
-  <div *ngIf="loading" class="loading">Loading samples...</div>
-  <div *ngIf="!loading && filteredSamples.length === 0" class="empty">No samples found.</div>
+  <div *ngIf="loading" class="loading">Loading samples…</div>
+
+  <div *ngIf="!loading && filteredSamples.length === 0" class="empty">
+    <div class="empty-icon">🧪</div>
+    <div class="empty-title">No samples found</div>
+    <div class="empty-sub">{{search ? 'Try a different search term' : 'Add your first sample to begin tracking'}}</div>
+    <button class="btn-primary" *ngIf="!search && isManager" (click)="openModal()" style="margin-top:16px">+ Add Sample</button>
+  </div>
 
   <table *ngIf="!loading && filteredSamples.length > 0">
     <thead>
       <tr>
-        <th>Sample Code</th><th>Sample Name</th><th>Assigned To</th><th>Phase</th><th>Status</th>
-        <th *ngIf="isManager">Pending Request</th>
+        <th class="sortable" (click)="setSort('sampleCode')">Code {{sortIcon('sampleCode')}}</th>
+        <th class="sortable" (click)="setSort('sampleName')">Sample Name {{sortIcon('sampleName')}}</th>
+        <th *ngIf="!isManager || activeSampleTab==='Private'">Customer</th>
+        <th *ngIf="isManager && activeSampleTab==='Government'">Branch</th>
+        <th class="sortable" (click)="setSort('employee')">Assigned To {{sortIcon('employee')}}</th>
+        <th>Acceptance</th>
+        <th>Progress</th>
+        <th class="sortable" (click)="setSort('status')">Status {{sortIcon('status')}}</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let s of filteredSamples">
-        <td class="mono">{{s.sampleCode}}</td>
-        <td><b>{{s.sampleName}}</b></td>
-        <td>{{s.employee}}</td>
-        <td><span class="phase-badge">{{s.currentPhase}}</span></td>
-        <td><span class="badge" [ngClass]="s.status">{{s.status}}</span></td>
-        <td *ngIf="isManager">
-          <div class="action-group" *ngIf="s.requestId">
-            <button class="btn-approve" (click)="approve(s.requestId!)">✓ Approve</button>
-            <button class="btn-reject" (click)="reject(s.requestId!)">✗ Reject</button>
-          </div>
-          <span *ngIf="!s.requestId" class="na-text">No pending request</span>
-        </td>
-      </tr>
+      <ng-container *ngFor="let s of filteredSamples">
+        <tr>
+          <td class="mono">{{s.sampleCode}}</td>
+          <td><b>{{s.sampleName}}</b><div class="test-type" *ngIf="s.typeOfTest">{{s.typeOfTest}}</div></td>
+          <td *ngIf="!isManager || activeSampleTab==='Private'">{{s.customerOrBranchName || '—'}}</td>
+          <td *ngIf="isManager && activeSampleTab==='Government'">{{s.customerOrBranchName || '—'}}</td>
+          <td>{{s.employee}}</td>
+          <td>
+            <span class="badge" [ngClass]="s.acceptanceStatus">{{s.acceptanceStatus}}</span>
+            <div class="rejection-note" *ngIf="s.acceptanceStatus === 'Rejected' && s.rejectionRemarks">"{{s.rejectionRemarks}}"</div>
+            <div class="expected-date" *ngIf="s.acceptanceStatus === 'Accepted' && s.expectedCompletionDate">
+              Due {{s.expectedCompletionDate | date:'dd MMM yyyy'}}
+            </div>
+          </td>
+          <td class="progress-col">
+            <div class="progress-track"><div class="progress-fill" [style.width.%]="s.progressPercent"></div></div>
+            <div class="progress-row">
+              <span class="progress-pct">{{s.progressPercent}}%</span>
+              <button class="link-btn" (click)="toggleHistory(s)">{{expandedProgressSampleId === s.id ? 'Hide' : 'History'}}</button>
+            </div>
+          </td>
+          <td><span class="badge" [ngClass]="s.status">{{s.status}}</span></td>
+          <td>
+            <div class="action-group">
+              <!-- Employee: accept/reject pending assignment -->
+              <ng-container *ngIf="isEmployee && s.acceptanceStatus === 'Pending'">
+                <button class="btn-approve" (click)="openAccept(s)">✓ Accept</button>
+                <button class="btn-reject" (click)="openEmployeeReject(s)">✗ Reject</button>
+              </ng-container>
+              <!-- Employee: log progress once accepted -->
+              <button class="btn-progress" *ngIf="isEmployee && s.acceptanceStatus === 'Accepted' && s.status !== 'Completed'" (click)="openProgress(s)">
+                📈 Update Progress
+              </button>
+              <!-- Manager: phase change requests -->
+              <ng-container *ngIf="isManager && s.requestId">
+                <button class="btn-approve" (click)="approve(s.requestId!)">✓</button>
+                <button class="btn-reject" (click)="askReject(s.requestId!)">✗</button>
+              </ng-container>
+              <!-- Fill in / edit details later -->
+              <button class="btn-edit" (click)="openDetails(s)">✎ Details</button>
+            </div>
+          </td>
+        </tr>
+        <!-- Progress history expand row -->
+        <tr *ngIf="expandedProgressSampleId === s.id" class="history-row">
+          <td colspan="8">
+            <div class="history-panel">
+              <div *ngIf="loadingHistory" class="loading-inline">Loading history…</div>
+              <div *ngIf="!loadingHistory && progressHistory.length === 0" class="no-history">No progress updates logged yet.</div>
+              <div class="history-item" *ngFor="let h of progressHistory">
+                <span class="hist-pct">{{h.progressPercent}}%</span>
+                <span class="hist-remarks">{{h.remarks || 'No remarks'}}</span>
+                <span class="hist-meta">{{h.employee}} · {{h.loggedAt | date:'dd MMM, h:mm a'}}</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
+
+  <div class="table-footer" *ngIf="!loading && filteredSamples.length > 0">{{filteredSamples.length}} of {{samples.length}} samples</div>
 </div>
 
 <!-- Add Sample Modal -->
 <div class="modal-overlay" *ngIf="showModal">
-  <div class="modal">
+  <div class="modal wide-modal">
     <h2>Add Sample</h2>
-    <p class="modal-hint">Dropdowns are loaded from the database</p>
+    <p class="modal-hint">Fields can be left blank and filled in later using "Details"</p>
 
-    <div class="form-field">
-      <label>Sample Name *</label>
-      <input [(ngModel)]="newSample.sampleName" placeholder="Describe the sample e.g. Water Quality Analysis">
+    <div class="sample-type-toggle">
+      <button class="type-btn" [class.active]="newSample.sampleType === 'Private'" (click)="newSample.sampleType = 'Private'">🏢 Private Customer</button>
+      <button class="type-btn" [class.active]="newSample.sampleType === 'Government'" (click)="newSample.sampleType = 'Government'">🏛️ Government</button>
     </div>
 
-    <div class="form-field">
-      <label>Customer * <span class="count-hint">({{customers.length}} available)</span></label>
-      <select [(ngModel)]="newSample.customerId">
-        <option [value]="0" disabled>-- Select Customer --</option>
-        <option *ngFor="let c of customers" [value]="c.id">
-          #{{c.id}} — {{c.name}}
-        </option>
-      </select>
-      <div *ngIf="customers.length === 0" class="field-hint error-hint">
-        ⚠ No customers in database. <a routerLink="/customers">Add customers first →</a>
+    <div class="form-grid">
+      <div class="form-field full">
+        <label>Sample Name *</label>
+        <input [(ngModel)]="newSample.sampleName" placeholder="Describe the sample e.g. Water Quality Analysis">
       </div>
-    </div>
 
-    <div class="form-field">
-      <label>Assign to Employee * <span class="count-hint">({{employees.length}} available)</span></label>
-      <div *ngIf="loadingDropdowns" class="loading-inline">Loading...</div>
-      <select *ngIf="!loadingDropdowns" [(ngModel)]="newSample.assignedEmployeeId">
-        <option [value]="0" disabled>-- Select Employee --</option>
-        <option *ngFor="let e of employees" [value]="e.id">
-          #{{e.id}} — {{e.name}} ({{e.designation}})
-        </option>
-      </select>
-      <div *ngIf="!loadingDropdowns && employees.length === 0" class="field-hint error-hint">
-        ⚠ No active employees found.
+      <!-- Private customer fields -->
+      <div class="form-field full" *ngIf="newSample.sampleType === 'Private'">
+        <label>Customer * <span class="count-hint">({{customers.length}} available)</span></label>
+        <select [(ngModel)]="newSample.customerId">
+          <option [value]="0" disabled>-- Select Customer --</option>
+          <option *ngFor="let c of customers" [value]="c.id">#{{c.id}} — {{c.name}}</option>
+        </select>
+        <div *ngIf="!customers.length" class="field-hint error-hint">⚠ No customers. <a routerLink="/customers">Add customers first →</a></div>
       </div>
+
+      <!-- Government branch fields -->
+      <ng-container *ngIf="newSample.sampleType === 'Government'">
+        <div class="form-field"><label>Branch Name *</label><input [(ngModel)]="newSample.branchName" placeholder="e.g. Jaipur Municipal Corporation"></div>
+        <div class="form-field"><label>Branch Address</label><input [(ngModel)]="newSample.branchAddress" placeholder="Full branch address"></div>
+      </ng-container>
+
+      <div class="form-field">
+        <label>Assign to Employee * <span class="count-hint">({{employees.length}} active)</span></label>
+        <select [(ngModel)]="newSample.assignedEmployeeId">
+          <option [value]="0" disabled>-- Select Employee --</option>
+          <option *ngFor="let e of employees" [value]="e.id">#{{e.id}} — {{e.name}} ({{e.designation}})</option>
+        </select>
+      </div>
+
+      <div class="form-field"><label>Date Arrived</label><input type="date" [(ngModel)]="newSample.dateArrived"></div>
+      <div class="form-field"><label>IS Number (with year)</label><input [(ngModel)]="newSample.isNumber" placeholder="e.g. IS 456:2000"></div>
+      <div class="form-field"><label>Type of Test</label><input [(ngModel)]="newSample.typeOfTest" placeholder="e.g. Compressive Strength"></div>
+      <div class="form-field"><label>Size of Sample</label><input [(ngModel)]="newSample.sampleSize" placeholder="e.g. 500 mL, 2 kg"></div>
+      <div class="form-field full"><label>Condition on Receiving</label><input [(ngModel)]="newSample.conditionOnReceiving" placeholder="e.g. Sealed, intact, no visible damage"></div>
+      <div class="form-field full"><label>Other Remarks</label><textarea [(ngModel)]="newSample.otherRemarks" rows="2" placeholder="Any additional notes"></textarea></div>
     </div>
 
     <div class="modal-buttons">
-      <button class="btn-primary" (click)="saveSample()" [disabled]="saving || customers.length === 0 || employees.length === 0">
-        {{saving ? 'Adding...' : 'Add Sample'}}
-      </button>
+      <button class="btn-primary" (click)="saveSample()" [disabled]="saving">{{saving ? 'Adding…' : 'Add Sample'}}</button>
       <button class="btn-cancel" (click)="closeModal()">Cancel</button>
     </div>
   </div>
 </div>
+
+<!-- Fill-in-later Details Modal -->
+<div class="modal-overlay" *ngIf="showDetailsModal">
+  <div class="modal wide-modal">
+    <h2>Sample Details</h2>
+    <p class="modal-hint" *ngIf="detailsTarget">{{detailsTarget.sampleCode}} — {{detailsTarget.sampleName}}</p>
+    <div class="form-grid">
+      <div class="form-field"><label>Date Arrived</label><input type="date" [(ngModel)]="detailsForm.dateArrived"></div>
+      <div class="form-field"><label>IS Number</label><input [(ngModel)]="detailsForm.isNumber" placeholder="e.g. IS 456:2000"></div>
+      <div class="form-field"><label>Type of Test</label><input [(ngModel)]="detailsForm.typeOfTest"></div>
+      <div class="form-field"><label>Sample Size</label><input [(ngModel)]="detailsForm.sampleSize"></div>
+      <div class="form-field"><label>Generated Code <span class="count-hint">(received later)</span></label><input [(ngModel)]="detailsForm.generatedCode" placeholder="Code received from lab equipment/system"></div>
+      <div class="form-field"><label>Process Start Date</label><input type="date" [(ngModel)]="detailsForm.processStartDate"></div>
+      <div class="form-field"><label>Completion Date</label><input type="date" [(ngModel)]="detailsForm.completionDate"></div>
+      <div class="form-field"><label>Condition on Receiving</label><input [(ngModel)]="detailsForm.conditionOnReceiving"></div>
+      <div class="form-field full"><label>Other Remarks</label><textarea [(ngModel)]="detailsForm.otherRemarks" rows="3"></textarea></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveDetails()" [disabled]="savingDetails">{{savingDetails ? 'Saving…' : 'Save Details'}}</button>
+      <button class="btn-cancel" (click)="showDetailsModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Employee Accept Modal -->
+<div class="modal-overlay" *ngIf="showAcceptModal">
+  <div class="modal">
+    <h2>Accept Sample</h2>
+    <p class="modal-hint" *ngIf="workflowTarget">{{workflowTarget.sampleCode}} — {{workflowTarget.sampleName}}</p>
+    <div class="form-field">
+      <label>Expected Completion Date *</label>
+      <input type="date" [(ngModel)]="acceptExpectedDate">
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="confirmAccept()" [disabled]="workflowSaving">{{workflowSaving ? 'Accepting…' : 'Accept Sample'}}</button>
+      <button class="btn-cancel" (click)="showAcceptModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Employee Reject Modal -->
+<div class="modal-overlay" *ngIf="showEmployeeRejectModal">
+  <div class="modal">
+    <h2>Reject Sample</h2>
+    <p class="modal-hint" *ngIf="workflowTarget">{{workflowTarget.sampleCode}} — {{workflowTarget.sampleName}}</p>
+    <div class="form-field">
+      <label>Reason for Rejection *</label>
+      <textarea [(ngModel)]="employeeRejectRemarks" rows="4" placeholder="e.g. Sample container damaged, insufficient quantity"></textarea>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-reject-confirm" (click)="confirmEmployeeReject()" [disabled]="workflowSaving">{{workflowSaving ? 'Rejecting…' : 'Reject Sample'}}</button>
+      <button class="btn-cancel" (click)="showEmployeeRejectModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Progress Update Modal -->
+<div class="modal-overlay" *ngIf="showProgressModal">
+  <div class="modal">
+    <h2>Update Progress</h2>
+    <p class="modal-hint" *ngIf="progressTarget">{{progressTarget.sampleCode}} — {{progressTarget.sampleName}}</p>
+    <div class="form-field">
+      <label>Progress: {{progressValue}}%</label>
+      <input type="range" min="0" max="100" step="5" [(ngModel)]="progressValue" class="progress-slider">
+      <div class="progress-track" style="margin-top:8px"><div class="progress-fill" [style.width.%]="progressValue"></div></div>
+    </div>
+    <div class="form-field">
+      <label>Remarks</label>
+      <textarea [(ngModel)]="progressRemarks" rows="3" placeholder="What was done? e.g. Completed pre-treatment, starting analysis phase"></textarea>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-primary" (click)="saveProgress()" [disabled]="progressSaving">{{progressSaving ? 'Saving…' : 'Update Progress'}}</button>
+      <button class="btn-cancel" (click)="showProgressModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Reject (Manager phase requests) -->
+<app-confirm-dialog
+  [visible]="showConfirmReject"
+  title="Reject Phase Request?"
+  message="The employee's phase change request will be rejected. They will need to re-submit."
+  confirmLabel="Yes, Reject"
+  cancelLabel="Cancel"
+  type="warning"
+  (confirmed)="doReject()"
+  (cancelled)="showConfirmReject = false">
+</app-confirm-dialog>

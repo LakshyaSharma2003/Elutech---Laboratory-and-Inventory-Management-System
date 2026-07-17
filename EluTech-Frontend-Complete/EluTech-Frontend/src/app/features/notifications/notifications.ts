@@ -4,6 +4,7 @@ import { NotificationApiService } from '../../core/services/notification-api.ser
 import { Notification } from '../../core/models/notification.model';
 import { AuthService } from '../../core/services/auth.service';
 import { ToastService } from '../../core/services/toast.service';
+import { NotificationBadgeService } from '../../core/services/notification-badge.service';
 
 @Component({
   selector: 'app-notifications',
@@ -20,7 +21,8 @@ export class Notifications implements OnInit {
   constructor(
     private service: NotificationApiService,
     private auth: AuthService,
-    private toast: ToastService
+    private toast: ToastService,
+    private badgeService: NotificationBadgeService
   ) {}
 
   ngOnInit() { this.load(); }
@@ -33,7 +35,7 @@ export class Notifications implements OnInit {
       return;
     }
     this.service.getNotifications(userId).subscribe({
-      next: (res) => { this.notifications = res; this.loading = false; },
+      next: (res) => { this.notifications = res; this.loading = false; this.badgeService.refresh(); },
       error: () => { this.loading = false; this.toast.show('Failed to load notifications', 'error'); }
     });
   }
@@ -51,6 +53,7 @@ export class Notifications implements OnInit {
 
   markAllRead() {
     this.notifications.filter(n => !n.isRead).forEach(n => this.markRead(n.id));
+    this.badgeService.reset();
   }
 
   get unreadCount(): number {

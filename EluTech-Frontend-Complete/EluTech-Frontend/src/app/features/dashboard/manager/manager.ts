@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
@@ -27,7 +27,8 @@ import { ManagerDashboard } from '../../../core/models/dashboard.model';
   templateUrl: './manager.html',
   styleUrl: './manager.css'
 })
-export class Manager implements OnInit {
+export class Manager implements OnInit, OnDestroy {
+  private clockInterval: any;
 
   today = new Date();
   loading = true;
@@ -44,12 +45,12 @@ export class Manager implements OnInit {
   // Quick stats cards
   get cards() {
     return [
-      { label: 'Total Employees', value: this.dashboard.employees, icon: '👥', color: '#3B82F6', bg: '#EFF6FF', trend: '+2 this month' },
-      { label: 'Present Today', value: this.dashboard.presentEmployees, icon: '✅', color: '#10B981', bg: '#F0FDF4', trend: 'Attendance rate' },
-      { label: 'Active Samples', value: this.dashboard.activeSamples, icon: '🧪', color: '#8B5CF6', bg: '#F5F3FF', trend: 'In progress' },
-      { label: 'Pending Requests', value: this.dashboard.pendingRequests, icon: '⏳', color: '#F59E0B', bg: '#FFFBEB', trend: 'Need approval' },
-      { label: 'Pending Reports', value: this.dashboard.pendingReports, icon: '📄', color: '#EC4899', bg: '#FDF2F8', trend: 'Awaiting review' },
-      { label: 'Low Stock Alerts', value: this.dashboard.lowStockChemicals, icon: '⚠️', color: '#EF4444', bg: '#FEF2F2', trend: 'Needs restocking' },
+      { label: 'Total Employees',   value: this.dashboard.employees,         icon: '👥', cls: 'blue',   trend: '+2 this month' },
+      { label: 'Present Today',     value: this.dashboard.presentEmployees,  icon: '✅', cls: 'green',  trend: 'Attendance rate' },
+      { label: 'Active Samples',    value: this.dashboard.activeSamples,     icon: '🧪', cls: 'purple', trend: 'In progress' },
+      { label: 'Pending Requests',  value: this.dashboard.pendingRequests,   icon: '⏳', cls: 'amber',  trend: 'Need approval' },
+      { label: 'Pending Reports',   value: this.dashboard.pendingReports,    icon: '📄', cls: 'pink',   trend: 'Awaiting review' },
+      { label: 'Low Stock Alerts',  value: this.dashboard.lowStockChemicals, icon: '⚠️', cls: 'red',    trend: 'Needs restocking' },
     ];
   }
 
@@ -102,7 +103,7 @@ export class Manager implements OnInit {
 
   constructor(private dashboardService: DashboardService) {}
 
-  ngOnInit() { this.loadDashboard(); }
+  ngOnInit() { this.loadDashboard(); this.startClock(); }
 
   loadDashboard() {
     this.loading = true;
@@ -133,6 +134,16 @@ export class Manager implements OnInit {
   get greeting(): string {
     const h = this.today.getHours();
     return h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
+  }
+
+  private startClock() {
+    this.clockInterval = setInterval(() => { this.today = new Date(); }, 1000);
+  }
+  ngOnDestroy() { clearInterval(this.clockInterval); }
+
+  // Returns axis label color that works on both light and dark themes
+  get axisColor(): string {
+    return document.body.getAttribute('data-dark') === 'true' ? '#94A3B8' : '#64748B';
   }
 
 }

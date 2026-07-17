@@ -76,6 +76,8 @@ public class EmployeeService : IEmployeeService
             {
                 Id = x.Id,
 
+                UserId = x.UserId,
+
                 Name = x.User.FullName,
 
                 Email = x.User.Email,

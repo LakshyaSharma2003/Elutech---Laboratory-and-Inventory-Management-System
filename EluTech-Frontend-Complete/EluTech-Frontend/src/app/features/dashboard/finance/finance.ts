@@ -25,11 +25,11 @@ export class Finance implements OnInit {
 
   get cards() {
     return [
-      { label: 'Total Revenue', value: this.dashboard.revenue, icon: '💰', color: '#10B981', bg: '#F0FDF4', prefix: '₹' },
-      { label: 'Total Expenses', value: this.dashboard.expenses, icon: '🧾', color: '#EF4444', bg: '#FEF2F2', prefix: '₹' },
-      { label: 'Salaries Paid', value: this.dashboard.salaries, icon: '💼', color: '#3B82F6', bg: '#EFF6FF', prefix: '₹' },
-      { label: 'Taxes Paid', value: this.dashboard.taxes, icon: '📋', color: '#F59E0B', bg: '#FFFBEB', prefix: '₹' },
-      { label: 'Net Profit', value: this.dashboard.profit, icon: '📈', color: '#8B5CF6', bg: '#F5F3FF', prefix: '₹' },
+      { label: 'Total Revenue',  value: this.dashboard.revenue,  icon: '💰', cls: 'green',  prefix: '₹' },
+      { label: 'Total Expenses', value: this.dashboard.expenses, icon: '🧾', cls: 'red',    prefix: '₹' },
+      { label: 'Salaries Paid',  value: this.dashboard.salaries, icon: '💼', cls: 'blue',   prefix: '₹' },
+      { label: 'Taxes Paid',     value: this.dashboard.taxes,    icon: '📋', cls: 'amber',  prefix: '₹' },
+      { label: 'Net Profit',     value: this.dashboard.profit,   icon: '📈', cls: 'purple', prefix: '₹' },
     ];
   }
 

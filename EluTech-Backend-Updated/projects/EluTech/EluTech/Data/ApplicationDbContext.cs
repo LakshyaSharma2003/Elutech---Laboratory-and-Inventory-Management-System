@@ -27,6 +27,10 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Sample> Samples { get; set; }
 
+    public DbSet<EmployeeCheckLog> EmployeeCheckLogs { get; set; }
+
+    public DbSet<SampleProgressLog> SampleProgressLogs { get; set; }
+
 
     public DbSet<RefreshToken> RefreshTokens { get; set; }
 
@@ -92,11 +96,12 @@ Customers
             .OnDelete(DeleteBehavior.NoAction);
 
 
-        // Sample -> Customer
+        // Sample -> Customer (optional — Government samples have no Customer)
         modelBuilder.Entity<Sample>()
             .HasOne(s => s.Customer)
             .WithMany(c => c.Samples)
             .HasForeignKey(s => s.CustomerId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.NoAction);
 
 
@@ -105,6 +110,27 @@ Customers
             .HasOne(t => t.Employee)
             .WithMany()
             .HasForeignKey(t => t.EmployeeId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        // EmployeeCheckLog -> Employee
+        modelBuilder.Entity<EmployeeCheckLog>()
+            .HasOne(x => x.Employee)
+            .WithMany()
+            .HasForeignKey(x => x.EmployeeId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        // SampleProgressLog -> Sample
+        modelBuilder.Entity<SampleProgressLog>()
+            .HasOne(x => x.Sample)
+            .WithMany(s => s.ProgressLogs)
+            .HasForeignKey(x => x.SampleId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        // SampleProgressLog -> Employee
+        modelBuilder.Entity<SampleProgressLog>()
+            .HasOne(x => x.Employee)
+            .WithMany()
+            .HasForeignKey(x => x.EmployeeId)
             .OnDelete(DeleteBehavior.NoAction);
 
 
