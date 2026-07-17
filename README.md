@@ -13,6 +13,8 @@ Built with a robust **.NET 8** backend and a dynamic **Angular 20** frontend, El
 * **Advanced Authentication & Authorization:** Secure JWT-based authentication with Role-Based Access Control (RBAC). Passwords are cryptographically hashed using BCrypt.
 * **Real-time Updates & Notifications:** Integrated with **SignalR** to push instant updates to connected clients (e.g., inventory alerts, status changes).
 * **Comprehensive Inventory Management:** Track laboratory equipment, chemicals, and consumables with precision.
+* **Sample Lifecycle Management:** Track the entire lifecycle of lab samples, including detailed progress logs and status updates.
+* **Attendance Tracking:** Keep track of employee check-ins and check-outs with detailed logs and self-service capabilities.
 * **Automated Background Jobs:** Leverages **Hangfire** for scheduling and executing asynchronous tasks (e.g., automated email notifications, database cleanup).
 * **High-Performance Caching:** Utilizes **Redis** for distributed caching to significantly reduce database load and improve API response times.
 * **Dynamic Reporting & Exporting:**
